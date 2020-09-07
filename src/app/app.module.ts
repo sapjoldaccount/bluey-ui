@@ -12,12 +12,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { LandingContainerComponent } from './core/components/landing-container/landing-container.component';
+import { LandingTopVideoComponent } from './core/components/landing-top-video/landing-top-video.component';
+import { LandingBottomComponent } from './core/components/landing-bottom/landing-bottom.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LandingContainerComponent,
+    LandingTopVideoComponent,
+    LandingBottomComponent
   ],
   imports: [
     BrowserModule,

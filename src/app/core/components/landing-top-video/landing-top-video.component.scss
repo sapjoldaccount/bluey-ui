@@ -1,0 +1,7 @@
+@import '../../../../variables';
+
+.video-container {
+    position: relative;
+    background: lightskyblue;
+    height: calc(100vh - #{$navbar-height});
+}
