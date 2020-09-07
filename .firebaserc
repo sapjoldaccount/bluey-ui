@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "skate-3a965"
+  },
+  "targets": {
+    "skate-3a965": {
+      "hosting": {
+        "skate": [
+          "skate-3a965"
+        ]
+      }
+    }
   }
 }

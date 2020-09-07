@@ -1,2 +1,7 @@
 <app-navbar></app-navbar>
+<ul>
+    <li *ngFor="let user of users | async">
+        {{ user.first }} {{ user.last }}
+    </li>
+</ul>
 <router-outlet></router-outlet>
