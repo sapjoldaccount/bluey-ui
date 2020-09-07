@@ -1,10 +1,5 @@
 <app-navbar></app-navbar>
-<ul>
-    <li *ngFor="let user of users | async">
-        {{ user.first }} {{ user.last }}
-    </li>
-</ul>
-
-<button (click)="addTest()">Add test product</button>
-<button (click)="deleteTest()">Delete test product</button>
+<button mat-raised-button (click)="addTest()">Add test product</button>
+<button mat-raised-button (click)="deleteTest()">Delete test product</button>
+<footer class="footer">test footer</footer>
 <router-outlet></router-outlet>

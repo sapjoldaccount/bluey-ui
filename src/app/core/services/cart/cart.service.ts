@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Model, ModelFactory } from '@angular-extensions/model';
-import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, combineLatest, of } from 'rxjs';
 import { Product } from '../../models/Product';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { CART_ITEMS_KEY } from '../../consts/storage.consts';
@@ -11,12 +9,12 @@ import { NGXLogger } from 'ngx-logger';
     providedIn: 'root'
 })
 export class CartService {
-  productsInCart$: Observable<Product[]>;
+  productsInCart$: Observable<Product[]> = of([]);
 
   constructor(
     private logger: NGXLogger,
     private storage: StorageMap) {
-      this.productsInCart$ = this.storage.watch(CART_ITEMS_KEY) as Observable<Product[]>;
+      this.productsInCart$ = this.storage.watch(CART_ITEMS_KEY) as Observable<Product[]> ?? of([]);
   }
 
   addProduct(product: Product): void {

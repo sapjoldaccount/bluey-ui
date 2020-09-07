@@ -11,10 +11,10 @@ import { CartService } from './core/services/cart/cart.service';
 export class AppComponent implements OnInit {
   title = 'skate';
 
-  users: Observable<any[]>;
+  // users: Observable<any[]>;
 
   constructor(firestore: AngularFirestore, private shoppingCartService: CartService) {
-    this.users = firestore.collection('users').valueChanges();
+    // this.users = firestore.collection('users').valueChanges();
   }
 
   ngOnInit(): void {
