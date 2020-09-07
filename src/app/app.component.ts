@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { CartService } from './core/services/cart/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,18 @@ export class AppComponent implements OnInit {
 
   users: Observable<any[]>;
 
-  constructor(firestore: AngularFirestore) {
+  constructor(firestore: AngularFirestore, private shoppingCartService: CartService) {
     this.users = firestore.collection('users').valueChanges();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  addTest(): void {
+    this.shoppingCartService.addProduct(null);
+  }
+
+  deleteTest(): void {
+    this.shoppingCartService.deleteProduct(null);
+  }
 }

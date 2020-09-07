@@ -2,5 +2,5 @@
     <span>Skate</span>
     <span class='example-spacer'></span>
     <mat-icon>shopping_cart</mat-icon>
-    <span>(4)</span>
+    <span>({{ (productsInCart$ | async)?.length }})</span>
 </mat-toolbar>

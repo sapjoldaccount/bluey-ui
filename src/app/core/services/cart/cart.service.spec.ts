@@ -12,13 +12,4 @@ describe('CartService', () => {
       expect(service).toBeTruthy();
     })
   );
-
-  it('should add item',
-    async(
-      inject([CartService], (service: CartService) => {
-        service.addCart({ prop: 'test' });
-        service.carts$.subscribe(carts => expect(carts.length).toBe(1));
-      })
-    )
-  );
 });

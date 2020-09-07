@@ -9,6 +9,8 @@ import { AngularFireModule } from '@angular/fire';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    HttpClientModule,
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],

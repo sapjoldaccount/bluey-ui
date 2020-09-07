@@ -1,43 +1,51 @@
 import { Injectable } from '@angular/core';
 import { Model, ModelFactory } from '@angular-extensions/model';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Product } from '../../models/Product';
 import { StorageMap } from '@ngx-pwa/local-storage';
-
-// TODO: Make separate data service for getting available products
-const initialData: Product[] = [];
-
+import { CART_ITEMS_KEY } from '../../consts/storage.consts';
+import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService {
-  private model: Model<Product[]>;
-
-  products$: Observable<Product[]>;
+  productsInCart$: Observable<Product[]>;
 
   constructor(
-    private modelFactory: ModelFactory<Product[]>,
+    private logger: NGXLogger,
     private storage: StorageMap) {
-
-    this.model = this.modelFactory.create(initialData);
-    this.products$ = this.model.data$;
-
-    // Example code of accessing storage
-    // let user: any = { firstName: 'Henri', lastName: 'Bergson' };
-    // this.storage.set('user', user).subscribe(() => {});
-
-    // this.storage.get('user').subscribe((user) => {
-    //   console.log(user);
-    // });
+      this.productsInCart$ = this.storage.watch(CART_ITEMS_KEY) as Observable<Product[]>;
   }
 
   addProduct(product: Product): void {
-    const products = this.model.get();
 
-    products.push(product);
+    product = {
+      title: 'Test',
+      price: 1,
+      image: 'test'
+    };
 
-    this.model.set(products);
+    let updatedProducts = [product];
+
+    this.storage.get(CART_ITEMS_KEY).subscribe(
+      (data: Product[]) => {
+        if (!!data) {
+          updatedProducts = [...data, product];
+        }
+      },
+      (error) => {
+        this.logger.error('An error occurred.');
+      },
+      () => {
+        this.logger.debug('Added product to local storage.');
+        this.storage.set(CART_ITEMS_KEY, updatedProducts).subscribe();
+      }
+    );
+  }
+
+  deleteProduct(product: Product): void {
   }
 }
 

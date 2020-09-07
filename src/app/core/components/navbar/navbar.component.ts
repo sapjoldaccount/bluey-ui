@@ -8,6 +8,8 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class NavbarComponent implements OnInit {
 
+  productsInCart$ = this.shoppingCartService.productsInCart$;
+
   constructor(private shoppingCartService: CartService) { }
 
   ngOnInit(): void {
