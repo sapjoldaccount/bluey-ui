@@ -9,3 +9,5 @@
 ## Notes
 
 Use AngularFire? Maybe...
+
+Create an Angular Model service: `ng g @angular-extensions/model:model core/services/cart --items`
