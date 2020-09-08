@@ -2,6 +2,9 @@
 
 .video-container {
     position: relative;
-    background: lightskyblue;
-    height: calc(100vh - #{$navbar-height});
+    height: 100vh;
+}
+
+.video-player {
+    width: 100%;
 }
