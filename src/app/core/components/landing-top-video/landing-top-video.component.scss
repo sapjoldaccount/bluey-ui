@@ -1,4 +1,5 @@
 @import '../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
 
 .video-container {
     position: relative;
@@ -7,4 +8,16 @@
 
 .video-player {
     width: 100%;
+    position: absolute;
+}
+
+.landing-title {
+    position: absolute;
+    font-family: 'Grandstander', cursive;
+    font-size: 76px;
+    color: white;
+    text-align: center;
+
+    left: 33%;
+    top: 44%;
 }
