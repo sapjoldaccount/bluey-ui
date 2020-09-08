@@ -38,8 +38,8 @@
     margin-right: auto;
 }
 
+// TODO: Cleanup CSS
 .nav-button {
-    height: 100%;
     color: white;
     position: relative;
 
@@ -49,4 +49,30 @@
 
     cursor: pointer;
     font-family: 'Syne', sans-serif;
+
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    -webkit-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+
+    .line {
+        height: 2px;
+        width: 100%;
+        display: block;
+        background: transparent;
+        margin-top: -2px;
+
+        -moz-transition: all .3s ease-in;
+        -o-transition: all .3s ease-in;
+        -webkit-transition: all .3s ease-in;
+        transition: all .3s ease-in;
+    }
+}
+
+.nav-button:hover {
+    color: yellow;
+
+    .line {
+        background: yellow;
+    }
 }
