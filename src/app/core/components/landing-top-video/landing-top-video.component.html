@@ -1,8 +1,17 @@
 <div class="video-container">
     <!-- TODO: make src CDN on deployed version -->
-    <video autoplay loop [muted]="true" class="video-player">
-        <source src="../../../../assets/webm/top_bg.webm" type="video/webm">
-    </video>
+    <ng-container *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile">
+        <video autoplay loop [muted]="true" class="video-player">
+            <source src="../../../../assets/webm/top_bg.webm" type="video/webm">
+        </video>
+    </ng-container>
+
+    <ng-template #mobile>
+        <div class="video-player solid-bg">
+            test
+        </div>
+    </ng-template>
+
     <div class="landing-title-container">
         <span class="heading">Bluey</span>
         <span class="descr">Pour-painted acrylic art pieces</span>

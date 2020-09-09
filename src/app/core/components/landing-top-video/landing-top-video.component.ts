@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
+import { ScreenSize } from 'src/app/shared/enums/screen-size.enum';
 
 @Component({
   selector: 'app-landing-top-video',
@@ -9,6 +10,7 @@ import { ResponsiveService } from 'src/app/shared/services/responsive/responsive
 export class LandingTopVideoComponent implements OnInit {
 
   screenSize$ = this.responsiveService.screenSize$;
+  screenSizes = ScreenSize;
 
   constructor(private responsiveService: ResponsiveService) { }
 

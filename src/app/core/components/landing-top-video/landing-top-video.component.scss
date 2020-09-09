@@ -20,6 +20,10 @@
     min-height: 100%;
     width: auto;
     height: auto;
+
+    &.solid-bg {
+        background: lightblue;
+    }
 }
 
 .landing-title-container {
