@@ -1,3 +1,80 @@
+@import '../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
 .example-spacer {
     flex: 1 1 auto;
+}
+
+.navbar-container {
+    position: fixed;
+    z-index: 999;
+    background: transparent;
+    padding: 0 !important;
+    height: $navbar-height;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.low-opacity {
+    width: 100%;
+    background: black;
+    opacity: 0.2;
+    height: 100%;
+    position: absolute;
+}
+
+.op {
+    opacity: 1 !important;
+    z-index: 1000;
+
+}
+
+.temp-title {
+    color: white;
+    font-size: 51px;
+    margin-top: -29px;
+    padding-left: 16px;
+    margin-right: auto;
+}
+
+// TODO: Cleanup CSS
+.nav-button {
+    color: white;
+    position: relative;
+
+    margin-right: 64px;
+    padding: 0 8px 0 8px;
+    line-height: $navbar-height;
+
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    -webkit-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+
+    .line {
+        height: 2px;
+        width: 100%;
+        display: block;
+        background: transparent;
+        margin-top: -2px;
+
+        -moz-transition: all .3s ease-in;
+        -o-transition: all .3s ease-in;
+        -webkit-transition: all .3s ease-in;
+        transition: all .3s ease-in;
+    }
+}
+
+.nav-button:hover {
+    color: lightblue;
+
+    .line {
+        // TODO: MAKE SAME EXACT COLOR AS LOGO/BRAND COLORS
+        background: lightblue;
+    }
 }

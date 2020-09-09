@@ -1,7 +1,45 @@
 @import '../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap');
 
 .video-container {
     position: relative;
-    background: lightskyblue;
-    height: calc(100vh - #{$navbar-height});
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.video-player {
+    width: 100%;
+    position: absolute;
+
+    background-size: 100% 100%;
+    top: 0px;
+    left: 0px; /* fixed to left. Replace it by right if you want.*/
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.landing-title-container {
+    position: absolute;
+    bottom: 64px;
+    font-family: "Raleway", sans-serif;
+    font-size: 109px;
+    color: white;
+    left: 64px;
+
+    .heading {
+        display: block; 
+        margin-left: -7px;
+        margin-bottom: 16px;
+    }
+
+    .descr {
+        display: block; 
+        font-size: 18px;
+        font-family: "Raleway", sans-serif;
+        // font-weight: 300 !important;
+    }
 }
