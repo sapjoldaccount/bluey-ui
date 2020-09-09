@@ -16,6 +16,7 @@ import { LandingContainerComponent } from './core/components/landing-container/l
 import { LandingTopVideoComponent } from './core/components/landing-top-video/landing-top-video.component';
 import { LandingBottomComponent } from './core/components/landing-bottom/landing-bottom.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LayoutModule,
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
     AngularFireModule.initializeApp(environment.firebase)
   ],
