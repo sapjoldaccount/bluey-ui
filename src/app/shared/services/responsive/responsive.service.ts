@@ -44,6 +44,7 @@ export class ResponsiveService implements OnDestroy {
       if (state.breakpoints[Breakpoints.XLarge]) {
         this.screenSize.next(ScreenSize.XLarge);
       }
+      console.log(this.screenSize.value);
     });
   }
 }

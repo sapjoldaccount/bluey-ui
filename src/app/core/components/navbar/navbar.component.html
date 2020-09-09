@@ -2,18 +2,29 @@
     <div class="low-opacity"></div>
     <mat-icon class="temp-title op">dashboard</mat-icon>
 
-    <div class="nav-button">
-        <span>Shop</span>
-        <span class='line'></span>
-    </div>
-    <div class="nav-button">
-        <span>About Us</span>
-        <span class='line'></span>
-    </div>
-    <div class="nav-button">
-        <span>Contact</span>
-        <span class='line'></span>
-    </div>
+    <!-- Desktop Menu -->
+    <ng-container *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile">
+        <div class="nav-button">
+            <span>Shop</span>
+            <span class='line'></span>
+        </div>
+        <div class="nav-button">
+            <span>About Us</span>
+            <span class='line'></span>
+        </div>
+        <div class="nav-button">
+            <span>Contact</span>
+            <span class='line'></span>
+        </div>
+    </ng-container>
+
+    <!-- Mobile Menu -->
+    <ng-template #mobile>
+        <div class="nav-button">
+            <span>put hamburger here</span>
+            <span class='line'></span>
+        </div>
+    </ng-template>
 </mat-toolbar>
 
 
