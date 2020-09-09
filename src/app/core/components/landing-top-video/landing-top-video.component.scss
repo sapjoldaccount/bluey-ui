@@ -4,11 +4,21 @@
 .video-container {
     position: relative;
     height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .video-player {
     width: 100%;
     position: absolute;
+
+    background-size: 100% 100%;
+    top: 0px;
+    left: 0px; /* fixed to left. Replace it by right if you want.*/
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
 }
 
 .landing-title {
@@ -17,7 +27,4 @@
     font-size: 76px;
     color: white;
     text-align: center;
-
-    left: 33%;
-    top: 44%;
 }
