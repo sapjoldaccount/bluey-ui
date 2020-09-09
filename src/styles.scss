@@ -9,3 +9,8 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
 }
+
+// Remove drop shadow from MD buttons
+.btn {
+    box-shadow: unset !important;
+}
