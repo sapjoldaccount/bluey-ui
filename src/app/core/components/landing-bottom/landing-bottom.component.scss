@@ -7,3 +7,14 @@
 .equal {
     height: 50%;
 }
+
+.item-preview {
+    border: 1px solid white;
+    background: #282828;
+    cursor: pointer;
+}
+
+.item-preview:hover {
+    background: black;
+    transition: all .5s;
+}

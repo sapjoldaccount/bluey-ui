@@ -21,6 +21,7 @@ import { ShoppingContainerComponent } from './core/containers/shopping-container
 import { LandingContainerComponent } from './core/containers/landing-container/landing-container.component';
 import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
 import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
+import { ProductPreviewComponent } from './core/components/product-preview/product-preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { ContactContainerComponent } from './core/containers/contact-container/c
     LandingBottomComponent,
     ShoppingContainerComponent,
     AboutContainerComponent,
-    ContactContainerComponent
+    ContactContainerComponent,
+    ProductPreviewComponent
   ],
   imports: [
     BrowserModule,
