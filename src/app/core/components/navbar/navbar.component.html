@@ -1,21 +1,48 @@
+<!-- <mat-toolbar class="navbar-container">
+    <div class="low-opacity"></div>
+    <mat-icon class="temp-title op">dashboard</mat-icon> -->
+
+    <!-- Desktop Menu -->
+    <!-- <ng-container *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile">
+        <div class="nav-button">
+            <span>Shop</span>
+            <span class='line'></span>
+        </div>
+        <div class="nav-button">
+            <span>About Us</span>
+            <span class='line'></span>
+        </div>
+        <div class="nav-button">
+            <span>Contact</span>
+            <span class='line'></span>
+        </div>
+    </ng-container> -->
+
+    <!-- Mobile Menu -->
+    <!-- <ng-template #mobile>
+        <button type="button" mdbBtn mdbWavesEffect class="nav-button mobile">
+            <mat-icon class="hamburger">menu</mat-icon>
+        </button>
+    </ng-template>
+</mat-toolbar> -->
+
 <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
     <mdb-navbar-brand>
       <a class="logo navbar-brand" href="#">
-        <strong>Navbar</strong>
+        <strong>Bluey</strong>
       </a>
     </mdb-navbar-brand>
     <links>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active waves-light" mdbWavesEffect>
-          <a class="nav-link">Home
-            <span class="sr-only">(current)</span>
-          </a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item waves-light shop-link" mdbWavesEffect>
+          <a class="nav-link">SHOP</a>
+          <span class='line'></span>
         </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link">Link</a>
+        <li class="nav-item waves-light shop-link" mdbWavesEffect>
+          <a class="nav-link">ABOUT</a>
         </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link">Profile</a>
+        <li class="nav-item waves-light shop-link" mdbWavesEffect>
+          <a class="nav-link">CONTACT</a>
         </li>
       </ul>
     </links>
