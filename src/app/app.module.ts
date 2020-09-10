@@ -18,6 +18,7 @@ import { LandingBottomComponent } from './core/components/landing-bottom/landing
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ShoppingContainerComponent } from './shopping/components/shopping-container/shopping-container.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FooterComponent,
     LandingContainerComponent,
     LandingTopVideoComponent,
-    LandingBottomComponent
+    LandingBottomComponent,
+    ShoppingContainerComponent
   ],
   imports: [
     BrowserModule,
