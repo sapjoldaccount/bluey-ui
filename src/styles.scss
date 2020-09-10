@@ -15,6 +15,12 @@ body {
     box-shadow: unset !important;
 }
 
+.g-page-container {
+    background: darkturquoise;
+    width: 100vw;
+    height: 100vh;
+}
+
 /* ------------------- Styles needed for nav bar behavior ------------------- */
 .navbar {
     background-color: transparent;
@@ -22,6 +28,11 @@ body {
 
 .top-nav-collapse {
     background-color: darkslateblue;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 @media only screen and (max-width: 768px) {

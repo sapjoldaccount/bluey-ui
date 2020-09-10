@@ -61,7 +61,11 @@
     background: transparent !important;
 }
 
+.nav-link.active {
+    background: lightblue !important;
+}
+
 .nav-link:hover {
-    color: lightblue !important;
+    color: darkgray !important;
 }
 
