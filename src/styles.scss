@@ -14,3 +14,18 @@ body {
 .btn {
     box-shadow: unset !important;
 }
+
+/* ------------------- Styles needed for nav bar behavior ------------------- */
+.navbar {
+    background-color: transparent;
+}
+
+.top-nav-collapse {
+    background-color: darkslateblue;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: darkslateblue;
+    }
+}
