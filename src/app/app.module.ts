@@ -12,14 +12,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './core/components/footer/footer.component';
-import { LandingContainerComponent } from './core/components/landing-container/landing-container.component';
 import { LandingTopVideoComponent } from './core/components/landing-top-video/landing-top-video.component';
 import { LandingBottomComponent } from './core/components/landing-bottom/landing-bottom.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ShoppingContainerComponent } from './shopping/components/shopping-container/shopping-container.component';
-
+import { ShoppingContainerComponent } from './core/containers/shopping-container/shopping-container.component';
+import { LandingContainerComponent } from './core/containers/landing-container/landing-container.component';
+import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
+import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { ShoppingContainerComponent } from './shopping/components/shopping-conta
     LandingContainerComponent,
     LandingTopVideoComponent,
     LandingBottomComponent,
-    ShoppingContainerComponent
+    ShoppingContainerComponent,
+    AboutContainerComponent,
+    ContactContainerComponent
   ],
   imports: [
     BrowserModule,
