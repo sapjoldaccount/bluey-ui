@@ -1,4 +1,4 @@
-<mdb-navbar [ngClass]="" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+<mdb-navbar *ngIf="activeRoute$ | async as activeRoute" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
     <mdb-navbar-brand>
       <a class="logo navbar-brand" href="#">
         <strong>Bluey</strong>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart/cart.service';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 import { ScreenSize } from '../../../shared/enums/screen-size.enum';
-import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { RoutingService } from '../../services/routing/routing.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +16,16 @@ export class NavbarComponent implements OnInit {
   screenSize$ = this.responsiveService.screenSize$;
   screenSizes = ScreenSize;
 
+  activeRoute$ = this.routingService.activeRoute$;
+
   constructor(
     private shoppingCartService: CartService,
-    private responsiveService: ResponsiveService    
+    private responsiveService: ResponsiveService,
+    private routingService: RoutingService
   ) { }
 
   ngOnInit(): void {
+    this.routingService.detectActiveRoute();
   }
 
 }
