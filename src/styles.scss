@@ -16,7 +16,7 @@ body {
 }
 
 .g-page-container {
-    background: darkturquoise;
+    background: white;
     width: 100vw;
     height: 100vh;
 }
@@ -27,7 +27,7 @@ body {
 }
 
 .top-nav-collapse {
-    background-color: darkslateblue;
+    background-color: #1c2332;
 }
 
 .row {
@@ -37,6 +37,6 @@ body {
 
 @media only screen and (max-width: 768px) {
     .navbar {
-        background-color: darkslateblue;
+        background-color: #1c2332;
     }
 }

@@ -1,32 +1,4 @@
-<!-- <mat-toolbar class="navbar-container">
-    <div class="low-opacity"></div>
-    <mat-icon class="temp-title op">dashboard</mat-icon> -->
-
-    <!-- Desktop Menu -->
-    <!-- <ng-container *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile">
-        <div class="nav-button">
-            <span>Shop</span>
-            <span class='line'></span>
-        </div>
-        <div class="nav-button">
-            <span>About Us</span>
-            <span class='line'></span>
-        </div>
-        <div class="nav-button">
-            <span>Contact</span>
-            <span class='line'></span>
-        </div>
-    </ng-container> -->
-
-    <!-- Mobile Menu -->
-    <!-- <ng-template #mobile>
-        <button type="button" mdbBtn mdbWavesEffect class="nav-button mobile">
-            <mat-icon class="hamburger">menu</mat-icon>
-        </button>
-    </ng-template>
-</mat-toolbar> -->
-
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+<mdb-navbar [ngClass]="" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
     <mdb-navbar-brand>
       <a class="logo navbar-brand" href="#">
         <strong>Bluey</strong>

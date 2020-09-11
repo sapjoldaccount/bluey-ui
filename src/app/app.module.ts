@@ -22,6 +22,7 @@ import { LandingContainerComponent } from './core/containers/landing-container/l
 import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
 import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
 import { ProductPreviewComponent } from './core/components/product-preview/product-preview.component';
+import { RouterLinkActive } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { ProductPreviewComponent } from './core/components/product-preview/produ
     AngularFireModule.initializeApp(environment.firebase),
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [RouterLinkActive],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
