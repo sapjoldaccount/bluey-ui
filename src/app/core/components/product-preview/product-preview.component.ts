@@ -9,7 +9,6 @@ export class ProductPreviewComponent implements OnInit {
 
   @Input() name: string;
   @Input() hoverText: string;
-  @Input() image: string; // TODO: image input
 
   constructor() { }
 

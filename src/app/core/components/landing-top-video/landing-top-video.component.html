@@ -3,6 +3,7 @@
     <!-- Desktop -->
     <ng-container *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile">
         <!-- TODO: make src CDN on deployed version -->
+        <div class="video-player opacity-changer" id="top"></div>
         <video autoplay loop [muted]="true" class="video-player">
             <source src="../../../../assets/webm/top_bg.webm" type="video/webm">
         </video>

@@ -26,6 +26,12 @@
     }
 }
 
+.opacity-changer {
+    background: black;
+    z-index: 99;
+    opacity: 0;
+}
+
 .landing-title-container {
     position: absolute;
     bottom: 6%;
