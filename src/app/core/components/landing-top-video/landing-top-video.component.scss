@@ -1,54 +1,52 @@
-@import '../../../../variables';
-@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap');
+@import "../../../../variables";
 
 .video-container {
-    position: relative;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .video-player {
-    width: 100%;
-    position: absolute;
+  width: 100%;
+  position: absolute;
 
-    background-size: 100% 100%;
-    top: 0px;
-    left: 0px; /* fixed to left. Replace it by right if you want.*/
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+  background-size: 100% 100%;
+  top: 0px;
+  left: 0px; /* fixed to left. Replace it by right if you want.*/
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
 
-    &.solid-bg {
-        background: lightslategray;
-    }
+  &.solid-bg {
+    background: lightslategray;
+  }
 }
 
 .opacity-changer {
-    background: black;
-    z-index: 99;
-    opacity: 0;
+  background: black;
+  z-index: 99;
+  opacity: 0;
 }
 
 .landing-title-container {
-    position: absolute;
-    bottom: 6%;
-    left: 4%;
+  position: absolute;
+  bottom: 6%;
+  left: 4%;
+  font-family: "Raleway", sans-serif;
+  font-size: 109px;
+  color: white;
+
+  .heading {
+    display: block;
+    margin-left: -7px;
+    margin-bottom: 16px;
+  }
+
+  .descr {
+    display: block;
+    font-size: 18px;
     font-family: "Raleway", sans-serif;
-    font-size: 109px;
-    color: white;
-
-    .heading {
-        display: block; 
-        margin-left: -7px;
-        margin-bottom: 16px;
-    }
-
-    .descr {
-        display: block; 
-        font-size: 18px;
-        font-family: "Raleway", sans-serif;
-    }
+  }
 }
