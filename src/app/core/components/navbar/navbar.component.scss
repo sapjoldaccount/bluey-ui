@@ -69,3 +69,7 @@
 .nav-link:hover {
     color: darkgray !important;
 }
+
+::ng-deep .navCss nav {
+    background-color: #1c2332;
+}

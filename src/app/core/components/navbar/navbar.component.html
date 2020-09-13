@@ -1,21 +1,21 @@
-<mdb-navbar *ngIf="activeRoute$ | async as activeRoute" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
-    <mdb-navbar-brand>
-      <a class="logo navbar-brand" href="#">
-        <strong>Bluey</strong>
-      </a>
-    </mdb-navbar-brand>
-    <links>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item waves-light shop-link" mdbWavesEffect>
-          <a routerLink="/shop" routerLinkActive="active" class="nav-link">SHOP</a>
-          <span class='line'></span>
-        </li>
-        <li class="nav-item waves-light shop-link" mdbWavesEffect>
-          <a routerLink="/about" routerLinkActive="active" class="nav-link">ABOUT</a>
-        </li>
-        <li class="nav-item waves-light shop-link" mdbWavesEffect>
-          <a routerLink="/contact" routerLinkActive="active" class="nav-link">CONTACT</a>
-        </li>
-      </ul>
-    </links>
-  </mdb-navbar>
+<mdb-navbar [ngClass]="(activeRoute$ | async) !== '/' ? 'navCss' : ''" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" href="#">
+      <strong>Bluey</strong>
+    </a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a routerLink="/shop" routerLinkActive="active" class="nav-link">SHOP</a>
+        <span class='line'></span>
+      </li>
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a routerLink="/about" routerLinkActive="active" class="nav-link">ABOUT</a>
+      </li>
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a routerLink="/contact" routerLinkActive="active" class="nav-link">CONTACT</a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
