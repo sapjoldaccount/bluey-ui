@@ -50,34 +50,6 @@
   justify-content: center !important;
 }
 
-.deck-container {
-  text-align: center;
-  // background: lightgoldenrodyellow;
-  // border: 1px solid black;
-  min-width: 280px !important;
-  max-width: 280px !important;
-  height: 450px;
-  padding: 0 !important;
-}
-
-.deck-img {
-  height: 72%;
-  background: lavender;
-}
-
-.deck-txt {
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin-top: 3px;
-
-  &.price {
-    margin-top: 0px;
-    font-weight: 300;
-    font-size: 1.3rem;
-  }
-}
-
-.deck-add {
-  margin-top: 8px;
+.bottom-margin {
+  margin-bottom: 16px;
 }

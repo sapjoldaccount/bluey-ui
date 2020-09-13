@@ -13,33 +13,17 @@
   <div class="pr-category">Decks</div>
 
   <!-- TODO: Move to component? -->
+  <!-- TODO NGFOR WITH FIREBASE -->
   <div class="container-fluid decks-container">
-    <div class="row centered">
-      <div class="col-sm deck-container ml-1 mr-1 mb-2">
-        <div class="deck-img"></div>
-        <div class="deck-txt">Deck Title</div>
-        <div class="deck-txt price">$69.99</div>
-        <div class="deck-add">
-          <button
-            mdbBtn
-            type="button"
-            color="success"
-            outline="true"
-            mdbWavesEffect
-          >
-            Add to Cart
-          </button>
-        </div>
-      </div>
-      <div class="col-sm deck-container ml-1 mr-1 mb-2">
-        One of three columns
-      </div>
-      <div class="col-sm deck-container ml-1 mr-1 mb-2">
-        One of three columns
-      </div>
-      <div class="col-sm deck-container ml-1 mr-1 mb-2">
-        One of three columns
-      </div>
+    <div class="row centered bottom-margin">
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
+      <app-shop-item-card></app-shop-item-card>
     </div>
   </div>
 

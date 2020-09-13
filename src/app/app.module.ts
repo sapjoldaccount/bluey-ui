@@ -24,6 +24,7 @@ import { ContactContainerComponent } from './core/containers/contact-container/c
 import { ProductPreviewComponent } from './core/components/product-preview/product-preview.component';
 import { RouterLinkActive } from '@angular/router';
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
+import { ShopItemCardComponent } from './core/components/shop-item-card/shop-item-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ViewCartContainerComponent } from './core/containers/view-cart-containe
     AboutContainerComponent,
     ContactContainerComponent,
     ProductPreviewComponent,
-    ViewCartContainerComponent
+    ViewCartContainerComponent,
+    ShopItemCardComponent
   ],
   imports: [
     BrowserModule,
