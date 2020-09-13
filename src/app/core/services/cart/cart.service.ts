@@ -6,23 +6,21 @@ import { CART_ITEMS_KEY } from '../../consts/storage.consts';
 import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   productsInCart$: Observable<Product[]> = of([]);
 
-  constructor(
-    private logger: NGXLogger,
-    private storage: StorageMap) {
-      this.productsInCart$ = this.storage.watch(CART_ITEMS_KEY) as Observable<Product[]> ?? of([]);
+  constructor(private logger: NGXLogger, private storage: StorageMap) {
+    this.productsInCart$ =
+      (this.storage.watch(CART_ITEMS_KEY) as Observable<Product[]>) ?? of([]);
   }
 
   addProduct(product: Product): void {
-
     product = {
       title: 'Test',
       price: 1,
-      image: 'test'
+      image: 'test',
     };
 
     let updatedProducts = [product];
@@ -43,7 +41,5 @@ export class CartService {
     );
   }
 
-  deleteProduct(product: Product): void {
-  }
+  deleteProduct(product: Product): void {}
 }
-

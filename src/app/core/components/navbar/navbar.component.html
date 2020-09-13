@@ -1,20 +1,46 @@
-<mdb-navbar [ngClass]="(activeRoute$ | async) !== '/' ? 'navCss' : ''" SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+<mdb-navbar
+  [ngClass]="(activeRoute$ | async) !== '/' ? 'navCss' : ''"
+  SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav"
+  [containerInside]="false"
+>
   <mdb-navbar-brand>
     <a class="logo navbar-brand" href="#">
       <strong>Bluey</strong>
     </a>
   </mdb-navbar-brand>
+
+  <!-- MOBILE ICON IN MENU BAR ON MOBILE, TODO... -->
+  <!-- <div
+    *ngIf="
+      (screenSize$ | async) == 'Small' ||
+      (screenSize$ | async) == 'XSmall' ||
+      (screenSize$ | async) == 'Medium'
+    "
+  >
+    test
+  </div> -->
+
   <links>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item waves-light shop-link" mdbWavesEffect>
-        <a routerLink="/shop" routerLinkActive="active" class="nav-link">SHOP</a>
-        <span class='line'></span>
+        <a routerLink="/shop" routerLinkActive="active" class="nav-link"
+          >SHOP</a
+        >
       </li>
       <li class="nav-item waves-light shop-link" mdbWavesEffect>
-        <a routerLink="/about" routerLinkActive="active" class="nav-link">ABOUT</a>
+        <a routerLink="/about" routerLinkActive="active" class="nav-link"
+          >ABOUT</a
+        >
       </li>
       <li class="nav-item waves-light shop-link" mdbWavesEffect>
-        <a routerLink="/contact" routerLinkActive="active" class="nav-link">CONTACT</a>
+        <a routerLink="/contact" routerLinkActive="active" class="nav-link"
+          >CONTACT</a
+        >
+      </li>
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a routerLink="/cart" routerLinkActive="active" class="nav-link cart"
+          ><mat-icon>shopping_cart</mat-icon></a
+        >
       </li>
     </ul>
   </links>

@@ -4,28 +4,33 @@ import { LandingContainerComponent } from './core/containers/landing-container/l
 import { ShoppingContainerComponent } from './core/containers/shopping-container/shopping-container.component';
 import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
 import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
+import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingContainerComponent
+    component: LandingContainerComponent,
   },
   {
     path: 'shop',
-    component: ShoppingContainerComponent
+    component: ShoppingContainerComponent,
   },
   {
     path: 'about',
-    component: AboutContainerComponent
+    component: AboutContainerComponent,
   },
   {
     path: 'contact',
-    component: ContactContainerComponent
-  }
+    component: ContactContainerComponent,
+  },
+  {
+    path: 'cart',
+    component: ViewCartContainerComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
