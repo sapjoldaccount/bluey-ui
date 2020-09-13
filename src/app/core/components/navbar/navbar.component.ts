@@ -10,7 +10,7 @@ import { RoutingService } from '../../services/routing/routing.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  productsInCart$ = this.shoppingCartService.productsInCart$;
+  // productsInCart$ = this.shoppingCartService.productsInCart$;
 
   screenSize$ = this.responsiveService.screenSize$;
   isSmall$ = this.responsiveService.isSmall$;

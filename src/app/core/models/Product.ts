@@ -1,5 +1,6 @@
-export class Product {
-    title: string;
-    image: string;
-    price: number;
+export class ShopItem {
+  title: string;
+  description: string;
+  image: string;
+  price: number;
 }

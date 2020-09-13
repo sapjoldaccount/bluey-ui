@@ -7,7 +7,7 @@ import { ResponsiveService } from './shared/services/responsive/responsive.servi
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'skate';
@@ -15,22 +15,19 @@ export class AppComponent implements OnInit {
   // users: Observable<any[]>;
 
   constructor(
-    firestore: AngularFirestore,
     private shoppingCartService: CartService,
     private responsiveService: ResponsiveService
-    ) {
-    // this.users = firestore.collection('users').valueChanges();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.responsiveService.detectScreenSizeChange();
   }
 
   addTest(): void {
-    this.shoppingCartService.addProduct(null);
+    // this.shoppingCartService.addProduct(null);
   }
 
   deleteTest(): void {
-    this.shoppingCartService.deleteProduct(null);
+    // this.shoppingCartService.deleteProduct(null);
   }
 }

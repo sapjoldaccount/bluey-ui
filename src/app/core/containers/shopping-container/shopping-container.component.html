@@ -14,47 +14,15 @@
 
   <!-- TODO: Move to component? -->
   <!-- TODO NGFOR WITH FIREBASE -->
+
+  <!-- TODO ADD TIMESTAMP FOR SORT -->
   <div class="container-fluid decks-container">
     <div class="row centered bottom-margin">
       <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
-      ></app-shop-item-card>
-      <app-shop-item-card
-        [title]="'Deck'"
-        [price]="'$69.99'"
-        [description]="'Maple, 8 inches'"
+        *ngFor="let item of availableDecks$ | async"
+        [title]="item.title"
+        [price]="item.price"
+        [description]="item.description"
       ></app-shop-item-card>
     </div>
   </div>
