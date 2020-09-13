@@ -1,15 +1,13 @@
 .deck-container {
   text-align: center;
-  // background: lightgoldenrodyellow;
-  // border: 1px solid black;
   min-width: 280px !important;
   max-width: 280px !important;
-  height: 450px;
+  height: 500px;
   padding: 0 !important;
 }
 
 .deck-img {
-  height: 72%;
+  height: 66%;
   background: lavender;
 }
 
@@ -19,6 +17,11 @@
   font-size: 1.5rem;
   margin-top: 3px;
 
+  &.sub {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
   &.price {
     margin-top: 0px;
     font-weight: 300;
@@ -27,5 +30,5 @@
 }
 
 .deck-add {
-  margin-top: 8px;
+  margin-top: 4px;
 }
