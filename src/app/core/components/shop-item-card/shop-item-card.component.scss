@@ -9,6 +9,13 @@
 .deck-img {
   height: 66%;
   background: lavender;
+  overflow: hidden;
+
+  img {
+    width: 571px;
+    margin-left: -51%;
+    margin-top: -5%;
+  }
 }
 
 .deck-txt {

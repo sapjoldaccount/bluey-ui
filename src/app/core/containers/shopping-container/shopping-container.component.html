@@ -18,11 +18,23 @@
   <!-- TODO ADD TIMESTAMP FOR SORT -->
   <div class="container-fluid decks-container">
     <div class="row centered bottom-margin">
-      <app-shop-item-card
+      <!-- <app-shop-item-card
         *ngFor="let item of availableDecks$ | async"
         [title]="item.title"
         [price]="item.price"
         [description]="item.description"
+        [imageBaseUrl]="cdnBaseUrl"
+        [imagePathUrl]="'/decks/deck-1.jpg'"
+      ></app-shop-item-card> -->
+
+      <!-- FOR TESTING -->
+      <app-shop-item-card
+        *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]; let indexOfelement = index"
+        [title]="'Deck'"
+        [price]="'$70.00'"
+        [description]="'8 inch width'"
+        [imageBaseUrl]="cdnBaseUrl"
+        [imagePathUrl]="'/decks/deck-' + (indexOfelement + 1) + '.jpg'"
       ></app-shop-item-card>
     </div>
   </div>

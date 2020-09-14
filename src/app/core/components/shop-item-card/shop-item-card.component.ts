@@ -9,7 +9,15 @@ export class ShopItemCardComponent implements OnInit {
   @Input() title: string;
   @Input() price: string; // for now
   @Input() description: string;
+
+  @Input() imageBaseUrl: string;
+  @Input() imagePathUrl: string;
+
+  imageSrc: string;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
+  }
 }

@@ -1,3 +1,4 @@
+import { CDN_BASE_URL } from 'src/app/core/consts/cdn.consts';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -6,7 +7,8 @@ import { firebaseConfig } from 'src/app/core/consts/firebase.consts';
 
 export const environment = {
   production: false,
-  firebase: firebaseConfig
+  firebase: firebaseConfig,
+  cdnBaseUrl: CDN_BASE_URL,
 };
 
 /*
