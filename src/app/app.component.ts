@@ -12,6 +12,9 @@ import { ResponsiveService } from './shared/services/responsive/responsive.servi
 export class AppComponent implements OnInit {
   title = 'skate';
 
+  // TODO: make a modal for clicking on picture
+  // click for details text
+
   // users: Observable<any[]>;
 
   constructor(

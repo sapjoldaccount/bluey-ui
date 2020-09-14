@@ -38,7 +38,7 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
     ContactContainerComponent,
     ProductPreviewComponent,
     ViewCartContainerComponent,
-    ShopItemCardComponent
+    ShopItemCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,11 +49,11 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
-    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
+    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG }),
     AngularFireModule.initializeApp(environment.firebase),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [RouterLinkActive],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
