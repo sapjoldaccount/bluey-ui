@@ -54,9 +54,9 @@
         >
       </li>
       <li
-        matBadge="{{ (productsInCart$ | async).length }}"
+        matBadge="{{ (productsInCart$ | async)?.length }}"
         matBadgePosition="before"
-        matBadgeColor="accent"
+        matBadgeColor="success"
         class="nav-item waves-light shop-link"
         mdbWavesEffect
       >

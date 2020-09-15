@@ -78,6 +78,7 @@
   }
 }
 
+/* --------------------------------- ng-deep -------------------------------- */
 ::ng-deep .navCss nav {
   background-color: $site-primary-color;
 }
@@ -85,4 +86,5 @@
 ::ng-deep #mat-badge-content-0 {
   margin-top: 8px;
   margin-left: 8px;
+  background: $mdb-success;
 }
