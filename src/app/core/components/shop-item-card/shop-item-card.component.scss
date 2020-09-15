@@ -7,7 +7,7 @@
   height: 500px;
   padding: 0 !important;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 
   // todo: Ask Sophie opinion;
   // -webkit-box-shadow: 10px 10px 33px -10px rgba(0, 0, 0, 0.42);
@@ -19,7 +19,8 @@
   height: 66%;
   background: lavender;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer;
 
   img {
     width: 571px;
@@ -43,14 +44,14 @@
 }
 
 .info-container {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 }
 
 .deck-txt {
   font-family: $site-font, sans-serif;
-  font-weight: 500;
+  font-weight: $medium-weight;
   font-size: 1.5rem;
-  margin-top: 3px;
+  margin-top: 9px;
 
   &.sub {
     font-size: 1rem;
@@ -66,4 +67,18 @@
 
 .deck-add {
   margin-top: 4px;
+}
+
+.add-cart {
+  font-family: $site-font, sans-serif;
+}
+
+.view-more-icon {
+  vertical-align: middle !important;
+  margin-left: 3px !important;
+  margin-top: -2px !important;
+}
+
+.view-more-text {
+  font-family: $site-font, sans-serif;
 }

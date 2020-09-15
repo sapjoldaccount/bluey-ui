@@ -10,7 +10,7 @@ import { RoutingService } from '../../services/routing/routing.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  // productsInCart$ = this.shoppingCartService.productsInCart$;
+  productsInCart$ = this.cart.productsInCart$;
 
   screenSize$ = this.responsiveService.screenSize$;
   isSmall$ = this.responsiveService.isSmall$;
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   activeRoute$ = this.routingService.activeRoute$;
 
   constructor(
-    private shoppingCartService: CartService,
+    private cart: CartService,
     private responsiveService: ResponsiveService,
     private routingService: RoutingService
   ) {}

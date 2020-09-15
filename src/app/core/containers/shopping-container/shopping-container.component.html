@@ -20,6 +20,7 @@
     <div class="row centered bottom-margin">
       <app-shop-item-card
         *ngFor="let item of availableDecks$ | async"
+        [productObject]="item"
         [title]="item.title"
         [price]="item.price"
         [description]="item.description"

@@ -53,7 +53,13 @@
           >CONTACT</a
         >
       </li>
-      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+      <li
+        matBadge="{{ (productsInCart$ | async).length }}"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+        class="nav-item waves-light shop-link"
+        mdbWavesEffect
+      >
         <a
           routerLink="/cart"
           routerLinkActive="active"

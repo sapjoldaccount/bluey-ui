@@ -51,13 +51,15 @@
 
 .shop-link {
   margin-right: 42px;
+  overflow: visible !important; // showing badge fully
   // border-radius: 14px !important;
 }
 
 /* ----------------------- Overwritten Boostrap Styles ---------------------- */
 .nav-link {
   background: transparent !important;
-  font-family: "Raleway", sans-serif;
+  font-family: $site-font, sans-serif;
+  font-weight: $regular-weight !important;
 
   &.cart {
     display: flex !important;
@@ -78,4 +80,9 @@
 
 ::ng-deep .navCss nav {
   background-color: $site-primary-color;
+}
+
+::ng-deep #mat-badge-content-0 {
+  margin-top: 8px;
+  margin-left: 8px;
 }

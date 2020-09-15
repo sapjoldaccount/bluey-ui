@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ShopItem } from '../../models/Product';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-shop-item-card',
@@ -7,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./shop-item-card.component.scss'],
 })
 export class ShopItemCardComponent implements OnInit {
+  @Input() productObject: ShopItem;
+
   @Input() title: string;
   @Input() price: string; // for now
   @Input() description: string;
@@ -20,20 +24,24 @@ export class ShopItemCardComponent implements OnInit {
   isHoveringOverImage = new BehaviorSubject<boolean>(false);
   isHoveringOverImage$ = this.isHoveringOverImage.asObservable();
 
-  constructor() {}
+  constructor(private cart: CartService) {}
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
     console.log(this.imageSrc);
   }
 
+  /* ---------------------------- Cart interaction ---------------------------- */
+  onAddCartClick(product: ShopItem): void {
+    console.log(product);
+    this.cart.addShopItem(product);
+  }
+
   mouseEnter(div: string) {
-    console.log('mouse enter : ' + div);
     this.isHoveringOverImage.next(true);
   }
 
   mouseLeave(div: string) {
-    console.log('mouse leave :' + div);
     this.isHoveringOverImage.next(false);
   }
 }
