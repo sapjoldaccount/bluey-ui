@@ -16,6 +16,12 @@ export class ShoppingContainerComponent implements OnInit {
   // TODO: MOVE TO ENVIRONMENT SERVICE
   cdnBaseUrl = CDN_BASE_URL;
 
+  // animate to remove item
+  // header bar color - ICON
+  // font stuff
+  // bold add to cart text or color darken maybe navy or same blue
+
+  // #BDBDFF
   constructor(private firestoreService: FirestoreService) {}
 
   ngOnInit(): void {}

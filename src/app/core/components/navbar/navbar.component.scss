@@ -65,13 +65,17 @@
 }
 
 .nav-link.active {
-  background: orangered !important;
+  background: #76858c !important;
 }
 
 .nav-link:hover {
-  color: darkgray !important;
+  color: black !important;
+
+  &.selected-color {
+    color: #55bfff !important;
+  }
 }
 
 ::ng-deep .navCss nav {
-  background-color: #1c2332;
+  background-color: #55bfff;
 }

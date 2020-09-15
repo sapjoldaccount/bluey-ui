@@ -1,3 +1,5 @@
+@import "../../../../variables";
+
 .deck-container {
   text-align: center;
   min-width: 280px !important;
@@ -45,8 +47,8 @@
 }
 
 .deck-txt {
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
+  font-family: $shop-font, sans-serif;
+  font-weight: 500;
   font-size: 1.5rem;
   margin-top: 3px;
 
@@ -64,4 +66,8 @@
 
 .deck-add {
   margin-top: 4px;
+}
+
+.add-cart:hover {
+  background: #ddeddd !important;
 }

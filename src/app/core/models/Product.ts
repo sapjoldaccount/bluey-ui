@@ -3,4 +3,5 @@ export class ShopItem {
   description: string;
   image: string;
   price: number;
+  id: number;
 }

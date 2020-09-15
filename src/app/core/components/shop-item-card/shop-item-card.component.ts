@@ -10,6 +10,7 @@ export class ShopItemCardComponent implements OnInit {
   @Input() title: string;
   @Input() price: string; // for now
   @Input() description: string;
+  @Input() id: number;
 
   @Input() imageBaseUrl: string;
   @Input() imagePathUrl: string;
@@ -23,6 +24,7 @@ export class ShopItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
+    console.log(this.imageSrc);
   }
 
   mouseEnter(div: string) {
