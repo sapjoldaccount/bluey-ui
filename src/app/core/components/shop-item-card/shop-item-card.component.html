@@ -1,11 +1,34 @@
-<div class="col-sm deck-container ml-2 mr-2 mb-5">
-  <div class="deck-img"><img src="{{ imageSrc }}" /></div>
-  <div class="deck-txt">{{ title }}</div>
-  <div class="deck-txt sub">{{ description }}</div>
-  <div class="deck-txt price">{{ price }}</div>
-  <div class="deck-add">
-    <button mdbBtn type="button" color="success" outline="true" mdbWavesEffect>
-      Add to Cart
-    </button>
+<div
+  class="col-sm deck-container ml-2 mr-2 mb-5"
+  [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-out' : ''"
+>
+  <div
+    (mouseenter)="mouseEnter('deck-img')"
+    (mouseleave)="mouseLeave('deck-img')"
+    class="deck-img"
+    mdbWavesEffect
+  >
+    <!-- TODO: Add back in later for data usage reasons -->
+    <!-- <img src="{{ imageSrc }}" /> -->
+  </div>
+
+  <div
+    class="info-container"
+    [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-down' : ''"
+  >
+    <div class="deck-txt">{{ title }}</div>
+    <div class="deck-txt sub">{{ description }}</div>
+    <div class="deck-txt price">{{ price }}</div>
+    <div class="deck-add">
+      <button
+        mdbBtn
+        type="button"
+        color="success"
+        outline="true"
+        mdbWavesEffect
+      >
+        Add to Cart
+      </button>
+    </div>
   </div>
 </div>
