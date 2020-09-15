@@ -65,17 +65,17 @@
 }
 
 .nav-link.active {
-  background: #76858c !important;
+  background: $active-route-color !important;
 }
 
 .nav-link:hover {
   color: black !important;
 
   &.selected-color {
-    color: #55bfff !important;
+    color: $site-primary-color !important;
   }
 }
 
 ::ng-deep .navCss nav {
-  background-color: #55bfff;
+  background-color: $site-primary-color;
 }
