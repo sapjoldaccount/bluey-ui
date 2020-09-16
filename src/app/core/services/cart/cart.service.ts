@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Observable, combineLatest, of, BehaviorSubject } from 'rxjs';
 import { ShopItem } from '../../models/Product';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { CART_ITEMS_KEY } from '../../consts/storage.consts';
@@ -10,6 +10,10 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class CartService {
   productsInCart$: Observable<ShopItem[]> = of([]);
+
+  // Adding to cart aesthetic animation
+  // addingToCart: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // addingToCart$: Observable<boolean> = this.addingToCart.asObservable();
 
   constructor(private logger: NGXLogger, private storage: StorageMap) {
     this.productsInCart$ =

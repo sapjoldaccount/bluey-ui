@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,8 @@ import { RouterLinkActive } from '@angular/router';
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 import { ShopItemCardComponent } from './core/components/shop-item-card/shop-item-card.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,10 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     MatBadgeModule,
+    NgxSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -58,5 +62,6 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   providers: [RouterLinkActive],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

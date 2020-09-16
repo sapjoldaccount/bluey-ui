@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
@@ -24,7 +25,7 @@ export class ShopItemCardComponent implements OnInit {
   isHoveringOverImage = new BehaviorSubject<boolean>(false);
   isHoveringOverImage$ = this.isHoveringOverImage.asObservable();
 
-  constructor(private cart: CartService) {}
+  constructor(private spinner: NgxSpinnerService, private cart: CartService) {}
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
@@ -35,6 +36,11 @@ export class ShopItemCardComponent implements OnInit {
   onAddCartClick(product: ShopItem): void {
     console.log(product);
     this.cart.addShopItem(product);
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 700);
   }
 
   mouseEnter(div: string) {
