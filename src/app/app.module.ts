@@ -27,6 +27,7 @@ import { ViewCartContainerComponent } from './core/containers/view-cart-containe
 import { ShopItemCardComponent } from './core/components/shop-item-card/shop-item-card.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AppRoutingModule,
     MatBadgeModule,
+    NgxSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

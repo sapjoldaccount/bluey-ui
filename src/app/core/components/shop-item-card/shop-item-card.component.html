@@ -1,4 +1,5 @@
 <div
+  id="x"
   class="col-sm deck-container ml-2 mr-2 mb-5"
   [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-out' : ''"
 >
@@ -32,11 +33,21 @@
         outline="true"
         mdbWavesEffect
         (click)="onAddCartClick(productObject)"
-        class="add-cart"
+        [ngClass]="
+          (isInCart$ | async) === true ? 'add-cart in-cart' : 'add-cart'
+        "
       >
-        <mat-icon class="icon">shopping_cart</mat-icon>
-        Add to Cart
+        <mat-icon *ngIf="(isInCart$ | async) === true" class="icon"
+          >done</mat-icon
+        >
+        <mat-icon *ngIf="(isInCart$ | async) === false" class="icon"
+          >shopping_cart</mat-icon
+        >
+        {{ (isInCart$ | async) === true ? "Added" : "Add to Cart" }}
       </button>
     </div>
   </div>
 </div>
+
+<!-- TODO OBSERVE AT TOP -->
+<!-- <div id="x" style="display: none"></div> -->

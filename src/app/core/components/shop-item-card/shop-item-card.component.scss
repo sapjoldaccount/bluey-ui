@@ -70,6 +70,7 @@
 }
 
 .add-cart {
+  background: transparent !important;
   font-family: $site-font, sans-serif;
 
   .icon {
@@ -89,4 +90,8 @@
 
 .view-more-text {
   font-family: $site-font, sans-serif;
+}
+
+.in-cart {
+  background: #ddf8e7 !important;
 }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
 
@@ -24,17 +26,27 @@ export class ShopItemCardComponent implements OnInit {
   isHoveringOverImage = new BehaviorSubject<boolean>(false);
   isHoveringOverImage$ = this.isHoveringOverImage.asObservable();
 
-  constructor(private cart: CartService) {}
+  isInCart = new BehaviorSubject(false);
+  isInCart$ = this.isInCart.asObservable();
+
+  constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
-    console.log(this.imageSrc);
+    this.cart.productsInCart$.subscribe((p) => {
+      this.isInCart.next(p.map((p2) => p2.id)?.includes(this.id));
+    });
   }
 
   /* ---------------------------- Cart interaction ---------------------------- */
   onAddCartClick(product: ShopItem): void {
-    console.log(product);
-    this.cart.addShopItem(product);
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.cart.addShopItem(product);
+      location.reload();
+    }, 1000);
   }
 
   mouseEnter(div: string) {
