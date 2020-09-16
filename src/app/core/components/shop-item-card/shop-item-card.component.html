@@ -9,7 +9,7 @@
     mdbWavesEffect
   >
     <!-- TODO: Add back in later for data usage reasons -->
-    <!-- <img src="{{ imageSrc }}" /> -->
+    <img src="{{ imageSrc }}" />
     <div class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">
         View<mat-icon class="view-more-icon">zoom_in</mat-icon>
@@ -23,7 +23,7 @@
   >
     <div class="deck-txt">{{ title }}</div>
     <div class="deck-txt sub">{{ description }}</div>
-    <div class="deck-txt price">{{ price }}</div>
+    <div class="deck-txt price">${{ price }}</div>
     <div class="deck-add">
       <button
         mdbBtn
@@ -34,6 +34,7 @@
         (click)="onAddCartClick(productObject)"
         class="add-cart"
       >
+        <mat-icon class="icon">shopping_cart</mat-icon>
         Add to Cart
       </button>
     </div>

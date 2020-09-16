@@ -24,8 +24,8 @@
 
   img {
     width: 571px;
-    margin-left: -51%;
-    margin-top: -5%;
+    margin-left: -53%;
+    margin-top: -9%;
   }
 }
 
@@ -71,6 +71,14 @@
 
 .add-cart {
   font-family: $site-font, sans-serif;
+
+  .icon {
+    vertical-align: middle !important;
+  }
+}
+
+.add-cart:hover {
+  background: #ddf8e7 !important;
 }
 
 .view-more-icon {

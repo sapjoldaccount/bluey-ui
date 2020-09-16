@@ -26,7 +26,6 @@ import { RouterLinkActive } from '@angular/router';
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 import { ShopItemCardComponent } from './core/components/shop-item-card/shop-item-card.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -49,7 +48,6 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AppRoutingModule,
     MatBadgeModule,
-    NgxSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
