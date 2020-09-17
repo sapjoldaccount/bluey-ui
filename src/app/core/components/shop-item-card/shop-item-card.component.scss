@@ -99,8 +99,13 @@
   background: #ddf8e7 !important;
 }
 
-.in-cart:hover {
+.in-cart-remove {
   background: #ffe6e6 !important;
+  border-color: red !important;
+}
+
+.in-cart-remove:hover {
+  background: #ffcaca !important;
   border-color: red !important;
 }
 
