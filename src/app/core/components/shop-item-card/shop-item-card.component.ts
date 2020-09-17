@@ -26,6 +26,9 @@ export class ShopItemCardComponent implements OnInit {
   isHoveringOverImage = new BehaviorSubject<boolean>(false);
   isHoveringOverImage$ = this.isHoveringOverImage.asObservable();
 
+  isHoveringCartButton = new BehaviorSubject<boolean>(false);
+  isHoveringCartButton$ = this.isHoveringCartButton.asObservable();
+
   isInCart = new BehaviorSubject(false);
   isInCart$ = this.isInCart.asObservable();
 
@@ -41,19 +44,34 @@ export class ShopItemCardComponent implements OnInit {
   /* ---------------------------- Cart interaction ---------------------------- */
   onAddCartClick(product: ShopItem): void {
     this.spinner.show();
-
     setTimeout(() => {
       this.spinner.hide();
-      this.cart.addShopItem(product);
+      this.isInCart.value
+        ? this.cart.removeShopItemFromCart(product.id)
+        : this.cart.addShopItem(product);
       location.reload();
     }, 1000);
   }
 
   mouseEnter(div: string) {
-    this.isHoveringOverImage.next(true);
+    switch (div) {
+      case 'deck-img':
+        this.isHoveringOverImage.next(true);
+        break;
+      case 'add-cart':
+        this.isHoveringCartButton.next(true);
+        break;
+    }
   }
 
   mouseLeave(div: string) {
-    this.isHoveringOverImage.next(false);
+    switch (div) {
+      case 'deck-img':
+        this.isHoveringOverImage.next(false);
+        break;
+      case 'add-cart':
+        this.isHoveringCartButton.next(false);
+        break;
+    }
   }
 }

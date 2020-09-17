@@ -27,6 +27,8 @@
     <div class="deck-txt price">${{ price }}</div>
     <div class="deck-add">
       <button
+        (mouseenter)="mouseEnter('add-cart')"
+        (mouseleave)="mouseLeave('add-cart')"
         mdbBtn
         type="button"
         color="success"
@@ -37,13 +39,45 @@
           (isInCart$ | async) === true ? 'add-cart in-cart' : 'add-cart'
         "
       >
-        <mat-icon *ngIf="(isInCart$ | async) === true" class="icon"
+        <mat-icon
+          class="transition-icon"
+          *ngIf="
+            (isInCart$ | async) === true &&
+            (isHoveringCartButton$ | async) === false
+          "
+          class="icon"
           >done</mat-icon
         >
-        <mat-icon *ngIf="(isInCart$ | async) === false" class="icon"
+        <mat-icon
+          class="transition-icon"
+          *ngIf="
+            (isInCart$ | async) === true &&
+            (isHoveringCartButton$ | async) === true
+          "
+          class="icon red-text"
+          >clear</mat-icon
+        >
+        <mat-icon
+          class="transition-icon"
+          *ngIf="(isInCart$ | async) === false"
+          class="icon"
           >shopping_cart</mat-icon
         >
-        {{ (isInCart$ | async) === true ? "In Cart" : "Add to Cart" }}
+        <span
+          [ngClass]="
+            (isHoveringCartButton$ | async) === true &&
+            (isInCart$ | async) === true
+              ? 'add-button-text red-text'
+              : ''
+          "
+          >{{
+            (isInCart$ | async) === true
+              ? (isHoveringCartButton$ | async) === true
+                ? "Remove"
+                : "In Cart"
+              : "Add to Cart"
+          }}</span
+        >
       </button>
     </div>
   </div>
@@ -51,3 +85,5 @@
 
 <!-- TODO OBSERVE AT TOP -->
 <!-- <div id="x" style="display: none"></div> -->
+
+<!-- TODO MAKE FUNCS FOR CONDITIONS -->
