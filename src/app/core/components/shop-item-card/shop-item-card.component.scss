@@ -115,8 +115,14 @@
 
 .add-button-text {
   transition: 0.2s ease-in-out !important;
+  margin-top: -2px !important;
 }
 
 .transition-icon {
   transition: 0.2s ease-in-out !important;
+}
+
+.btn-txt-con {
+  display: flex;
+  align-items: center;
 }

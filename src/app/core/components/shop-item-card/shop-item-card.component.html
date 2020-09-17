@@ -39,24 +39,28 @@
           (isInCart$ | async) === true ? 'add-cart in-cart-remove' : 'add-cart'
         "
       >
-        <mat-icon
-          class="transition-icon"
-          *ngIf="(isInCart$ | async) === true"
-          class="icon red-text"
-          >clear</mat-icon
-        >
-        <mat-icon
-          class="transition-icon"
-          *ngIf="(isInCart$ | async) === false"
-          class="icon"
-          >shopping_cart</mat-icon
-        >
-        <span
-          [ngClass]="
-            (isInCart$ | async) === true ? 'add-button-text red-text' : ''
-          "
-          >{{ (isInCart$ | async) === true ? "Remove" : "Add To Cart" }}</span
-        >
+        <div class="btn-txt-con">
+          <mat-icon
+            class="transition-icon"
+            *ngIf="(isInCart$ | async) === true"
+            class="icon red-text"
+            >clear</mat-icon
+          >
+          <mat-icon
+            class="transition-icon"
+            *ngIf="(isInCart$ | async) === false"
+            class="icon"
+            >shopping_cart</mat-icon
+          >
+          <span
+            [ngClass]="
+              (isInCart$ | async) === true
+                ? 'add-button-text red-text'
+                : 'add-button-text'
+            "
+            >{{ (isInCart$ | async) === true ? "Remove" : "Add To Cart" }}</span
+          >
+        </div>
       </button>
     </div>
   </div>
