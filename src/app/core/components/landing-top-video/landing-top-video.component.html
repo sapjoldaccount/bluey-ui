@@ -4,10 +4,10 @@
     *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile"
   >
     <!-- TODO: make src CDN on deployed version -->
-    <div class="video-player opacity-changer" id="top"></div>
+    <div class="video-player opacity-changer"></div>
+    <div class="opacity-changer" id="top"></div>
     <video autoplay loop [muted]="true" class="video-player">
-      <source src="../../../../assets/webm/top_skate.webm" type="video/webm" />
-      <!-- <source src="{{ videoUrl }}" type="video/webm" /> -->
+      <source src="{{ videoUrl }}" type="video/webm" />
     </video>
   </ng-container>
 

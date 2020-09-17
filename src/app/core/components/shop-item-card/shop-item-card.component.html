@@ -43,7 +43,7 @@
         <mat-icon *ngIf="(isInCart$ | async) === false" class="icon"
           >shopping_cart</mat-icon
         >
-        {{ (isInCart$ | async) === true ? "Added" : "Add to Cart" }}
+        {{ (isInCart$ | async) === true ? "In Cart" : "Add to Cart" }}
       </button>
     </div>
   </div>

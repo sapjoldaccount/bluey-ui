@@ -49,6 +49,9 @@
 
 .deck-txt {
   font-family: $site-font, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
   font-weight: $medium-weight;
   font-size: 1.5rem;
   margin-top: 9px;
