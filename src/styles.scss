@@ -47,3 +47,8 @@ div,
 span {
   font-family: $site-font, sans-serif !important;
 }
+
+table.table td,
+table.table th {
+  padding: 1.1rem 13px 1rem !important;
+}

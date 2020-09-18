@@ -12,11 +12,10 @@ import { takeUntil } from 'rxjs/operators';
 export class CartService implements OnDestroy {
   productsInCart$: Observable<ShopItem[]> = of([]);
 
-  ngUnsub = new Subject();
+  adding = new BehaviorSubject<boolean>(false);
+  adding$ = this.adding.asObservable();
 
-  // Adding to cart aesthetic animation
-  // addingToCart: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  // addingToCart$: Observable<boolean> = this.addingToCart.asObservable();
+  ngUnsub = new Subject();
 
   ngOnDestroy() {
     this.ngUnsub.next();
@@ -26,6 +25,10 @@ export class CartService implements OnDestroy {
   constructor(private logger: NGXLogger, private storage: StorageMap) {
     this.productsInCart$ =
       (this.storage.watch(CART_ITEMS_KEY) as Observable<ShopItem[]>) ?? of([]);
+  }
+
+  updateSpinnerStatus(addingToCart: boolean) {
+    this.adding.next(addingToCart);
   }
 
   addShopItem(product: ShopItem): void {
@@ -49,7 +52,7 @@ export class CartService implements OnDestroy {
       );
   }
 
-  removeShopItemFromCart(toRemoveId: number) {
+  removeShopItemFromCart(toRemoveId: number): void {
     let updatedShopItems = [];
     this.storage
       .get(CART_ITEMS_KEY)

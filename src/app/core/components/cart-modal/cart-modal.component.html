@@ -34,10 +34,18 @@
         <td>{{ item.title }}</td>
         <td>${{ item.price }}</td>
         <td style="text-align: center">
-          <a>
+          <a (click)="removeItemFromCart(item)">
             <mat-icon mdbWavesEffect>clear</mat-icon>
           </a>
         </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td class="total-text">
+          Total <br /><span class="total-sub">Tax & shipping not included</span>
+        </td>
+        <td class="total-text">${{ cartTotal$ | async }}</td>
+        <td style="text-align: center"></td>
       </tr>
     </tbody>
   </table>
@@ -56,7 +64,13 @@
   >
     Close
   </button>
-  <button mdbBtn color="success" class="waves-light" mdbWavesEffect>
+  <button
+    [disabled]="(cartTotal$ | async) <= 0"
+    mdbBtn
+    color="success"
+    class="waves-light"
+    mdbWavesEffect
+  >
     Checkout
   </button>
 </div>

@@ -44,6 +44,10 @@ export class ShopItemCardComponent implements OnInit {
 
   /* ---------------------------- Cart interaction ---------------------------- */
   onAddCartClick(product: ShopItem): void {
+    this.isInCart.value
+      ? this.cart.updateSpinnerStatus(false)
+      : this.cart.updateSpinnerStatus(true);
+
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();

@@ -1,7 +1,23 @@
+@import "../../../../variables";
+
 .deck-thumb {
   width: 91%;
 }
 
 .modal-img-row {
   width: 21%;
+}
+
+.total-text {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.total-sub {
+  font-weight: 300;
+  font-size: 11px;
+  color: $active-route-color;
+}
+
+.modal-body {
 }
