@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-modal',
@@ -7,7 +8,9 @@ import { MDBModalRef } from 'angular-bootstrap-md';
   styleUrls: ['./cart-modal.component.scss'],
 })
 export class CartModalComponent implements OnInit {
-  constructor(public modalRef: MDBModalRef) {}
+  productsInCart$ = this.cart.productsInCart$;
+
+  constructor(private cart: CartService, public modalRef: MDBModalRef) {}
 
   ngOnInit(): void {}
 }
