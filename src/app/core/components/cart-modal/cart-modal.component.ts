@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
+import { CDN_BASE_URL } from '../../consts/cdn.consts';
 import { CartService } from '../../services/cart/cart.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class CartModalComponent implements OnInit {
   productsInCart$ = this.cart.productsInCart$;
+
+  cdnBaseUrl = CDN_BASE_URL;
 
   constructor(private cart: CartService, public modalRef: MDBModalRef) {}
 

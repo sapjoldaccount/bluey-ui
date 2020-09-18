@@ -19,6 +19,7 @@ body {
   background: white;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
   margin-top: $navbar-height;
 }
 
@@ -40,4 +41,9 @@ body {
   .navbar {
     background-color: $site-primary-color !important;
   }
+}
+
+div,
+span {
+  font-family: $site-font, sans-serif !important;
 }

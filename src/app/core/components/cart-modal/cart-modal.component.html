@@ -16,7 +16,7 @@
   <table class="table table-hover" mdbTable>
     <thead>
       <tr>
-        <th>#</th>
+        <th>Image</th>
         <th>Product</th>
         <th>Price</th>
         <th>Remove</th>
@@ -24,12 +24,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of productsInCart$ | async">
-        <th scope="row">1</th>
+        <th scope="row" class="modal-img-row">
+          <!-- TODO: MAKE THUMBNAIL -->
+          <img
+            class="deck-thumb"
+            src="{{ cdnBaseUrl }}/decks/deck-{{ item.id }}.jpg"
+          />
+        </th>
         <td>{{ item.title }}</td>
         <td>${{ item.price }}</td>
-        <td>
+        <td style="text-align: center">
           <a>
-            <mdb-icon fas icon="times"></mdb-icon>
+            <mat-icon mdbWavesEffect>clear</mat-icon>
           </a>
         </td>
       </tr>
@@ -41,7 +47,7 @@
   <button
     type="button"
     mdbBtn
-    color="primary"
+    color="success"
     outline="true"
     class="waves-light"
     mdbWavesEffect
@@ -50,7 +56,7 @@
   >
     Close
   </button>
-  <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>
+  <button mdbBtn color="success" class="waves-light" mdbWavesEffect>
     Checkout
   </button>
 </div>

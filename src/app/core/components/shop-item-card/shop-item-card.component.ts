@@ -18,6 +18,7 @@ export class ShopItemCardComponent implements OnInit {
   @Input() description: string;
   @Input() id: number;
 
+  // TODO: put these in global config
   @Input() imageBaseUrl: string;
   @Input() imagePathUrl: string;
 
