@@ -3,6 +3,8 @@ import { CartService } from '../../services/cart/cart.service';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 import { ScreenSize } from '../../../shared/enums/screen-size.enum';
 import { RoutingService } from '../../services/routing/routing.service';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +12,8 @@ import { RoutingService } from '../../services/routing/routing.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  modalRef: MDBModalRef;
+
   productsInCart$ = this.cart.productsInCart$;
 
   screenSize$ = this.responsiveService.screenSize$;
@@ -21,10 +25,15 @@ export class NavbarComponent implements OnInit {
   constructor(
     private cart: CartService,
     private responsiveService: ResponsiveService,
-    private routingService: RoutingService
+    private routingService: RoutingService,
+    private modalService: MDBModalService
   ) {}
 
   ngOnInit(): void {
     this.routingService.detectActiveRoute();
+  }
+
+  openCartModal() {
+    this.modalRef = this.modalService.show(CartModalComponent);
   }
 }

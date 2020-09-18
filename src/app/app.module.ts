@@ -28,6 +28,7 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ProductPreviewComponent,
     ViewCartContainerComponent,
     ShopItemCardComponent,
+    CartModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,5 +65,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [RouterLinkActive],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [CartModalComponent],
 })
 export class AppModule {}
