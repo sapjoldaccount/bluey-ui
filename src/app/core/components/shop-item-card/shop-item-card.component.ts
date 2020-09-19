@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
+import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
 
 @Component({
   selector: 'app-shop-item-card',
@@ -33,7 +35,21 @@ export class ShopItemCardComponent implements OnInit {
   isInCart = new BehaviorSubject(false);
   isInCart$ = this.isInCart.asObservable();
 
-  constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
+  modalRef: MDBModalRef;
+
+  modalOptions = {
+    data: {
+      content: {
+        title: 'TEST', // TODO pass data here
+      },
+    },
+  };
+
+  constructor(
+    private cart: CartService,
+    private spinner: NgxSpinnerService,
+    private modalService: MDBModalService
+  ) {}
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
@@ -55,7 +71,7 @@ export class ShopItemCardComponent implements OnInit {
         ? this.cart.removeShopItemFromCart(product.id)
         : this.cart.addShopItem(product);
       location.reload();
-    }, 1000);
+    }, 350);
   }
 
   mouseEnter(div: string) {
@@ -78,5 +94,12 @@ export class ShopItemCardComponent implements OnInit {
         this.isHoveringCartButton.next(false);
         break;
     }
+  }
+
+  openDetailModal() {
+    this.modalRef = this.modalService.show(
+      ProductDetailModalComponent,
+      this.modalOptions
+    );
   }
 }

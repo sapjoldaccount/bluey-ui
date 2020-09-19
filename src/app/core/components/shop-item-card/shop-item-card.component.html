@@ -8,6 +8,7 @@
     (mouseleave)="mouseLeave('deck-img')"
     class="deck-img view overlay"
     mdbWavesEffect
+    (click)="openDetailModal()"
   >
     <!-- TODO: Add back in later for data usage reasons -->
     <img src="{{ imageSrc }}" />

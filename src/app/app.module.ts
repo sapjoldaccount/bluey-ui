@@ -29,6 +29,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
+import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CartModalComponent } from './core/components/cart-modal/cart-modal.comp
     ViewCartContainerComponent,
     ShopItemCardComponent,
     CartModalComponent,
+    ProductDetailModalComponent,
   ],
   imports: [
     BrowserModule,
