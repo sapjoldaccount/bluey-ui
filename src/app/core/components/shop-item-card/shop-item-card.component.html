@@ -38,7 +38,7 @@
         [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
       >
         <div class="btn-txt-con">
-          <mat-icon
+          <!-- <mat-icon
             class="transition-icon"
             *ngIf="(isInCart$ | async) === true"
             class="icon white-text"
@@ -49,7 +49,7 @@
             *ngIf="(isInCart$ | async) === false"
             class="icon"
             >shopping_cart</mat-icon
-          >
+          > -->
           <span
             [ngClass]="
               (isInCart$ | async) === true

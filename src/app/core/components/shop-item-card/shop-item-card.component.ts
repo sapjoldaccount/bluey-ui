@@ -61,7 +61,7 @@ export class ShopItemCardComponent implements OnInit {
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
     this.cart.productsInCart$.subscribe((p) => {
-      this.isInCart.next(p.map((p2) => p2.id)?.includes(this.id));
+      this.isInCart.next(p?.map((p2) => p2.id)?.includes(this.id));
     });
   }
 
@@ -71,14 +71,10 @@ export class ShopItemCardComponent implements OnInit {
       ? this.cart.updateSpinnerStatus(false)
       : this.cart.updateSpinnerStatus(true);
 
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-      this.isInCart.value
-        ? this.cart.removeShopItemFromCart(product.id)
-        : this.cart.addShopItem(product);
-      location.reload();
-    }, 350);
+    this.isInCart.value
+      ? this.cart.removeShopItemFromCart(product.id)
+      : this.cart.addShopItem(product);
+    location.reload();
   }
 
   mouseEnter(div: string) {
