@@ -13,8 +13,6 @@ import { ProductDetailModalComponent } from '../product-detail-modal/product-det
   styleUrls: ['./shop-item-card.component.scss'],
 })
 export class ShopItemCardComponent implements OnInit {
-  @Input() productObject: ShopItem;
-
   /* ----------------------- Product information inputs ----------------------- */
   _title: string;
   get title(): string {
@@ -22,6 +20,14 @@ export class ShopItemCardComponent implements OnInit {
   }
   @Input() set title(value: string) {
     this._title = value;
+  }
+
+  _productObject: ShopItem;
+  get productObject(): ShopItem {
+    return this._productObject;
+  }
+  @Input() set productObject(value: ShopItem) {
+    this._productObject = value;
   }
 
   _id: number;
@@ -60,8 +66,8 @@ export class ShopItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
-    this.cart.productsInCart$.subscribe((p) => {
-      this.isInCart.next(p?.map((p2) => p2.id)?.includes(this.id));
+    this.cart.productsInCart$.subscribe((products) => {
+      this.isInCart.next(this.cart.itemIsInCart(this.productObject, products));
     });
   }
 
@@ -105,6 +111,7 @@ export class ShopItemCardComponent implements OnInit {
         content: {
           title: this.title, // TODO pass data here
           id: this.id,
+          productObject: this.productObject,
         },
       },
     };

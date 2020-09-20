@@ -36,6 +36,10 @@ export class CartService implements OnDestroy {
     this.adding.next(addingToCart);
   }
 
+  itemIsInCart(product: ShopItem, inCartItems: ShopItem[]): boolean {
+    return inCartItems?.map((p) => p?.id)?.includes(product?.id);
+  }
+
   addShopItem(product: ShopItem): void {
     this.spinner.show();
     setTimeout(() => {
