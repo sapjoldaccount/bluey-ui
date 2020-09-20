@@ -80,7 +80,6 @@ export class ShopItemCardComponent implements OnInit {
     this.isInCart.value
       ? this.cart.removeShopItemFromCart(product.id)
       : this.cart.addShopItem(product);
-    location.reload();
   }
 
   mouseEnter(div: string) {

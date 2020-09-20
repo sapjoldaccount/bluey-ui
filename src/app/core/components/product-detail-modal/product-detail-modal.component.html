@@ -52,7 +52,7 @@
   </button>
   <button
     *ngIf="(isInCart$ | async) === false"
-    (click)="addToCartClicked()"
+    (click)="addToCartClicked(content?.productObject)"
     mdbBtn
     color="success"
     class="waves-light"
@@ -63,7 +63,7 @@
 
   <button
     *ngIf="(isInCart$ | async) === true"
-    (click)="removeFromCartClicked()"
+    (click)="removeFromCartClicked(content?.productObject)"
     mdbBtn
     color="danger"
     class="waves-light"

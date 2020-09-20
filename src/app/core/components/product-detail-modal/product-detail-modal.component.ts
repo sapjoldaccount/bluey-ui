@@ -37,7 +37,11 @@ export class ProductDetailModalComponent implements OnInit {
     });
   }
 
-  addToCartClicked(): void {}
+  addToCartClicked(product: ShopItem): void {
+    this.cart.addShopItem(product);
+  }
 
-  removeFromCartClicked(): void {}
+  removeFromCartClicked(product: ShopItem): void {
+    this.cart.removeShopItemFromCart(product.id);
+  }
 }

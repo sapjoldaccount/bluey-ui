@@ -60,6 +60,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Added product to local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
+            location.reload();
           }
         );
     }, 350);
@@ -85,6 +86,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Removed product from local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
+            location.reload();
           }
         );
     }, 350);
