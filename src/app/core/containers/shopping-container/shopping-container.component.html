@@ -18,34 +18,40 @@
   <!-- TODO ADD TIMESTAMP FOR SORT -->
   <div class="container-fluid decks-container">
     <div class="row centered bottom-margin">
-      <!-- <app-shop-item-card
+      <app-shop-item-card
         *ngFor="let item of availableDecks$ | async"
+        [productObject]="item"
         [title]="item.title"
         [price]="item.price"
+        [id]="item.id"
         [description]="item.description"
         [imageBaseUrl]="cdnBaseUrl"
-        [imagePathUrl]="'/decks/deck-1.jpg'"
-      ></app-shop-item-card> -->
+        [imagePathUrl]="'/decks/deck-' + item.id + '.jpg'"
+      ></app-shop-item-card>
 
       <!-- FOR TESTING -->
-      <app-shop-item-card
+      <!-- <app-shop-item-card
         *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]; let indexOfelement = index"
         [title]="'Deck'"
         [price]="'$70.00'"
         [description]="'8 inch width'"
         [imageBaseUrl]="cdnBaseUrl"
         [imagePathUrl]="'/decks/deck-' + (indexOfelement + 1) + '.jpg'"
-      ></app-shop-item-card>
+      ></app-shop-item-card> -->
+
+      <!-- MADE SHIT LAGGY -->
+      <ngx-spinner
+        bdColor="rgba(0, 0, 0, 0.8)"
+        size="default"
+        color="#fff"
+        type="ball-clip-rotate"
+        [fullScreen]="true"
+      >
+        <span class="loading">{{
+          (adding$ | async) === true ? "Adding to cart" : "Removing from cart"
+        }}</span>
+      </ngx-spinner>
     </div>
   </div>
-
-  more Content more content
-  <br />
-  <br />
-
-  <br />
-
-  <br />
-
-  <br />
+  <app-footer></app-footer>
 </div>

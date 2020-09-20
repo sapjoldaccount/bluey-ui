@@ -1,3 +1,5 @@
+@import "../../../../variables";
+
 .deck-container {
   text-align: center;
   min-width: 280px !important;
@@ -5,7 +7,7 @@
   height: 500px;
   padding: 0 !important;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 
   // todo: Ask Sophie opinion;
   // -webkit-box-shadow: 10px 10px 33px -10px rgba(0, 0, 0, 0.42);
@@ -17,12 +19,13 @@
   height: 66%;
   background: lavender;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer;
 
   img {
     width: 571px;
-    margin-left: -51%;
-    margin-top: -5%;
+    margin-left: -53%;
+    margin-top: -9%;
   }
 }
 
@@ -41,14 +44,17 @@
 }
 
 .info-container {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out !important;
 }
 
 .deck-txt {
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
+  font-family: $site-font, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  font-weight: $medium-weight;
   font-size: 1.5rem;
-  margin-top: 3px;
+  margin-top: 9px;
 
   &.sub {
     font-size: 1rem;
@@ -64,4 +70,63 @@
 
 .deck-add {
   margin-top: 4px;
+}
+
+.add-cart {
+  background: transparent !important;
+  font-family: $site-font, sans-serif;
+
+  .icon {
+    vertical-align: middle !important;
+  }
+}
+
+.add-cart:hover {
+  background: #ddf8e7 !important;
+}
+
+.view-more-icon {
+  vertical-align: middle !important;
+  margin-left: 3px !important;
+  margin-top: -2px !important;
+}
+
+.view-more-text {
+  font-family: $site-font, sans-serif;
+}
+
+.in-cart {
+  background: #ddf8e7 !important;
+}
+
+.in-cart-remove {
+  background: #ffe6e6 !important;
+  border-color: red !important;
+}
+
+.in-cart-remove:hover {
+  background: #ffcaca !important;
+  border-color: red !important;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.add-button-text {
+  transition: 0.2s ease-in-out !important;
+  margin-top: -2px !important;
+}
+
+.transition-icon {
+  transition: 0.2s ease-in-out !important;
+}
+
+.btn-txt-con {
+  display: flex;
+  align-items: center;
+}
+
+.danger-button {
+  background: red !important;
 }

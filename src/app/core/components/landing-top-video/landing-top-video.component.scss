@@ -13,11 +13,12 @@
 
   background-size: 100% 100%;
   top: 0px;
-  left: 0px; /* fixed to left. Replace it by right if you want.*/
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
+
+  left: -26%;
 
   &.solid-bg {
     background: lightslategray;
@@ -25,6 +26,17 @@
 }
 
 .opacity-changer {
+  width: 100%;
+  position: absolute;
+
+  background-size: 100% 100%;
+  top: 0px;
+  // left: 0px; /* fixed to left. Replace it by right if you want.*/
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+
   background: black;
   z-index: 99;
   opacity: 0;

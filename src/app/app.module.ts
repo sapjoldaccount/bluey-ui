@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,12 @@ import { ProductPreviewComponent } from './core/components/product-preview/produ
 import { RouterLinkActive } from '@angular/router';
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 import { ShopItemCardComponent } from './core/components/shop-item-card/shop-item-card.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
+import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,10 +45,15 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
     ProductPreviewComponent,
     ViewCartContainerComponent,
     ShopItemCardComponent,
+    CartModalComponent,
+    ProductDetailModalComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
+    MatBadgeModule,
+    NgxSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -55,5 +66,7 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
   ],
   providers: [RouterLinkActive],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [CartModalComponent],
 })
 export class AppModule {}

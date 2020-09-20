@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&display=swap");
-
-$navbar-height: 64px;
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+@import "/src/variables";
 
 body {
   margin: 0;
@@ -20,6 +19,7 @@ body {
   background: white;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
   margin-top: $navbar-height;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .top-nav-collapse {
-  background-color: #1c2332;
+  background-color: $site-primary-color !important;
 }
 
 .row {
@@ -39,6 +39,24 @@ body {
 
 @media only screen and (max-width: 768px) {
   .navbar {
-    background-color: #1c2332;
+    background-color: $site-primary-color !important;
   }
+}
+
+div,
+span {
+  font-family: $site-font, sans-serif !important;
+}
+
+/* ---------------------------------- Modal --------------------------------- */
+.modal-dynamic {
+  min-height: 300px !important;
+  max-height: 600px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+table.table td,
+table.table th {
+  padding: 1.1rem 13px 1rem !important;
 }
