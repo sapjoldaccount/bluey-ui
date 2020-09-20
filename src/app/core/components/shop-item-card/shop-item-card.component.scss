@@ -109,8 +109,8 @@
   border-color: red !important;
 }
 
-.red-text {
-  color: red !important;
+.white-text {
+  color: white !important;
 }
 
 .add-button-text {
@@ -125,4 +125,8 @@
 .btn-txt-con {
   display: flex;
   align-items: center;
+}
+
+.danger-button {
+  background: red !important;
 }

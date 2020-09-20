@@ -33,18 +33,15 @@
         mdbBtn
         type="button"
         color="success"
-        outline="true"
         mdbWavesEffect
         (click)="onAddCartClick(productObject)"
-        [ngClass]="
-          (isInCart$ | async) === true ? 'add-cart in-cart-remove' : 'add-cart'
-        "
+        [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
       >
         <div class="btn-txt-con">
           <mat-icon
             class="transition-icon"
             *ngIf="(isInCart$ | async) === true"
-            class="icon red-text"
+            class="icon white-text"
             >clear</mat-icon
           >
           <mat-icon
@@ -56,7 +53,7 @@
           <span
             [ngClass]="
               (isInCart$ | async) === true
-                ? 'add-button-text red-text'
+                ? 'add-button-text white-text'
                 : 'add-button-text'
             "
             >{{ (isInCart$ | async) === true ? "Remove" : "Add To Cart" }}</span

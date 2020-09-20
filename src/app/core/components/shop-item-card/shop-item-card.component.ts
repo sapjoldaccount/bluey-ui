@@ -15,10 +15,25 @@ import { ProductDetailModalComponent } from '../product-detail-modal/product-det
 export class ShopItemCardComponent implements OnInit {
   @Input() productObject: ShopItem;
 
-  @Input() title: string;
+  /* ----------------------- Product information inputs ----------------------- */
+  _title: string;
+  get title(): string {
+    return this._title;
+  }
+  @Input() set title(value: string) {
+    this._title = value;
+  }
+
+  _id: number;
+  get id(): number {
+    return this._id;
+  }
+  @Input() set id(value: number) {
+    this._id = value;
+  }
+
   @Input() price: string; // for now
   @Input() description: string;
-  @Input() id: number;
 
   // TODO: put these in global config
   @Input() imageBaseUrl: string;
@@ -36,14 +51,6 @@ export class ShopItemCardComponent implements OnInit {
   isInCart$ = this.isInCart.asObservable();
 
   modalRef: MDBModalRef;
-
-  modalOptions = {
-    data: {
-      content: {
-        title: 'TEST', // TODO pass data here
-      },
-    },
-  };
 
   constructor(
     private cart: CartService,
@@ -97,9 +104,18 @@ export class ShopItemCardComponent implements OnInit {
   }
 
   openDetailModal() {
+    const modalOptions = {
+      data: {
+        content: {
+          title: this.title, // TODO pass data here
+          id: this.id,
+        },
+      },
+    };
+
     this.modalRef = this.modalService.show(
       ProductDetailModalComponent,
-      this.modalOptions
+      modalOptions
     );
   }
 }
