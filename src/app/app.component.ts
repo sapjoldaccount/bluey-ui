@@ -12,11 +12,6 @@ import { ResponsiveService } from './shared/services/responsive/responsive.servi
 export class AppComponent implements OnInit {
   title = 'skate';
 
-  // TODO: make a modal for clicking on picture
-  // click for details text
-
-  // users: Observable<any[]>;
-
   constructor(
     private shoppingCartService: CartService,
     private responsiveService: ResponsiveService
@@ -24,13 +19,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.responsiveService.detectScreenSizeChange();
-  }
-
-  addTest(): void {
-    // this.shoppingCartService.addProduct(null);
-  }
-
-  deleteTest(): void {
-    // this.shoppingCartService.deleteProduct(null);
   }
 }

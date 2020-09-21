@@ -11,7 +11,7 @@
     (click)="openDetailModal()"
   >
     <!-- TODO: Add back in later for data usage reasons -->
-    <img src="{{ imageSrc }}" />
+    <!-- <img src="{{ imageSrc }}" /> -->
     <div class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">
         View<mat-icon class="view-more-icon">zoom_in</mat-icon>
@@ -38,7 +38,7 @@
         [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
       >
         <div class="btn-txt-con">
-          <mat-icon
+          <!-- <mat-icon
             class="transition-icon"
             *ngIf="(isInCart$ | async) === true"
             class="icon white-text"
@@ -49,14 +49,16 @@
             *ngIf="(isInCart$ | async) === false"
             class="icon"
             >shopping_cart</mat-icon
-          >
+          > -->
           <span
             [ngClass]="
               (isInCart$ | async) === true
                 ? 'add-button-text white-text'
                 : 'add-button-text'
             "
-            >{{ (isInCart$ | async) === true ? "Remove" : "Add To Cart" }}</span
+            >{{
+              (isInCart$ | async) === true ? "Remove from Cart" : "Add To Cart"
+            }}</span
           >
         </div>
       </button>

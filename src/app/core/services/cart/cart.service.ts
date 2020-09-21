@@ -5,6 +5,7 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { CART_ITEMS_KEY } from '../../consts/storage.consts';
 import { NGXLogger } from 'ngx-logger';
 import { takeUntil } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,11 @@ export class CartService implements OnDestroy {
     this.ngUnsub.complete();
   }
 
-  constructor(private logger: NGXLogger, private storage: StorageMap) {
+  constructor(
+    private logger: NGXLogger,
+    private storage: StorageMap,
+    private spinner: NgxSpinnerService
+  ) {
     this.productsInCart$ =
       (this.storage.watch(CART_ITEMS_KEY) as Observable<ShopItem[]>) ?? of([]);
   }
@@ -31,45 +36,59 @@ export class CartService implements OnDestroy {
     this.adding.next(addingToCart);
   }
 
+  itemIsInCart(product: ShopItem, inCartItems: ShopItem[]): boolean {
+    return inCartItems?.map((p) => p?.id)?.includes(product?.id);
+  }
+
   addShopItem(product: ShopItem): void {
-    let updatedShopItems = [product];
-    this.storage
-      .get(CART_ITEMS_KEY)
-      .pipe(takeUntil(this.ngUnsub))
-      .subscribe(
-        (data: ShopItem[]) => {
-          if (!!data) {
-            updatedShopItems = [...data, product];
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+      let updatedShopItems = [product];
+      this.storage
+        .get(CART_ITEMS_KEY)
+        .pipe(takeUntil(this.ngUnsub))
+        .subscribe(
+          (data: ShopItem[]) => {
+            if (!!data) {
+              updatedShopItems = [...data, product];
+            }
+          },
+          (error) => {
+            this.logger.error('An error occurred.');
+          },
+          () => {
+            this.logger.debug('Added product to local storage.');
+            this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
+            location.reload();
           }
-        },
-        (error) => {
-          this.logger.error('An error occurred.');
-        },
-        () => {
-          this.logger.debug('Added product to local storage.');
-          this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-        }
-      );
+        );
+    }, 350);
   }
 
   removeShopItemFromCart(toRemoveId: number): void {
-    let updatedShopItems = [];
-    this.storage
-      .get(CART_ITEMS_KEY)
-      .pipe(takeUntil(this.ngUnsub))
-      .subscribe(
-        (data: ShopItem[]) => {
-          if (!!data) {
-            updatedShopItems = data.filter((d) => d.id !== toRemoveId);
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+      let updatedShopItems = [];
+      this.storage
+        .get(CART_ITEMS_KEY)
+        .pipe(takeUntil(this.ngUnsub))
+        .subscribe(
+          (data: ShopItem[]) => {
+            if (!!data) {
+              updatedShopItems = data.filter((d) => d.id !== toRemoveId);
+            }
+          },
+          (error) => {
+            this.logger.error('An error occurred.');
+          },
+          () => {
+            this.logger.debug('Removed product from local storage.');
+            this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
+            location.reload();
           }
-        },
-        (error) => {
-          this.logger.error('An error occurred.');
-        },
-        () => {
-          this.logger.debug('Removed product from local storage.');
-          this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-        }
-      );
+        );
+    }, 350);
   }
 }

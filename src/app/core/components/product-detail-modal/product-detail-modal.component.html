@@ -50,7 +50,25 @@
   >
     Close
   </button>
-  <button mdbBtn color="success" class="waves-light" mdbWavesEffect>
+  <button
+    *ngIf="(isInCart$ | async) === false"
+    (click)="addToCartClicked(content?.productObject)"
+    mdbBtn
+    color="success"
+    class="waves-light"
+    mdbWavesEffect
+  >
     Add to Cart
+  </button>
+
+  <button
+    *ngIf="(isInCart$ | async) === true"
+    (click)="removeFromCartClicked(content?.productObject)"
+    mdbBtn
+    color="danger"
+    class="waves-light"
+    mdbWavesEffect
+  >
+    Remove from Cart
   </button>
 </div>

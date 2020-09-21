@@ -19,10 +19,5 @@ export class FirestoreService {
   constructor(private firestore: AngularFirestore) {
     // TODO: Error handle
     this.availableDecks = this.firestore.collection('decks').valueChanges();
-
-    // var storage = firebase.storage().ref();
-
-    // let x = storage.child('/').list();
-    // console.log(x);
   }
 }
