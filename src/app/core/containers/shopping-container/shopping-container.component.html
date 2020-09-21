@@ -1,13 +1,8 @@
 <div class="g-page-container">
   <div class="jumbo-featured">
-    <div class="featured">
-      <div class="picture-ph pic">
-        Picture here or maybe a slideshow type thing
-      </div>
-    </div>
-    <div class="featured">
-      <div class="picture-ph">Content about new deck here</div>
-    </div>
+    <!-- <video autoplay loop [muted]="true">
+      <source src="{{ cdnBaseUrl }}/mp4/skateboard_loop.mp4" type="video/mp4" />
+    </video> -->
   </div>
 
   <div class="pr-category">Decks</div>
@@ -29,17 +24,6 @@
         [imagePathUrl]="'/decks/deck-' + item.id + '.jpg'"
       ></app-shop-item-card>
 
-      <!-- FOR TESTING -->
-      <!-- <app-shop-item-card
-        *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]; let indexOfelement = index"
-        [title]="'Deck'"
-        [price]="'$70.00'"
-        [description]="'8 inch width'"
-        [imageBaseUrl]="cdnBaseUrl"
-        [imagePathUrl]="'/decks/deck-' + (indexOfelement + 1) + '.jpg'"
-      ></app-shop-item-card> -->
-
-      <!-- MADE SHIT LAGGY -->
       <ngx-spinner
         bdColor="rgba(0, 0, 0, 0.8)"
         size="default"
