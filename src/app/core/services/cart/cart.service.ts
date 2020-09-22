@@ -40,6 +40,28 @@ export class CartService implements OnDestroy {
     return inCartItems?.map((p) => p?.id)?.includes(product?.id);
   }
 
+  initializeCart(): void {
+    let currentShopItems = [];
+
+    this.storage
+      .get(CART_ITEMS_KEY)
+      .pipe(takeUntil(this.ngUnsub))
+      .subscribe(
+        (data: ShopItem[]) => {
+          if (!!data) {
+            currentShopItems = [...data];
+          }
+        },
+        (error) => {
+          this.logger.error('An error occurred.');
+        },
+        () => {
+          this.logger.debug('Initialized local storage.');
+          this.storage.set(CART_ITEMS_KEY, currentShopItems).subscribe();
+        }
+      );
+  }
+
   addShopItem(product: ShopItem): void {
     this.spinner.show();
     setTimeout(() => {
@@ -60,7 +82,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Added product to local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            location.reload();
+            // location.reload();
           }
         );
     }, 350);
@@ -86,7 +108,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Removed product from local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            location.reload();
+            // location.reload();
           }
         );
     }, 350);

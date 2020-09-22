@@ -23,9 +23,7 @@ export class StripeService {
     this.cart.updateSpinnerStatus('redirecting');
     this.spinner.show();
 
-    const stripe = Stripe(
-      'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL'
-    );
+    const stripe = Stripe(STRIPE_KEY);
 
     // When the customer clicks on the button, redirect
     // them to Checkout.
