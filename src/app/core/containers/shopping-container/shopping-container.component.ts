@@ -15,7 +15,7 @@ export class ShoppingContainerComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.availableDecks;
 
-  adding$: Observable<boolean> = this.cart.adding$;
+  spinnerAction$: Observable<string> = this.cart.spinnerAction$;
 
   // TODO: MOVE TO ENVIRONMENT SERVICE
   cdnBaseUrl = CDN_BASE_URL;
@@ -28,7 +28,6 @@ export class ShoppingContainerComponent implements OnInit {
   // #BDBDFF
   constructor(
     private firestoreService: FirestoreService,
-    private spinner: NgxSpinnerService,
     private cart: CartService
   ) {}
 

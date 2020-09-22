@@ -4,4 +4,6 @@ export class ShopItem {
   image: string;
   price: number;
   id: number;
+  // tslint:disable-next-line: variable-name
+  stripe_id?: string;
 }

@@ -13,8 +13,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CartService implements OnDestroy {
   productsInCart$: Observable<ShopItem[]> = of([]);
 
-  adding = new BehaviorSubject<boolean>(false);
-  adding$ = this.adding.asObservable();
+  spinnerAction = new BehaviorSubject<string>(null);
+  spinnerAction$ = this.spinnerAction.asObservable();
 
   ngUnsub = new Subject();
 
@@ -32,12 +32,34 @@ export class CartService implements OnDestroy {
       (this.storage.watch(CART_ITEMS_KEY) as Observable<ShopItem[]>) ?? of([]);
   }
 
-  updateSpinnerStatus(addingToCart: boolean) {
-    this.adding.next(addingToCart);
+  updateSpinnerStatus(spinnerAction: string): void {
+    this.spinnerAction.next(spinnerAction);
   }
 
   itemIsInCart(product: ShopItem, inCartItems: ShopItem[]): boolean {
     return inCartItems?.map((p) => p?.id)?.includes(product?.id);
+  }
+
+  initializeCart(): void {
+    let currentShopItems = [];
+
+    this.storage
+      .get(CART_ITEMS_KEY)
+      .pipe(takeUntil(this.ngUnsub))
+      .subscribe(
+        (data: ShopItem[]) => {
+          if (!!data) {
+            currentShopItems = [...data];
+          }
+        },
+        (error) => {
+          this.logger.error('An error occurred.');
+        },
+        () => {
+          this.logger.debug('Initialized local storage.');
+          this.storage.set(CART_ITEMS_KEY, currentShopItems).subscribe();
+        }
+      );
   }
 
   addShopItem(product: ShopItem): void {
@@ -60,7 +82,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Added product to local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            location.reload();
+            // location.reload();
           }
         );
     }, 350);
@@ -86,7 +108,7 @@ export class CartService implements OnDestroy {
           () => {
             this.logger.debug('Removed product from local storage.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            location.reload();
+            // location.reload();
           }
         );
     }, 350);

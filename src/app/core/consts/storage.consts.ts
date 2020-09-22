@@ -1,1 +1,1 @@
-export const CART_ITEMS_KEY = 'skate_cart_items_fresh';
+export const CART_ITEMS_KEY = 'blueyshop_cart';
