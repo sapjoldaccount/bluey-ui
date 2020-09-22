@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular-extensions/model": "^10.0.1",
-    "@angular/animations": "~10.1.0",
+    "@angular/animations": "^10.1.2",
     "@angular/cdk": "^10.2.0",
     "@angular/common": "~10.1.0",
     "@angular/compiler": "~10.1.0",
@@ -35,6 +35,7 @@
     "i": "^0.3.6",
     "ngx-logger": "^4.1.9",
     "ngx-spinner": "^10.0.1",
+    "ngx-toastr": "^13.0.0",
     "npm": "^6.14.8",
     "rxjs": "^6.6.3",
     "stripe": "^8.97.0",

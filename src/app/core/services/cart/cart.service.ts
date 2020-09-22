@@ -6,6 +6,9 @@ import { CART_ITEMS_KEY } from '../../consts/storage.consts';
 import { NGXLogger } from 'ngx-logger';
 import { takeUntil } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
+// import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +29,8 @@ export class CartService implements OnDestroy {
   constructor(
     private logger: NGXLogger,
     private storage: StorageMap,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toastService: ToastService
   ) {
     this.productsInCart$ =
       (this.storage.watch(CART_ITEMS_KEY) as Observable<ShopItem[]>) ?? of([]);
@@ -65,6 +69,7 @@ export class CartService implements OnDestroy {
   addShopItem(product: ShopItem): void {
     this.spinner.show();
     setTimeout(() => {
+      this.toastService.showAddedToCart();
       this.spinner.hide();
       let updatedShopItems = [product];
       this.storage

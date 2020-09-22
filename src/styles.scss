@@ -23,6 +23,20 @@ body {
   margin-top: $navbar-height;
 }
 
+.toast-title {
+  font-family: $site-font !important;
+  font-weight: 700 !important;
+}
+
+.toast-message {
+  font-family: $site-font !important;
+  font-weight: 300 !important;
+}
+
+.toast-success {
+  background: $mdb-success !important;
+}
+
 /* ------------------- Styles needed for nav bar behavior ------------------- */
 .navbar {
   background-color: transparent;

@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,11 @@ import { ProductDetailModalComponent } from './core/components/product-detail-mo
     MatButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     LayoutModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG }),
     AngularFireModule.initializeApp(environment.firebase),
