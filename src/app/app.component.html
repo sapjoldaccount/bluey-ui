@@ -1,5 +1,22 @@
 <app-navbar> </app-navbar>
 <router-outlet></router-outlet>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="default"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <span *ngIf="(spinnerAction$ | async) === 'adding'" class="loading"
+    >Adding to Cart</span
+  >
+  <span *ngIf="(spinnerAction$ | async) === 'removing'" class="loading"
+    >Removing from Cart</span
+  >
+  <span *ngIf="(spinnerAction$ | async) === 'redirecting'" class="loading"
+    >Taking you to checkout</span
+  >
+</ngx-spinner>
 <!-- <app-landing-container></app-landing-container> -->
 <!-- <app-footer class="footer"></app-footer> -->
 

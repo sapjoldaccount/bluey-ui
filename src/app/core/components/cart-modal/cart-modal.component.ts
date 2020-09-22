@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { CDN_BASE_URL } from '../../consts/cdn.consts';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
+import { StripeService } from '../../services/stripe/stripe.service';
 
 @Component({
   selector: 'app-cart-modal',
@@ -27,7 +28,15 @@ export class CartModalComponent implements OnInit {
 
   cdnBaseUrl = CDN_BASE_URL;
 
-  constructor(private cart: CartService, public modalRef: MDBModalRef) {}
+  constructor(
+    private cart: CartService,
+    public modalRef: MDBModalRef,
+    private stripe: StripeService
+  ) {}
+
+  onCheckoutClick(itemsInCart: ShopItem[]): void {
+    this.stripe.redirectToCheckout(itemsInCart);
+  }
 
   ngOnInit(): void {
     // this.cartScrollContainer.nativeElement.scrollTop = this.cartScrollContainer.nativeElement.scrollHeight;

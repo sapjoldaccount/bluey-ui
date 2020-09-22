@@ -74,8 +74,8 @@ export class ShopItemCardComponent implements OnInit {
   /* ---------------------------- Cart interaction ---------------------------- */
   onAddCartClick(product: ShopItem): void {
     this.isInCart.value
-      ? this.cart.updateSpinnerStatus(false)
-      : this.cart.updateSpinnerStatus(true);
+      ? this.cart.updateSpinnerStatus('removing')
+      : this.cart.updateSpinnerStatus('adding');
 
     this.isInCart.value
       ? this.cart.removeShopItemFromCart(product.id)

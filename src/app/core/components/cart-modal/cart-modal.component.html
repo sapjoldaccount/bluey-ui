@@ -42,7 +42,9 @@
       <tr>
         <th scope="row"></th>
         <td class="total-text">
-          Total <br /><span class="total-sub">Tax & shipping not included</span>
+          Subtotal <br /><span class="total-sub"
+            >Tax & shipping not included</span
+          >
         </td>
         <td class="total-text">${{ cartTotal$ | async }}</td>
         <td style="text-align: center"></td>
@@ -65,11 +67,13 @@
     Close
   </button>
   <button
+    *ngIf="productsInCart$ | async as cartItems"
     [disabled]="(cartTotal$ | async) <= 0"
     mdbBtn
     color="success"
     class="waves-light"
     mdbWavesEffect
+    (click)="onCheckoutClick(cartItems)"
   >
     Checkout
   </button>

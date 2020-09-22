@@ -23,18 +23,6 @@
         [imageBaseUrl]="cdnBaseUrl"
         [imagePathUrl]="'/decks/deck-' + item.id + '.jpg'"
       ></app-shop-item-card>
-
-      <ngx-spinner
-        bdColor="rgba(0, 0, 0, 0.8)"
-        size="default"
-        color="#fff"
-        type="ball-clip-rotate"
-        [fullScreen]="true"
-      >
-        <span class="loading">{{
-          (adding$ | async) === true ? "Adding to cart" : "Removing from cart"
-        }}</span>
-      </ngx-spinner>
     </div>
   </div>
   <app-footer></app-footer>
