@@ -1,3 +1,12 @@
 .bluey-custom {
   background-color: #55bfff !important;
 }
+
+.bluey-social {
+  width: 20px !important;
+  transition: 0.2s ease-in-out;
+}
+
+.bluey-social:hover {
+  color: #4499cc !important;
+}
