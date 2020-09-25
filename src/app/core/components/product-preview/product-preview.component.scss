@@ -7,3 +7,14 @@
   position: absolute;
   bottom: 0;
 }
+
+.preview-img {
+  width: 100%;
+  left: 0;
+  position: absolute;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.preview-img:hover {
+  transform: scale(1.05);
+}
