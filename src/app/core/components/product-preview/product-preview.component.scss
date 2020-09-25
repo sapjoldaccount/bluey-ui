@@ -1,3 +1,5 @@
+@import "../../../../variables";
+
 .name {
   color: white;
   font-family: "Raleway", sans-serif;
@@ -17,4 +19,18 @@
 
 .preview-img:hover {
   transform: scale(1.05);
+}
+
+.view-more-icon {
+  vertical-align: middle !important;
+  margin-left: 3px !important;
+  margin-top: -2px !important;
+}
+
+.view-more-text {
+  font-family: $site-font, sans-serif;
+}
+
+.white-text {
+  color: white !important;
 }
