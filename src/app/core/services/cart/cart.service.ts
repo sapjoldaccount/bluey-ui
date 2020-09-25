@@ -104,7 +104,7 @@ export class CartService implements OnDestroy {
         .subscribe(
           (data: ShopItem[]) => {
             if (!!data) {
-              updatedShopItems = data.filter((d) => d.id !== toRemoveId);
+              updatedShopItems = data.filter((d) => d?.id !== toRemoveId);
             }
           },
           (error) => {

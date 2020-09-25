@@ -18,6 +18,8 @@ export class FirestoreService {
 
   constructor(private firestore: AngularFirestore) {
     // TODO: Error handle
-    this.availableDecks = this.firestore.collection('decks').valueChanges();
+    this.availableDecks = this.firestore
+      .collection('decks', (ref) => ref.orderBy('id'))
+      .valueChanges();
   }
 }

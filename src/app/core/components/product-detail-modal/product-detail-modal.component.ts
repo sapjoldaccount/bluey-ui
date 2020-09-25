@@ -28,7 +28,6 @@ export class ProductDetailModalComponent implements OnInit {
   ngOnInit(): void {
     this.isInCart$.subscribe((a) => console.log(a));
     this.cart.productsInCart$.subscribe((a) => console.log(a));
-    console.log(this.content.productObject);
     // TODO: CENTRALIZE THIS, you're getting sloppy steve...
     this.cart.productsInCart$.subscribe((products) => {
       this.isInCart.next(
