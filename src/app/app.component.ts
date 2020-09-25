@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NavigationEnd, Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
@@ -21,11 +22,19 @@ export class AppComponent implements OnInit {
     private shoppingCartService: CartService,
     private responsiveService: ResponsiveService,
     private spinner: NgxSpinnerService,
-    private storage: StorageMap
+    private storage: StorageMap,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.shoppingCartService.initializeCart();
     this.responsiveService.detectScreenSizeChange();
+
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }
