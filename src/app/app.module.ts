@@ -31,12 +31,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    AlertComponent,
     LandingContainerComponent,
     LandingTopVideoComponent,
     LandingBottomComponent,
