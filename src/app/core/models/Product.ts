@@ -6,4 +6,5 @@ export class ShopItem {
   id: number;
   // tslint:disable-next-line: variable-name
   stripe_id?: string;
+  sold: boolean;
 }

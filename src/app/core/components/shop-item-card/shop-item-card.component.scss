@@ -130,3 +130,28 @@
 .danger-button {
   background: #ff3647 !important;
 }
+
+.sold-overlay {
+  position: absolute;
+  width: 100%;
+  opacity: 0.5;
+  background: lightgray;
+  height: 100%;
+  z-index: 99;
+}
+
+.disable-hover {
+  pointer-events: none;
+}
+
+.sold-out {
+  z-index: 999999 !important;
+  opacity: 1;
+  color: white;
+  left: 39% !important;
+  top: 42% !important;
+  font-size: 24px !important;
+  position: absolute !important;
+  text-align: center !important;
+  margin: auto !important;
+}

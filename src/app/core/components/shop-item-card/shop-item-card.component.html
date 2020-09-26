@@ -1,6 +1,7 @@
 <div
   id="x"
   class="col-sm deck-container ml-2 mr-2 mb-5"
+  [ngClass]="productObject.sold ? 'disable-hover' : ''"
   [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-out' : ''"
 >
   <div
@@ -9,9 +10,14 @@
     class="deck-img view overlay"
     mdbWavesEffect
     (click)="openDetailModal()"
+    [ngClass]="productObject.sold ? 'disable-hover' : ''"
   >
     <!-- TODO: Add back in later for data usage reasons -->
+    <div *ngIf="productObject.sold" class="sold-overlay"></div>
+    <span class="sold-out" *ngIf="productObject.sold">Sold</span>
+
     <img src="{{ imageSrc }}" />
+
     <div class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">
         View<mat-icon class="view-more-icon">zoom_in</mat-icon>
@@ -36,6 +42,7 @@
         mdbWavesEffect
         (click)="onAddCartClick(productObject)"
         [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
+        [disabled]="productObject.sold"
       >
         <div class="btn-txt-con">
           <!-- <mat-icon

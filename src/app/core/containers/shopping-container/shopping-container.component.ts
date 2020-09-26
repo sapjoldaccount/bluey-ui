@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
@@ -28,7 +28,8 @@ export class ShoppingContainerComponent implements OnInit {
   // #BDBDFF
   constructor(
     private firestoreService: FirestoreService,
-    private cart: CartService
+    private cart: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
