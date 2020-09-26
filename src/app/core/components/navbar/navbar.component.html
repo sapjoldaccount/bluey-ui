@@ -9,16 +9,20 @@
     </a>
   </mdb-navbar-brand>
 
-  <!-- MOBILE ICON IN MENU BAR ON MOBILE, TODO... -->
-  <!-- <div
-    *ngIf="
-      (screenSize$ | async) == 'Small' ||
-      (screenSize$ | async) == 'XSmall' ||
-      (screenSize$ | async) == 'Medium'
-    "
+  <li
+    matBadge="{{ (productsInCart$ | async)?.length }}"
+    matBadgePosition="before"
+    matBadgeColor="success"
+    class="cart-icon-mobile nav-item waves-light shop-link"
+    mdbWavesEffect
+    (click)="openCartModal()"
   >
-    test
-  </div> -->
+    <a
+      class="nav-link cart"
+      [ngClass]="(activeRoute$ | async) === '/cart' ? 'selected-color' : ''"
+      ><mat-icon>shopping_cart</mat-icon></a
+    >
+  </li>
 
   <links>
     <ul class="navbar-nav ml-auto">

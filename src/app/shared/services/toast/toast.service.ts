@@ -8,6 +8,6 @@ export class ToastService {
   constructor(private toastr: ToastrService) {}
 
   showAddedToCart(): void {
-    this.toastr.success('Added item to cart', 'Success!');
+    // this.toastr.success('Added item to cart', 'Success!');
   }
 }

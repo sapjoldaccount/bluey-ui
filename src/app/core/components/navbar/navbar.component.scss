@@ -78,12 +78,24 @@
   }
 }
 
+.cart-icon-mobile {
+  display: none;
+  color: white;
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 991px) {
+  .cart-icon-mobile {
+    display: block;
+  }
+}
+
 /* --------------------------------- ng-deep -------------------------------- */
 ::ng-deep .navCss nav {
   background-color: $site-primary-color;
 }
 
-::ng-deep #mat-badge-content-0 {
+::ng-deep .mat-badge-content {
   margin-top: 8px;
   margin-left: 8px;
   background: $mdb-success;
