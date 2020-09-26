@@ -11,10 +11,48 @@
 }
 
 .preview-img {
-  width: 100%;
   left: 0;
+
+  width: 109%;
+  left: -7px;
+  object-fit: contain;
   position: absolute;
   transition: all 0.2s ease-in-out !important;
+  top: -39px;
+}
+
+@media only screen and (max-width: 1082px) {
+  .preview-img {
+    width: 128%;
+    left: -53px;
+  }
+}
+
+@media only screen and (max-width: 923px) {
+  .preview-img {
+    width: 166%;
+    left: -115px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .preview-img {
+    width: 201%;
+    left: -115px;
+    top: -100px;
+  }
+}
+
+@media only screen and (max-width: 696px) {
+  .preview-img {
+    left: -50%;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .name {
+    font-size: 2em;
+  }
 }
 
 .preview-img:hover {

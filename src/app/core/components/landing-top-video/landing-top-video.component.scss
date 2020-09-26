@@ -25,6 +25,24 @@
   }
 }
 
+@media only screen and (max-width: 1147px) {
+  .video-player {
+    left: -37%;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .video-player {
+    left: -50%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .video-player {
+    left: -83%;
+  }
+}
+
 .opacity-changer {
   width: 100%;
   position: absolute;

@@ -10,3 +10,14 @@
 .bluey-social:hover {
   color: #4499cc !important;
 }
+
+@media only screen and (max-width: 767px) {
+  .bluey-social-con {
+    justify-content: center;
+  }
+}
+
+.bluey-icon-soc {
+  font-size: 25px;
+  width: 32px;
+}
