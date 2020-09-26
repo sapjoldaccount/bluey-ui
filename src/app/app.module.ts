@@ -58,6 +58,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     MatBadgeModule,
     NgxSpinnerModule,
     MatToolbarModule,
+    HttpClientModule,
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
