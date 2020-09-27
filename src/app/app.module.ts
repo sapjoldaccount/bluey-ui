@@ -32,6 +32,8 @@ import { CartModalComponent } from './core/components/cart-modal/cart-modal.comp
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 10000,
