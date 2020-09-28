@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
+import { LogService } from 'src/app/shared/services/log/log.service';
 // import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -21,13 +22,13 @@ export class CartService implements OnDestroy {
 
   ngUnsub = new Subject();
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.ngUnsub.next();
     this.ngUnsub.complete();
   }
 
   constructor(
-    private logger: NGXLogger,
+    private log: LogService,
     private storage: StorageMap,
     private spinner: NgxSpinnerService,
     private toastService: ToastService
@@ -57,10 +58,10 @@ export class CartService implements OnDestroy {
           }
         },
         (error) => {
-          this.logger.error('An error occurred.');
+          this.log.logError('initializing cart', 'initializeCart()');
         },
         () => {
-          this.logger.debug('Initialized local storage.');
+          this.log.logDebug('Initialized local storage successfully.');
           this.storage.set(CART_ITEMS_KEY, currentShopItems).subscribe();
         }
       );
@@ -82,12 +83,11 @@ export class CartService implements OnDestroy {
             }
           },
           (error) => {
-            this.logger.error('An error occurred.');
+            this.log.logError('adding item to cart', 'addShopItem()');
           },
           () => {
-            this.logger.debug('Added product to local storage.');
+            this.log.logDebug('Added product to local storage successfully.');
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            // location.reload();
           }
         );
     }, 350);
@@ -108,12 +108,16 @@ export class CartService implements OnDestroy {
             }
           },
           (error) => {
-            this.logger.error('An error occurred.');
+            this.log.logError(
+              'removing item from cart',
+              'removeShopItemFromCart()'
+            );
           },
           () => {
-            this.logger.debug('Removed product from local storage.');
+            this.log.logDebug(
+              'Removed product from local storage succesfully.'
+            );
             this.storage.set(CART_ITEMS_KEY, updatedShopItems).subscribe();
-            // location.reload();
           }
         );
     }, 350);
