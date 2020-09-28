@@ -1,10 +1,95 @@
 <div class="g-page-container">
   <div class="pr-category">Contact Us</div>
 
-  <mat-form-field appearance="outline" formControlName="test">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder" />
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
+  <!-- <div
+    class="shopping-descr"
+    style="font-weight: 700; color: black; margin-bottom: 5px"
+  >
+    Questions? Comments? Concerns?
+  </div> -->
+
+  <div class="shopping-descr" style="margin-bottom: 8px">
+    <!-- Whether you'd like a personalized skateboard or just want to get in touch,
+    drop us a message below. We'll reply as soon as we can. As full-time
+    students and full-time workers, we are pretty busy. Don't stress if it takes
+    a day or two for us to reply! -->
+    Drop us a message below, and we'll get back to you ASAP. FYI, we have a
+    <span style="font-weight: 700; color: black">no return policy</span> on our
+    skateboard decks.
+  </div>
+
+  <div class="contact-container">
+    <form [formGroup]="contactForm">
+      <!-- First Name -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>First Name</mat-label>
+        <input
+          [formControl]="first"
+          required
+          matInput
+          placeholder="Enter your first name"
+        />
+        <!-- <mat-hint>Hint</mat-hint> -->
+        <mat-error *ngIf="first.invalid">{{
+          getFirstErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>Last Name</mat-label>
+        <input
+          [formControl]="last"
+          required
+          matInput
+          placeholder="Enter your last name"
+        />
+        <!-- <mat-hint>Hint</mat-hint> -->
+        <mat-error *ngIf="last.invalid">{{ getLastErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>Email Address</mat-label>
+        <input
+          required
+          matInput
+          [formControl]="email"
+          placeholder="your.email@example.com"
+        />
+        <mat-error *ngIf="email.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+
+      <!-- Message -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>Leave a message</mat-label>
+        <textarea
+          required
+          rows="10"
+          matInput
+          [formControl]="message"
+          placeholder="Enter your message for us here"
+        ></textarea>
+        <mat-error *ngIf="message.invalid">{{
+          getMessageErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <!-- Submission -->
+      <button
+        class="submit-bluey"
+        [disabled]="contactForm.invalid === true"
+        type="button"
+        mdbBtn
+        color="success"
+        mdbWavesEffect
+      >
+        SEND MESSAGE
+      </button>
+    </form>
+  </div>
+  <app-footer></app-footer>
 </div>
