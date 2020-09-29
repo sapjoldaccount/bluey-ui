@@ -15,9 +15,33 @@ const STRIPE_KEY =
 export class StripeService {
   constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
 
+  // Create a Checkout Session with the selected quantity
+  createCheckoutSession(): Promise<any> {
+    let quantity = 1;
+
+    return fetch('http://localhost:3000/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: quantity,
+      }),
+    }).then((result) => {
+      return result.json();
+    });
+  }
+
   redirectToCheckout(itemsInCart: ShopItem[]): void {
     const stripeLineItems = itemsInCart.map((i) => {
-      return { price: i.stripe_id, quantity: 1 };
+      return {
+        price: i.stripe_id,
+        quantity: 1,
+        // tax_rates: [
+        //   'txr_1HWW4BIZSSMTzx9qaLijQptA',
+        //   // additional tax rates
+        // ],
+      };
     });
 
     this.cart.updateSpinnerStatus('redirecting');
@@ -27,25 +51,19 @@ export class StripeService {
 
     // When the customer clicks on the button, redirect
     // them to Checkout.
-    stripe
-      .redirectToCheckout({
-        lineItems: stripeLineItems,
-        mode: 'payment',
-        // Do not rely on the redirect to the successUrl for fulfilling
-        // purchases, customers may not always reach the success_url after
-        // a successful payment.
-        // Instead use one of the strategies described in
-        // https://stripe.com/docs/payments/checkout/fulfill-orders
-        successUrl: 'https://blueyshop.com/success',
-        cancelUrl: 'https://blueyshop.com/cancelled',
-      })
-      .then((result) => {
-        if (result.error) {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, display the localized error message to your customer.
-          const displayError = document.getElementById('error-message');
-          displayError.textContent = result.error.message;
-        }
-      });
+    this.createCheckoutSession().then((data) => {
+      stripe
+        .redirectToCheckout({
+          sessionId: data.sessionId,
+        })
+        .then((result) => {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            const displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+    });
   }
 }
