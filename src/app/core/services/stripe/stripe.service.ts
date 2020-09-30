@@ -16,31 +16,29 @@ export class StripeService {
   constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
 
   // Create a Checkout Session with the selected quantity
-  createCheckoutSession(): Promise<any> {
-    let quantity = 1;
+  createCheckoutSession(stripeLineItems: any[]): Promise<any> {
+    const itemQty = 1;
 
-    return fetch('http://localhost:3000/create-checkout-session', {
+    // TODO: change url to actual when deployed
+    return fetch('http://34.199.229.245/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        quantity: quantity,
+        lineItems: stripeLineItems,
       }),
     }).then((result) => {
       return result.json();
     });
   }
 
+  // Redirect user to stripe-hosted checkout page
   redirectToCheckout(itemsInCart: ShopItem[]): void {
     const stripeLineItems = itemsInCart.map((i) => {
       return {
         price: i.stripe_id,
         quantity: 1,
-        // tax_rates: [
-        //   'txr_1HWW4BIZSSMTzx9qaLijQptA',
-        //   // additional tax rates
-        // ],
       };
     });
 
@@ -49,9 +47,8 @@ export class StripeService {
 
     const stripe = Stripe(STRIPE_KEY);
 
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    this.createCheckoutSession().then((data) => {
+    // TODO: Error handling
+    this.createCheckoutSession(stripeLineItems).then((data) => {
       stripe
         .redirectToCheckout({
           sessionId: data.sessionId,
@@ -60,8 +57,8 @@ export class StripeService {
           if (result.error) {
             // If `redirectToCheckout` fails due to a browser or network
             // error, display the localized error message to your customer.
-            const displayError = document.getElementById('error-message');
-            displayError.textContent = result.error.message;
+            // const displayError = document.getElementById('error-message');
+            // displayError.textContent = result.error.message;
           }
         });
     });
