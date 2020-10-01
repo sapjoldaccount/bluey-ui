@@ -11,8 +11,8 @@ export const environment = {
   cdnBaseUrl: CDN_BASE_URL,
 
   // Bluey API URL (TODO: Dev/Prod environments)
-  // apiBaseUrl: 'https://api.blueyshop.com:3000',
-  apiBaseUrl: 'http://localhost:3000',
+  apiBaseUrl: 'https://api.blueyshop.com:3000',
+  // apiBaseUrl: 'http://localhost:3000',
 };
 
 /*
