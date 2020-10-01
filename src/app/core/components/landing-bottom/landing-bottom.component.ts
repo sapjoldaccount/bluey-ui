@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
+import { LogService } from 'src/app/shared/services/log/log.service';
 import { CDN_BASE_URL } from '../../consts/cdn.consts';
 import { ShopItem } from '../../models/Product';
 
@@ -15,9 +16,10 @@ export class LandingBottomComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.availableDecks;
 
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(
+    private firestoreService: FirestoreService,
+    private log: LogService
+  ) {}
 
-  ngOnInit(): void {
-    this.availableDecks$.subscribe((a) => console.log(a));
-  }
+  ngOnInit(): void {}
 }

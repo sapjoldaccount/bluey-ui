@@ -5,7 +5,10 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { CART_ITEMS_KEY } from './core/consts/storage.consts';
+import { ShopItem } from './core/models/Product';
 import { CartService } from './core/services/cart/cart.service';
+import { FirestoreService } from './shared/services/firestore/firestore.service';
+import { LogService } from './shared/services/log/log.service';
 import { ResponsiveService } from './shared/services/responsive/responsive.service';
 
 @Component({
@@ -18,17 +21,27 @@ export class AppComponent implements OnInit {
 
   spinnerAction$: Observable<string> = this.shoppingCartService.spinnerAction$;
 
+  availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
+    .firestoreService.availableDecks;
+
   constructor(
     private shoppingCartService: CartService,
     private responsiveService: ResponsiveService,
     private spinner: NgxSpinnerService,
+    private firestoreService: FirestoreService,
     private storage: StorageMap,
-    private router: Router
+    private router: Router,
+    private log: LogService
   ) {}
 
   ngOnInit(): void {
     this.shoppingCartService.initializeCart();
     this.responsiveService.detectScreenSizeChange();
+
+    this.availableDecks$.subscribe((decks) => {
+      this.log.logDebug('Current available decks from Firestore:');
+      console.log(decks);
+    });
 
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {

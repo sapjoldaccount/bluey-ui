@@ -26,8 +26,6 @@ export class ProductDetailModalComponent implements OnInit {
   constructor(public modalRef: MDBModalRef, private cart: CartService) {}
 
   ngOnInit(): void {
-    this.isInCart$.subscribe((a) => console.log(a));
-    this.cart.productsInCart$.subscribe((a) => console.log(a));
     // TODO: CENTRALIZE THIS, you're getting sloppy steve...
     this.cart.productsInCart$.subscribe((products) => {
       this.isInCart.next(

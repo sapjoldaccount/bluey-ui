@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AwsService } from 'src/app/shared/services/aws/aws.service';
 
 @Component({
   templateUrl: './contact-container.component.html',
@@ -45,7 +46,18 @@ export class ContactContainerComponent implements OnInit {
     }
   }
 
-  constructor() {}
+  submit(): void {
+    const submission: any = {
+      first: this.first.value,
+      last: this.last.value,
+      email: this.email.value,
+      message: this.message.value,
+    };
+
+    this.aws.sendEmail(submission).subscribe();
+  }
+
+  constructor(private aws: AwsService) {}
 
   ngOnInit(): void {}
 }

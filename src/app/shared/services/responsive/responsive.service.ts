@@ -7,6 +7,7 @@ import {
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { ScreenSize } from '../../enums/screen-size.enum';
+import { LogService } from '../log/log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +18,15 @@ export class ResponsiveService implements OnDestroy {
 
   /* Small/XSmall */
   public isSmall$ = this.screenSize$.pipe(
-    map((size) => size.includes('Small')),
-    tap((x) => console.log(x))
+    map((size) => size.includes('Small'))
   );
 
   private ngUnsub = new Subject();
 
-  constructor(private bpObserver: BreakpointObserver) {}
+  constructor(
+    private bpObserver: BreakpointObserver,
+    private log: LogService
+  ) {}
 
   ngOnDestroy(): void {
     this.ngUnsub.next();
@@ -56,7 +59,7 @@ export class ResponsiveService implements OnDestroy {
         if (state.breakpoints[Breakpoints.XLarge]) {
           this.screenSize.next(ScreenSize.XLarge);
         }
-        console.log(this.screenSize.value);
+        this.log.logDebug(`Current screen size: ${this.screenSize.value}`);
       });
   }
 }

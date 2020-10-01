@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../cart/cart.service';
 declare let Stripe: any;
 
+// TODO: replace with real key in prod
 const STRIPE_KEY =
   'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL';
 
@@ -15,9 +17,29 @@ const STRIPE_KEY =
 export class StripeService {
   constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
 
+  // Create a Checkout Session with the selected quantity
+  createCheckoutSession(stripeLineItems: any[]): Promise<any> {
+    // TODO: change to the "angular" way, prod vs. local builds...
+    return fetch(`${environment.apiBaseUrl}/create-checkout-session`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        lineItems: stripeLineItems,
+      }),
+    }).then((result) => {
+      return result.json();
+    });
+  }
+
+  // Redirect user to stripe-hosted checkout page
   redirectToCheckout(itemsInCart: ShopItem[]): void {
     const stripeLineItems = itemsInCart.map((i) => {
-      return { price: i.stripe_id, quantity: 1 };
+      return {
+        price: i.stripe_id,
+        quantity: 1,
+      };
     });
 
     this.cart.updateSpinnerStatus('redirecting');
@@ -25,27 +47,20 @@ export class StripeService {
 
     const stripe = Stripe(STRIPE_KEY);
 
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe
-      .redirectToCheckout({
-        lineItems: stripeLineItems,
-        mode: 'payment',
-        // Do not rely on the redirect to the successUrl for fulfilling
-        // purchases, customers may not always reach the success_url after
-        // a successful payment.
-        // Instead use one of the strategies described in
-        // https://stripe.com/docs/payments/checkout/fulfill-orders
-        successUrl: 'https://blueyshop.com/success',
-        cancelUrl: 'https://blueyshop.com/cancelled',
-      })
-      .then((result) => {
-        if (result.error) {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, display the localized error message to your customer.
-          const displayError = document.getElementById('error-message');
-          displayError.textContent = result.error.message;
-        }
-      });
+    // TODO: Error handling
+    this.createCheckoutSession(stripeLineItems).then((data) => {
+      stripe
+        .redirectToCheckout({
+          sessionId: data.sessionId,
+        })
+        .then((result) => {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            // const displayError = document.getElementById('error-message');
+            // displayError.textContent = result.error.message;
+          }
+        });
+    });
   }
 }
