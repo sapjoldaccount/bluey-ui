@@ -5,6 +5,8 @@ import { ShoppingContainerComponent } from './core/containers/shopping-container
 import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
 import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
+import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
+import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ViewCartContainerComponent,
+  },
+  {
+    path: 'success',
+    component: SuccessContainerComponent,
+  },
+  {
+    path: 'cancelled',
+    component: CancelledContainerComponent,
   },
 ];
 

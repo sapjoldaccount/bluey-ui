@@ -1,0 +1,31 @@
+<div class="g-page-container">
+  <div class="pr-category">Order Cancelled</div>
+
+  <div
+    class="shopping-descr"
+    style="margin-bottom: 8px"
+    *ngIf="productsInCart$ | async as cartProducts"
+  >
+    Looks like you've cancelled your checkout session. If that was an accident,
+    <a href="javascript:;" (click)="goBackToCheckout(cartProducts)"
+      >click here to try checking out again</a
+    >. If not, we hope you return again soon.
+    <a routerLink="/shop" routerLinkActive="active">
+      Visit our shopping page here</a
+    >
+    to view our current product lineup to see if there's one you like.
+  </div>
+
+  <!-- <div class="success-container">stuff here here</div> -->
+</div>
+
+<!-- TODO: Cleanup footer -->
+<app-footer
+  style="
+    position: absolute;
+    width: 100%;
+    bottom: -64px;
+    left: 0;
+    overflow: hidden;
+  "
+></app-footer>

@@ -35,6 +35,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
+import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ShopItemCardComponent,
     CartModalComponent,
     ProductDetailModalComponent,
+    SuccessContainerComponent,
+    CancelledContainerComponent,
   ],
   imports: [
     BrowserModule,
