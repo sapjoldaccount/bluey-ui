@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../cart/cart.service';
 declare let Stripe: any;
 
+// TODO: replace with real key in prod
 const STRIPE_KEY =
   'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL';
 
@@ -17,10 +19,8 @@ export class StripeService {
 
   // Create a Checkout Session with the selected quantity
   createCheckoutSession(stripeLineItems: any[]): Promise<any> {
-    const itemQty = 1;
-
-    // TODO: change url to actual when deployed
-    return fetch('http://34.199.229.245/create-checkout-session', {
+    // TODO: change to the "angular" way, prod vs. local builds...
+    return fetch(`${environment.apiBaseUrl}/create-checkout-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
