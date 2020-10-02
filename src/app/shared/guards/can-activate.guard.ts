@@ -4,13 +4,18 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
+  Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { StripeService } from 'src/app/core/services/stripe/stripe.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CanActivateGuard implements CanActivate {
+  constructor(private stripe: StripeService, private router: Router) {}
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,7 +24,17 @@ export class CanActivateGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log(next.queryParamMap);
-    return true;
+    return this.stripe
+      .retrieveCheckoutSession(next.queryParamMap.get('session_id'))
+      .pipe(
+        map((s) => {
+          if (!!s) {
+            return true;
+          }
+
+          this.router.navigateByUrl('/');
+          return false;
+        })
+      );
   }
 }
