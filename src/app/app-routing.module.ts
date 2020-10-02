@@ -33,6 +33,7 @@ const routes: Routes = [
   {
     path: 'success',
     component: SuccessContainerComponent,
+    canActivate: [CanActivateGuard],
   },
   {
     path: 'cancelled',

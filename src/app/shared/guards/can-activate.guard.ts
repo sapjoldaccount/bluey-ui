@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
@@ -8,13 +9,18 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { SuccessContainerComponent } from 'src/app/core/containers/success-container/success-container.component';
 import { StripeService } from 'src/app/core/services/stripe/stripe.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CanActivateGuard implements CanActivate {
-  constructor(private stripe: StripeService, private router: Router) {}
+  constructor(
+    private stripe: StripeService,
+    private router: Router,
+    private location: Location
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -28,7 +34,11 @@ export class CanActivateGuard implements CanActivate {
       .retrieveCheckoutSession(next.queryParamMap.get('session_id'))
       .pipe(
         map((s) => {
-          if (!!s) {
+          if (location.pathname === '/success' && !!s?.customer_details) {
+            return true;
+          }
+
+          if (location.pathname === '/cancelled' && !!s) {
             return true;
           }
 
