@@ -7,6 +7,7 @@ import { ContactContainerComponent } from './core/containers/contact-container/c
 import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
+import { CanActivateGuard } from './shared/guards/can-activate.guard';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
   {
     path: 'cancelled',
     component: CancelledContainerComponent,
+    canActivate: [CanActivateGuard],
   },
 ];
 
