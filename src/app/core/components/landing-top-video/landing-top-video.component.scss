@@ -18,6 +18,24 @@
   }
 }
 
+// iPhone 6/7/8+
+@media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .mobile-video {
+    height: 122%;
+    margin-left: -141%;
+    margin-top: 12%;
+  }
+}
+
+// iPhone 5
+@media only screen and (device-width: 320px) and (device-height: 568px) {
+  .mobile-video {
+    height: 122%;
+    margin-left: -141%;
+    margin-top: 16%;
+  }
+}
+
 .video-container {
   position: relative;
   height: 100vh;
