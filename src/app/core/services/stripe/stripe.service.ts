@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
+import { LogService } from 'src/app/shared/services/log/log.service';
 import { environment } from 'src/environments/environment';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../cart/cart.service';
@@ -15,7 +18,12 @@ const STRIPE_KEY =
   providedIn: 'root',
 })
 export class StripeService {
-  constructor(private cart: CartService, private spinner: NgxSpinnerService) {}
+  constructor(
+    private cart: CartService,
+    private spinner: NgxSpinnerService,
+    private http: HttpClient,
+    private log: LogService
+  ) {}
 
   // Create a Checkout Session with the selected quantity
   createCheckoutSession(stripeLineItems: any[]): Promise<any> {
@@ -32,6 +40,22 @@ export class StripeService {
       return result.json();
     });
   }
+
+  // Get a checkout session to verify user can activate success/cancel pages
+  // retrieveCheckoutSession(sessionId: string): Observable<any> {
+  //   return this.http
+  //     .get(`${environment.apiBaseUrl}/checkout-session/${sessionId}`)
+  //     .pipe(
+  //       catchError((err) => {
+  //         // this.log.logError('sending email', 'sendEmail()');
+  //         return of(null);
+  //       }),
+  //       tap((resp) => {}),
+  //       finalize(() => {
+  //         // this.log.logDebug('Delivered email successfully.');
+  //       })
+  //     );
+  // }
 
   // Redirect user to stripe-hosted checkout page
   redirectToCheckout(itemsInCart: ShopItem[]): void {

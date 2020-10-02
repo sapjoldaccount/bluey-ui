@@ -19,6 +19,7 @@ export class CanActivateGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log(next.queryParamMap);
     return true;
   }
 }
