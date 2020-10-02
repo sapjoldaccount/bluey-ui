@@ -13,6 +13,7 @@ export class LandingTopVideoComponent implements OnInit {
   screenSizes = ScreenSize;
 
   videoUrl = `${CDN_BASE_URL}${CDN_VIDEO_PATH}`;
+  videoUrlMobile = `${CDN_BASE_URL}/mp4/skateboard_loop.mp4`;
 
   constructor(private responsiveService: ResponsiveService) {}
 
