@@ -45,6 +45,24 @@ export class CartService implements OnDestroy {
     return inCartItems?.map((p) => p?.id)?.includes(product?.id);
   }
 
+  emptyCart(): void {
+    const currentShopItems = [];
+
+    this.storage
+      .get(CART_ITEMS_KEY)
+      .pipe(takeUntil(this.ngUnsub))
+      .subscribe(
+        (data: ShopItem[]) => {},
+        (error) => {
+          this.log.logError('emptying cart', 'emptyCart()');
+        },
+        () => {
+          this.log.logDebug('Emptied local storage successfully.');
+          this.storage.set(CART_ITEMS_KEY, currentShopItems).subscribe();
+        }
+      );
+  }
+
   initializeCart(): void {
     let currentShopItems = [];
 
