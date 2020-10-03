@@ -45,18 +45,6 @@
         [disabled]="productObject.sold"
       >
         <div class="btn-txt-con">
-          <!-- <mat-icon
-            class="transition-icon"
-            *ngIf="(isInCart$ | async) === true"
-            class="icon white-text"
-            >clear</mat-icon
-          >
-          <mat-icon
-            class="transition-icon"
-            *ngIf="(isInCart$ | async) === false"
-            class="icon"
-            >shopping_cart</mat-icon
-          > -->
           <span
             [ngClass]="
               (isInCart$ | async) === true
@@ -74,6 +62,5 @@
 </div>
 
 <!-- TODO OBSERVE AT TOP -->
-<!-- <div id="x" style="display: none"></div> -->
 
 <!-- TODO MAKE FUNCS FOR CONDITIONS -->

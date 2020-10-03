@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';

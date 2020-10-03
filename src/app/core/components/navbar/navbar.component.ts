@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
     this.routingService.detectActiveRoute();
   }
 
-  openCartModal() {
+  openCartModal(): void {
     this.modalRef = this.modalService.show(CartModalComponent);
   }
 }

@@ -16,10 +16,7 @@ export class LandingBottomComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.availableDecks;
 
-  constructor(
-    private firestoreService: FirestoreService,
-    private log: LogService
-  ) {}
+  constructor(private firestoreService: FirestoreService) {}
 
   ngOnInit(): void {}
 }

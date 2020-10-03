@@ -1,5 +1,4 @@
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -14,7 +13,6 @@ import { StripeService } from '../../services/stripe/stripe.service';
   styleUrls: ['./cart-modal.component.scss'],
 })
 export class CartModalComponent implements OnInit {
-  // @ViewChild('cartModal') private cartScrollContainer: ElementRef;
   productsInCart$ = this.cart.productsInCart$;
 
   cartTotal$: Observable<number> = this.productsInCart$.pipe(
@@ -38,9 +36,7 @@ export class CartModalComponent implements OnInit {
     this.stripe.redirectToCheckout(itemsInCart);
   }
 
-  ngOnInit(): void {
-    // this.cartScrollContainer.nativeElement.scrollTop = this.cartScrollContainer.nativeElement.scrollHeight;
-  }
+  ngOnInit(): void {}
 
   removeItemFromCart(item: ShopItem): void {
     this.cart.removeShopItemFromCart(item.id);
