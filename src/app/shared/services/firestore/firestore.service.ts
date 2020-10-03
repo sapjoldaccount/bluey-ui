@@ -24,7 +24,7 @@ export class FirestoreService {
     // TODO: Error handle
     this.availableDecks = this.firestore
       .collection('decks', (ref) => ref.orderBy('id'))
-      .valueChanges();
+      .valueChanges({ idField: 'firebase_doc_id' });
   }
 
   /**
