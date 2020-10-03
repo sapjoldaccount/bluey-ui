@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Params,
-} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { map, withLatestFrom } from 'rxjs/operators';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
@@ -17,7 +12,7 @@ import { CartService } from '../../services/cart/cart.service';
 export class SuccessContainerComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private firestore: FirestoreService, // private route: ActivatedRouteSnapshot, // private activatedRoute: ActivatedRoute,
+    private firestore: FirestoreService,
     private cart: CartService
   ) {}
 
