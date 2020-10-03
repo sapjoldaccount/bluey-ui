@@ -89,7 +89,12 @@
     display: block;
   }
 }
-
+.bluey-icon {
+  position: absolute;
+  top: 3px;
+  /* font-size: 37px; */
+  left: 10px;
+}
 /* --------------------------------- ng-deep -------------------------------- */
 ::ng-deep .navCss nav {
   background-color: $site-primary-color;
