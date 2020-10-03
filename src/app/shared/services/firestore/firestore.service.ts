@@ -7,8 +7,10 @@ import {
 import { Observable, of } from 'rxjs';
 import { ShopItem } from 'src/app/core/models/Product';
 import * as firebase from 'firebase';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { LogService } from '../log/log.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +20,7 @@ export class FirestoreService {
     []
   );
 
-  // TODO: Loading spinner
-
-  constructor(private firestore: AngularFirestore, private cart: CartService) {
+  constructor(private firestore: AngularFirestore, private log: LogService) {
     // TODO: Error handle
     this.availableDecks = this.firestore
       .collection('decks', (ref) => ref.orderBy('id'))
@@ -31,10 +31,33 @@ export class FirestoreService {
    * Remove from cart and mark as sold in firestore.
    * @param itemStripeIds - stripe_id's for prices
    */
-  markItemsAsSold(itemStripeIds: string[]) {
-    this.cart.emptyCart();
-    itemStripeIds.forEach((id) => {
-      // TODO: mark items as sold in Firestore
+  markItemsAsSold(itemStripeIds: string[], items: ShopItem[]): void {
+    itemStripeIds.forEach((stripeId) => {
+      const firestoreId = items.find((i) => i.stripe_id === stripeId)
+        ?.firebase_doc_id;
+
+      if (!!firestoreId) {
+        this.firestore
+          .collection('decks')
+          .doc('/' + firestoreId)
+          .update({ sold: true })
+          .then(() => {
+            this.log.logDebug(
+              `Updated firebase document ${firestoreId}, set sold = true`
+            );
+          })
+          .catch((error) => {
+            this.log.logError(
+              'updating firebase document',
+              'markItemsAsSold()'
+            );
+            console.log(error);
+          });
+      } else {
+        this.log.logDebug(
+          'Could not find firestore id from stripe id, no update was performed'
+        );
+      }
     });
   }
 }
