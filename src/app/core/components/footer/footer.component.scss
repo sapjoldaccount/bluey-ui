@@ -1,0 +1,23 @@
+.bluey-custom {
+  background-color: #1c2331 !important;
+}
+
+.bluey-social {
+  width: 40px !important;
+  transition: 0.2s ease-in-out;
+}
+
+.bluey-social:hover {
+  color: #4499cc !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .bluey-social-con {
+    justify-content: center;
+  }
+}
+
+.bluey-icon-soc {
+  font-size: 25px;
+  width: 32px;
+}

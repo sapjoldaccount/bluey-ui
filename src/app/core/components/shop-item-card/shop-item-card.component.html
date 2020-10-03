@@ -1,0 +1,66 @@
+<div
+  id="x"
+  class="col-sm deck-container ml-2 mr-2 mb-5"
+  [ngClass]="productObject.sold ? 'disable-hover' : ''"
+  [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-out' : ''"
+>
+  <div
+    (mouseenter)="mouseEnter('deck-img')"
+    (mouseleave)="mouseLeave('deck-img')"
+    class="deck-img view overlay"
+    mdbWavesEffect
+    (click)="openDetailModal()"
+    [ngClass]="productObject.sold ? 'disable-hover' : ''"
+  >
+    <!-- TODO: Add back in later for data usage reasons -->
+    <div *ngIf="productObject.sold" class="sold-overlay"></div>
+    <span class="sold-out" *ngIf="productObject.sold">Sold</span>
+
+    <img src="{{ imageSrc }}" />
+
+    <div class="mask flex-center rgba-black-light">
+      <p class="white-text view-more-text">
+        View<mat-icon class="view-more-icon">zoom_in</mat-icon>
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="info-container"
+    [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-down' : ''"
+  >
+    <div class="deck-txt">{{ title }}</div>
+    <div class="deck-txt sub">{{ description }}</div>
+    <div class="deck-txt price">${{ price }}</div>
+    <div class="deck-add">
+      <button
+        (mouseenter)="mouseEnter('add-cart')"
+        (mouseleave)="mouseLeave('add-cart')"
+        mdbBtn
+        type="button"
+        color="success"
+        mdbWavesEffect
+        (click)="onAddCartClick(productObject)"
+        [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
+        [disabled]="productObject.sold"
+      >
+        <div class="btn-txt-con">
+          <span
+            [ngClass]="
+              (isInCart$ | async) === true
+                ? 'add-button-text white-text'
+                : 'add-button-text'
+            "
+            >{{
+              (isInCart$ | async) === true ? "Remove from Cart" : "Add To Cart"
+            }}</span
+          >
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TODO OBSERVE AT TOP -->
+
+<!-- TODO MAKE FUNCS FOR CONDITIONS -->

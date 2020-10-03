@@ -1,0 +1,56 @@
+<div class="featured-decks">
+  <span>FEATURED DECKS</span>
+  <div class="btn-container">
+    <button
+      routerLink="/shop"
+      routerLinkActive="active"
+      class="view-all"
+      mdbBtn
+      size="sm"
+      type="button"
+      color="white"
+      outline="true"
+      mdbWavesEffect
+    >
+      VIEW ALL
+    </button>
+  </div>
+</div>
+
+<!-- TODO: clean up the way this is done...lazy lazy rush -->
+<div class="bottom-container" *ngIf="availableDecks$ | async as decks">
+  <div class="row equal">
+    <app-product-preview
+      class="col-md item-preview skate-img view overlay"
+      [name]="'RED WHITE & BLUEY'"
+      [imgSrc]="cdnBaseUrl + '/decks/deck-7.jpg'"
+      [id]="7"
+      [productObject]="decks[6]"
+    >
+    </app-product-preview>
+    <app-product-preview
+      class="col-md item-preview skate-img view overlay"
+      [name]="'MARBLE CANDY'"
+      [imgSrc]="cdnBaseUrl + '/decks/deck-8.jpg'"
+      [id]="8"
+      [productObject]="decks[7]"
+    ></app-product-preview>
+  </div>
+  <div class="row equal">
+    <app-product-preview
+      class="col-md item-preview skate-img view overlay"
+      [name]="'COASTAL'"
+      [imgSrc]="cdnBaseUrl + '/decks/deck-2.jpg'"
+      [id]="2"
+      [productObject]="decks[1]"
+    ></app-product-preview>
+    <app-product-preview
+      class="col-md item-preview skate-img view overlay"
+      [name]="'DUALITY'"
+      [imgSrc]="cdnBaseUrl + '/decks/deck-4.jpg'"
+      [id]="4"
+      [productObject]="decks[3]"
+    ></app-product-preview>
+  </div>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,29 @@
+<div class="video-container" id="mob-vid">
+  <!-- Desktop -->
+  <ng-container
+    *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile"
+  >
+    <div class="video-player opacity-changer"></div>
+    <div class="opacity-changer" id="top"></div>
+    <video autoplay loop [muted]="true" class="video-player">
+      <source src="{{ videoUrl }}" type="video/webm" />
+    </video>
+
+    <div class="landing-title-container">
+      <span class="heading">Bluey Art Shop</span>
+      <span class="descr">Pour-painted acrylic art pieces</span>
+      <span class="descr">Handcrafted in Louisville, KY</span>
+    </div>
+  </ng-container>
+
+  <!-- Mobile -->
+  <ng-template #mobile>
+    <div class="mobile-landing-container">
+      <!-- <span>Bluey Art Shop</span> -->
+      <img class="mobile-video" src="{{ videoUrlMobile }}" />
+      <!-- <video class="mobile-video" autoplay loop [muted]="true">
+        <source src="{{ videoUrlMobile }}" type="video/mp4" />
+      </video> -->
+    </div>
+  </ng-template>
+</div>

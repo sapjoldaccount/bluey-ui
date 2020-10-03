@@ -1,7 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+@import "/src/variables";
 
 body {
-    margin: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+// Remove drop shadow from MD buttons
+.btn {
+  box-shadow: unset !important;
+}
+
+.g-page-container {
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  // margin-top: $navbar-height;
+  margin-top: 62px;
+}
+
+.toast-title {
+  font-family: $site-font !important;
+  font-weight: 700 !important;
+}
+
+.toast-message {
+  font-family: $site-font !important;
+  font-weight: 300 !important;
+}
+
+.toast-success {
+  background: $mdb-success !important;
+}
+
+/* ------------------- Styles needed for nav bar behavior ------------------- */
+.navbar {
+  background-color: transparent;
+}
+
+.top-nav-collapse {
+  background-color: $site-primary-color !important;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: $site-primary-color !important;
+  }
+}
+
+div,
+span {
+  font-family: $site-font, sans-serif !important;
+}
+
+/* ---------------------------------- Modal --------------------------------- */
+.modal-dynamic {
+  min-height: 300px !important;
+  max-height: 600px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+table.table td,
+table.table th {
+  padding: 1.1rem 13px 1rem !important;
 }

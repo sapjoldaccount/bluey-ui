@@ -1,0 +1,32 @@
+<div class="g-page-container">
+  <div class="pr-category">Decks</div>
+
+  <p class="shopping-descr">
+    Each Bluey Board is uniquely designed, and no two are the same. If you see
+    one listed below that you like & has already been purchased,
+    <a target="_blank" href="https://blueyshop.com/contact"
+      >send us a message here</a
+    >
+    and let us know.
+  </p>
+
+  <!-- TODO: Move to component? -->
+  <!-- TODO NGFOR WITH FIREBASE -->
+
+  <!-- TODO ADD TIMESTAMP FOR SORT -->
+  <div class="container-fluid decks-container">
+    <div class="row centered bottom-margin">
+      <app-shop-item-card
+        *ngFor="let item of availableDecks$ | async"
+        [productObject]="item"
+        [title]="item.title"
+        [price]="item.price"
+        [id]="item.id"
+        [description]="item.description"
+        [imageBaseUrl]="cdnBaseUrl"
+        [imagePathUrl]="'/decks/deck-' + item.id + '.jpg'"
+      ></app-shop-item-card>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

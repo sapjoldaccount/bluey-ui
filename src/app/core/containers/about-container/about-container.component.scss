@@ -1,0 +1,92 @@
+@import "../../../../variables";
+
+.pr-category {
+  min-height: 64px;
+  font-family: $site-font, sans-serif;
+  padding: 16px;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.family-pic {
+  background: lavender;
+  height: 400px;
+  // margin: 0 20% 0 20%;
+}
+
+@media (max-width: 470px) {
+  .family-pic {
+    margin-left: -50px;
+  }
+}
+
+@media (max-width: 450px) {
+  .family-pic {
+    margin-left: -23px;
+  }
+}
+
+@media (max-width: 417px) {
+  .family-pic {
+    margin-left: -54px;
+  }
+}
+
+@media (max-width: 382px) {
+  .family-pic {
+    margin-left: -70px;
+  }
+}
+
+.who-container {
+  margin: 1.5rem 15% 0 15%;
+
+  .who-title {
+    font-weight: bold;
+    font-size: 2rem;
+    width: 100%;
+    display: block;
+  }
+
+  .who-blurb {
+    font-weight: 300;
+    color: gray;
+  }
+}
+
+.team-con {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.person-con {
+  margin-right: 0.5rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  min-width: 230px !important;
+  max-width: 230px !important;
+  height: 400px;
+}
+
+.centered {
+  justify-content: space-around !important;
+}
+
+.person-pic {
+  height: 325px;
+  background: lavender;
+  width: 100%;
+}
+
+.person-name {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.person-descr {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: gray;
+}

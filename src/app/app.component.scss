@@ -1,0 +1,15 @@
+@import "../variables";
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.loading {
+  font-family: $site-font, sans-serif;
+  color: white;
+  font-weight: 300;
+}

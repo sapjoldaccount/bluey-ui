@@ -1,30 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NavigationEnd, Router } from '@angular/router';
+import { StorageMap } from '@ngx-pwa/local-storage';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
+import { CART_ITEMS_KEY } from './core/consts/storage.consts';
+import { ShopItem } from './core/models/Product';
 import { CartService } from './core/services/cart/cart.service';
+import { FirestoreService } from './shared/services/firestore/firestore.service';
+import { LogService } from './shared/services/log/log.service';
+import { ResponsiveService } from './shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'skate';
 
-  users: Observable<any[]>;
+  spinnerAction$: Observable<string> = this.shoppingCartService.spinnerAction$;
 
-  constructor(firestore: AngularFirestore, private shoppingCartService: CartService) {
-    this.users = firestore.collection('users').valueChanges();
-  }
+  availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
+    .firestoreService.availableDecks;
+
+  constructor(
+    private shoppingCartService: CartService,
+    private responsiveService: ResponsiveService,
+    private spinner: NgxSpinnerService,
+    private firestoreService: FirestoreService,
+    private storage: StorageMap,
+    private router: Router,
+    private log: LogService
+  ) {}
 
   ngOnInit(): void {
-  }
+    this.shoppingCartService.initializeCart();
+    this.responsiveService.detectScreenSizeChange();
 
-  addTest(): void {
-    this.shoppingCartService.addProduct(null);
-  }
+    this.availableDecks$.subscribe((decks) => {
+      this.log.logDebug('Current available decks from Firestore:');
+      console.log(decks);
+    });
 
-  deleteTest(): void {
-    this.shoppingCartService.deleteProduct(null);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }

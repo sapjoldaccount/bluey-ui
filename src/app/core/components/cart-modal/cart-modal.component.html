@@ -1,0 +1,80 @@
+<!--Header-->
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Your cart</h4>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<!--Body-->
+<div class="modal-body">
+  <table class="table table-hover" mdbTable>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of productsInCart$ | async">
+        <th scope="row" class="modal-img-row">
+          <!-- TODO: MAKE THUMBNAIL -->
+          <img
+            class="deck-thumb"
+            src="{{ cdnBaseUrl }}/decks/deck-{{ item.id }}.jpg"
+          />
+        </th>
+        <td>{{ item.title }}</td>
+        <td>${{ item.price }}</td>
+        <td style="text-align: center">
+          <a (click)="removeItemFromCart(item)">
+            <mat-icon mdbWavesEffect>clear</mat-icon>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td class="total-text">
+          Subtotal <br /><span class="total-sub"
+            >Tax & shipping not included</span
+          >
+        </td>
+        <td class="total-text">${{ cartTotal$ | async }}</td>
+        <td style="text-align: center"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--Footer-->
+<div class="modal-footer">
+  <button
+    type="button"
+    mdbBtn
+    color="success"
+    outline="true"
+    class="waves-light"
+    mdbWavesEffect
+    data-dismiss="modal"
+    (click)="modalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    *ngIf="productsInCart$ | async as cartItems"
+    [disabled]="(cartTotal$ | async) <= 0"
+    mdbBtn
+    color="success"
+    class="waves-light"
+    mdbWavesEffect
+    (click)="onCheckoutClick(cartItems)"
+  >
+    Checkout
+  </button>
+</div>

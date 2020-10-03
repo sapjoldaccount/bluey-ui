@@ -1,6 +1,76 @@
-<mat-toolbar>
-    <span>Skate</span>
-    <span class='example-spacer'></span>
-    <mat-icon>shopping_cart</mat-icon>
-    <span>({{ (productsInCart$ | async)?.length }})</span>
-</mat-toolbar>
+<mdb-navbar
+  [ngClass]="(activeRoute$ | async) !== '/' ? 'navCss' : ''"
+  SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav"
+  [containerInside]="false"
+>
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" href="#">
+      <strong>Bluey</strong>
+    </a>
+  </mdb-navbar-brand>
+
+  <li
+    matBadge="{{ (productsInCart$ | async)?.length }}"
+    matBadgePosition="before"
+    matBadgeColor="success"
+    class="cart-icon-mobile nav-item waves-light shop-link"
+    mdbWavesEffect
+    (click)="openCartModal()"
+  >
+    <a
+      class="nav-link cart"
+      [ngClass]="(activeRoute$ | async) === '/cart' ? 'selected-color' : ''"
+      ><mat-icon>shopping_cart</mat-icon></a
+    >
+  </li>
+
+  <links>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a
+          routerLink="/shop"
+          routerLinkActive="active"
+          class="nav-link"
+          [ngClass]="(activeRoute$ | async) === '/shop' ? 'selected-color' : ''"
+          >SHOP</a
+        >
+      </li>
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a
+          routerLink="/about"
+          routerLinkActive="active"
+          class="nav-link"
+          [ngClass]="
+            (activeRoute$ | async) === '/about' ? 'selected-color' : ''
+          "
+          >ABOUT</a
+        >
+      </li>
+      <li class="nav-item waves-light shop-link" mdbWavesEffect>
+        <a
+          routerLink="/contact"
+          routerLinkActive="active"
+          class="nav-link"
+          [ngClass]="
+            (activeRoute$ | async) === '/contact' ? 'selected-color' : ''
+          "
+          >CONTACT</a
+        >
+      </li>
+      <li
+        matBadge="{{ (productsInCart$ | async)?.length }}"
+        matBadgePosition="before"
+        matBadgeColor="success"
+        class="nav-item waves-light shop-link"
+        mdbWavesEffect
+        (click)="openCartModal()"
+      >
+        <a
+          class="nav-link cart"
+          [ngClass]="(activeRoute$ | async) === '/cart' ? 'selected-color' : ''"
+          ><mat-icon>shopping_cart</mat-icon></a
+        >
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>

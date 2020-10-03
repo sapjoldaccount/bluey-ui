@@ -1,0 +1,157 @@
+@import "../../../../variables";
+
+.deck-container {
+  text-align: center;
+  min-width: 280px !important;
+  max-width: 280px !important;
+  height: 500px;
+  padding: 0 !important;
+
+  transition: all 0.2s ease-in-out !important;
+
+  // todo: Ask Sophie opinion;
+  // -webkit-box-shadow: 10px 10px 33px -10px rgba(0, 0, 0, 0.42);
+  // -moz-box-shadow: 10px 10px 33px -10px rgba(0, 0, 0, 0.42);
+  // box-shadow: 10px 10px 33px -10px rgba(0, 0, 0, 0.42);
+}
+
+.deck-img {
+  height: 66%;
+  background: lavender;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer;
+
+  img {
+    width: 571px;
+    margin-left: -53%;
+    margin-top: -9%;
+  }
+}
+
+.deck-img:hover {
+  transform: scale(1.05);
+}
+
+.push-down {
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.push-out {
+  margin-right: 13px !important;
+  margin-left: 13px !important;
+}
+
+.info-container {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.deck-txt {
+  font-family: $site-font, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  font-weight: $medium-weight;
+  font-size: 1.5rem;
+  margin-top: 9px;
+
+  &.sub {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  &.price {
+    margin-top: 0px;
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+}
+
+.deck-add {
+  margin-top: 4px;
+}
+
+.add-cart {
+  background: transparent !important;
+  font-family: $site-font, sans-serif;
+
+  .icon {
+    vertical-align: middle !important;
+  }
+}
+
+.add-cart:hover {
+  background: #ddf8e7 !important;
+}
+
+.view-more-icon {
+  vertical-align: middle !important;
+  margin-left: 3px !important;
+  margin-top: -2px !important;
+}
+
+.view-more-text {
+  font-family: $site-font, sans-serif;
+}
+
+.in-cart {
+  background: #ddf8e7 !important;
+}
+
+.in-cart-remove {
+  background: #ffe6e6 !important;
+  border-color: red !important;
+}
+
+.in-cart-remove:hover {
+  background: #ffcaca !important;
+  border-color: red !important;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.add-button-text {
+  transition: 0.2s ease-in-out !important;
+  margin-top: -2px !important;
+}
+
+.transition-icon {
+  transition: 0.2s ease-in-out !important;
+}
+
+.btn-txt-con {
+  display: flex;
+  align-items: center;
+}
+
+.danger-button {
+  background: #ff3647 !important;
+}
+
+.sold-overlay {
+  position: absolute;
+  width: 100%;
+  opacity: 0.5;
+  background: lightgray;
+  height: 100%;
+  z-index: 99;
+}
+
+.disable-hover {
+  pointer-events: none;
+}
+
+.sold-out {
+  z-index: 9 !important;
+  opacity: 1;
+  color: white;
+  left: 39% !important;
+  top: 42% !important;
+  font-size: 24px !important;
+  position: absolute !important;
+  text-align: center !important;
+  margin: auto !important;
+}
