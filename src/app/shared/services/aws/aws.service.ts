@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { Observable, of } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { LogService } from '../log/log.service';
 
 @Injectable({
@@ -12,7 +15,12 @@ export class AwsService {
   awsUrl =
     'https://aa02894q8a.execute-api.us-east-1.amazonaws.com/contact/submit';
 
-  constructor(private http: HttpClient, private log: LogService) {}
+  constructor(
+    private http: HttpClient,
+    private log: LogService,
+    private cart: CartService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   /**
    * Send email to blueyshop@gmail.com
@@ -20,8 +28,8 @@ export class AwsService {
    */
   sendEmail(data: any): Observable<any> {
     const url = this.awsUrl;
-
-    // TODO: change CORS to blueyshop only
+    this.cart.updateSpinnerStatus('sendingEmail');
+    this.spinner.show();
     return this.http
       .post<any>(url, JSON.stringify(data), {
         headers: new HttpHeaders({
@@ -35,7 +43,9 @@ export class AwsService {
         }),
         tap((resp) => {}),
         finalize(() => {
-          this.log.logDebug('Delivered email successfully.');
+          this.spinner.hide();
+
+          // TODO: toast
         })
       );
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AwsService } from 'src/app/shared/services/aws/aws.service';
+import { LogService } from 'src/app/shared/services/log/log.service';
 
 @Component({
   templateUrl: './contact-container.component.html',
@@ -54,10 +55,21 @@ export class ContactContainerComponent implements OnInit {
       message: this.message.value,
     };
 
-    this.aws.sendEmail(submission).subscribe();
+    this.aws.sendEmail(submission).subscribe(
+      (success) => {
+        this.log.logDebug('Delivered email successfully.');
+      },
+      (err) => {
+        // TODO: error handling
+        console.log('err');
+      },
+      () => {
+        this.contactForm.reset();
+      }
+    );
   }
 
-  constructor(private aws: AwsService) {}
+  constructor(private aws: AwsService, private log: LogService) {}
 
   ngOnInit(): void {}
 }
