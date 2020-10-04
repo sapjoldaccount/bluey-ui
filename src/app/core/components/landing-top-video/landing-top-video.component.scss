@@ -14,7 +14,7 @@
   right: 0;
   text-align: center;
   width: 67%;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .title-text {
@@ -32,11 +32,24 @@
   font-size: 56px;
 }
 
+.temp-icon {
+  position: absolute;
+  /* bottom: 6rem; */
+  top: 7rem;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 95%;
+  font-size: 26px;
+}
+
 // iPhone X
 @media only screen and (device-width: 375px) and (device-height: 812px) {
   .mobile-video {
     height: 110%;
-    margin-left: -130%;
+    margin-left: -119%;
     margin-top: -3%;
   }
 }
@@ -45,7 +58,7 @@
 @media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
   .mobile-video {
     height: 110%;
-    margin-left: -97%;
+    margin-left: -87%;
     margin-top: -2%;
   }
 }
@@ -54,7 +67,7 @@
 @media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
   .mobile-video {
     height: 110%;
-    margin-left: -98%;
+    margin-left: -89%;
     margin-top: -2%;
   }
 }
@@ -63,7 +76,7 @@
 @media only screen and (device-width: 320px) and (device-height: 568px) {
   .mobile-video {
     height: 109%;
-    margin-left: -95%;
+    margin-left: -86%;
     margin-top: 0%;
   }
 }
