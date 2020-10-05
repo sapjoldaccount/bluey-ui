@@ -39,6 +39,7 @@ export class CartModalComponent implements OnInit {
   ngOnInit(): void {}
 
   removeItemFromCart(item: ShopItem): void {
+    this.cart.updateSpinnerStatus('removing');
     this.cart.removeShopItemFromCart(item.id);
   }
 }
