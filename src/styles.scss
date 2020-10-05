@@ -66,9 +66,13 @@ span {
 /* ---------------------------------- Modal --------------------------------- */
 .modal-dynamic {
   min-height: 300px !important;
-  max-height: 600px !important;
+  max-height: 475px !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
+}
+
+body.modal-open {
+  overflow: hidden !important;
 }
 
 table.table td,
