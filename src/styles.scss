@@ -65,10 +65,12 @@ span {
 
 /* ---------------------------------- Modal --------------------------------- */
 .modal-dynamic {
-  min-height: 300px !important;
-  max-height: 475px !important;
-  overflow-y: auto !important;
+  overflow-y: scroll !important;
   overflow-x: hidden !important;
+}
+
+.modal-open .modal {
+  overflow-y: scroll !important;
 }
 
 body.modal-open {
