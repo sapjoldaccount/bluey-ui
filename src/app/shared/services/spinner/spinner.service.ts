@@ -4,6 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
+/* -------------------------------------------------------------------------- */
+/*                           LOADING SPINNER SERVICE                          */
+/* -------------------------------------------------------------------------- */
 export class SpinnerService {
   spinnerAction = new BehaviorSubject<string>(null);
   spinnerAction$ = this.spinnerAction.asObservable();

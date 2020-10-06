@@ -1,25 +1,23 @@
-import { Injectable, OnDestroy } from '@angular/core';
 import {
   BreakpointObserver,
   Breakpoints,
   BreakpointState,
 } from '@angular/cdk/layout';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ScreenSize } from '../../enums/screen-size.enum';
 import { LogService } from '../log/log.service';
 
 @Injectable({
   providedIn: 'root',
 })
+/* -------------------------------------------------------------------------- */
+/*                             RESPONSIVE SERVICE                             */
+/* -------------------------------------------------------------------------- */
 export class ResponsiveService implements OnDestroy {
   private screenSize = new BehaviorSubject<string>('');
   public screenSize$ = this.screenSize.asObservable();
-
-  /* Small/XSmall */
-  public isSmall$ = this.screenSize$.pipe(
-    map((size) => size.includes('Small'))
-  );
 
   private ngUnsub = new Subject();
 

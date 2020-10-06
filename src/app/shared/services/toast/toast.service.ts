@@ -4,6 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root',
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                ALERT POPUPS                                */
+/* -------------------------------------------------------------------------- */
 export class ToastService {
   constructor(private toastr: ToastrService) {}
 
