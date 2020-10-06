@@ -16,4 +16,7 @@
   <span *ngIf="(spinnerAction$ | async) === 'redirecting'" class="loading"
     >Taking you to checkout</span
   >
+  <span *ngIf="(spinnerAction$ | async) === 'sendingEmail'" class="loading"
+    >Sending email...</span
+  >
 </ngx-spinner>

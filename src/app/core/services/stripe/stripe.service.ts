@@ -5,6 +5,7 @@ import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { LogService } from 'src/app/shared/services/log/log.service';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../cart/cart.service';
@@ -21,6 +22,7 @@ export class StripeService {
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
+    private spinnerService: SpinnerService,
     private http: HttpClient,
     private log: LogService
   ) {}
@@ -67,7 +69,7 @@ export class StripeService {
       };
     });
 
-    this.cart.updateSpinnerStatus('redirecting');
+    this.spinnerService.updateSpinnerStatus('redirecting');
     this.spinner.show();
 
     const stripe = Stripe(STRIPE_KEY);
