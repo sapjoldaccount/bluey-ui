@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
-    .firestoreService.availableDecks;
+    .firestoreService.allShopItems;
 
   constructor(
     private shoppingCartService: CartService,

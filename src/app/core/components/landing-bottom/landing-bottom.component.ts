@@ -13,7 +13,7 @@ export class LandingBottomComponent implements OnInit {
   cdnBaseUrl = environment.cdnBaseUrl;
 
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
-    .firestoreService.availableDecks;
+    .firestoreService.allShopItems;
 
   constructor(private firestoreService: FirestoreService) {}
 

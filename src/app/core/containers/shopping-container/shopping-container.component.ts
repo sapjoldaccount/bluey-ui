@@ -17,7 +17,7 @@ import { CartService } from '../../services/cart/cart.service';
 export class ShoppingContainerComponent implements OnInit {
   // All decks stored in Firestore
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
-    .firestoreService.availableDecks;
+    .firestoreService.allShopItems;
 
   spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 

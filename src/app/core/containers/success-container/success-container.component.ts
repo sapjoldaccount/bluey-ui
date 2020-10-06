@@ -31,7 +31,7 @@ export class SuccessContainerComponent implements OnInit {
      */
     combineLatest(
       this.activatedRoute.queryParams,
-      this.firestore.availableDecks
+      this.firestore.allShopItems
     ).subscribe(([params, decks]: [Params, ShopItem[]]) => {
       let itemIdsToRemove = params['itemPurchased'];
 
