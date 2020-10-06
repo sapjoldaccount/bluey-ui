@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { LogService } from 'src/app/shared/services/log/log.service';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { CART_ITEMS_KEY } from '../../consts/storage.consts';
 import { ShopItem } from '../../models/Product';
@@ -25,6 +26,7 @@ export class CartService implements OnDestroy {
     private log: LogService,
     private storage: StorageMap,
     private spinner: NgxSpinnerService,
+    private spinnerService: SpinnerService,
     private toastService: ToastService
   ) {
     // Initialize observable to watch local storage and update accordingly
@@ -88,6 +90,7 @@ export class CartService implements OnDestroy {
    * and corresponding observable that listens to local storage
    */
   addShopItem(product: ShopItem): void {
+    this.spinnerService.updateSpinnerStatus('adding');
     this.spinner.show();
 
     // Show spinner for 350ms for aesthetic purposes
@@ -119,6 +122,7 @@ export class CartService implements OnDestroy {
    * @param toRemoveId - remove item from cart based on numeric id
    */
   removeShopItemFromCart(toRemoveId: number): void {
+    this.spinnerService.updateSpinnerStatus('removing');
     this.spinner.show();
 
     // Show spinner for 350ms for aesthetic purposes

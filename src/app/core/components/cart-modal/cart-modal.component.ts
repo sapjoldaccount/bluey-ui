@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
-import { CDN_BASE_URL } from '../../consts/cdn.consts';
+import { environment } from 'src/environments/environment';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
 import { StripeService } from '../../services/stripe/stripe.service';
@@ -13,9 +13,18 @@ import { StripeService } from '../../services/stripe/stripe.service';
   templateUrl: './cart-modal.component.html',
   styleUrls: ['./cart-modal.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                 CART MODAL                                 */
+/* -------------------------------------------------------------------------- */
+/*                           OPENED UPON CART CLICK                           */
+/* -------------------------------------------------------------------------- */
 export class CartModalComponent implements OnInit {
   productsInCart$ = this.cart.productsInCart$;
 
+  /**
+   * Calculates total pre-tax/shipping USD of cart
+   */
   cartTotal$: Observable<number> = this.productsInCart$.pipe(
     map(
       (products) =>
@@ -25,7 +34,7 @@ export class CartModalComponent implements OnInit {
     )
   );
 
-  cdnBaseUrl = CDN_BASE_URL;
+  cdnBaseUrl = environment.cdnBaseUrl;
 
   constructor(
     private cart: CartService,
@@ -34,14 +43,26 @@ export class CartModalComponent implements OnInit {
     private spinnerService: SpinnerService
   ) {}
 
-  onCheckoutClick(itemsInCart: ShopItem[]): void {
-    this.stripe.redirectToCheckout(itemsInCart);
-  }
-
   ngOnInit(): void {}
 
+  /* -------------------------------------------------------------------------- */
+  /*                                CART ACTIONS                                */
+  /* -------------------------------------------------------------------------- */
+
+  /**
+   * Remove item from cart via modal
+   * @param item - item to remove
+   */
   removeItemFromCart(item: ShopItem): void {
     this.spinnerService.updateSpinnerStatus('removing');
     this.cart.removeShopItemFromCart(item.id);
+  }
+
+  /**
+   * Redirect to stripe checkout
+   * @param itemsInCart - items the user plans to buy
+   */
+  onCheckoutClick(itemsInCart: ShopItem[]): void {
+    this.stripe.redirectToCheckout(itemsInCart);
   }
 }

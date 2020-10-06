@@ -8,6 +8,12 @@ import { ProductDetailModalComponent } from '../product-detail-modal/product-det
   templateUrl: './product-preview.component.html',
   styleUrls: ['./product-preview.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                               PRODUCT PREVIEW                              */
+/* -------------------------------------------------------------------------- */
+/*                        SHOWN ON FEATURED DECKS PAGE                        */
+/* -------------------------------------------------------------------------- */
 export class ProductPreviewComponent implements OnInit {
   _name: string;
   get name(): string {

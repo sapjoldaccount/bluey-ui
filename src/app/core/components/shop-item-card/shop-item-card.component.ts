@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
@@ -12,8 +13,20 @@ import { ProductDetailModalComponent } from '../product-detail-modal/product-det
   templateUrl: './shop-item-card.component.html',
   styleUrls: ['./shop-item-card.component.scss'],
 })
-export class ShopItemCardComponent implements OnInit {
-  /* ----------------------- Product information inputs ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                               SHOP ITEM CARD                               */
+/* -------------------------------------------------------------------------- */
+/*                             SHOWN ON SHOP PAGE                             */
+/* -------------------------------------------------------------------------- */
+export class ShopItemCardComponent implements OnInit, OnDestroy {
+  /* -------------------------------------------------------------------------- */
+  /*                             PRODUCT INFO INPUTS                            */
+  /* -------------------------------------------------------------------------- */
+
+  /**
+   * Product title
+   */
   _title: string;
   get title(): string {
     return this._title;
@@ -22,6 +35,9 @@ export class ShopItemCardComponent implements OnInit {
     this._title = value;
   }
 
+  /**
+   * Product itself
+   */
   _productObject: ShopItem;
   get productObject(): ShopItem {
     return this._productObject;
@@ -30,6 +46,9 @@ export class ShopItemCardComponent implements OnInit {
     this._productObject = value;
   }
 
+  /**
+   * Numeric product id
+   */
   _id: number;
   get id(): number {
     return this._id;
@@ -38,7 +57,7 @@ export class ShopItemCardComponent implements OnInit {
     this._id = value;
   }
 
-  @Input() price: string; // for now
+  @Input() price: string;
   @Input() description: string;
 
   // TODO: put these in global config
@@ -58,6 +77,8 @@ export class ShopItemCardComponent implements OnInit {
 
   modalRef: MDBModalRef;
 
+  ngUnsub = new Subject();
+
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
@@ -67,23 +88,30 @@ export class ShopItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageSrc = this.imageBaseUrl + this.imagePathUrl;
-    this.cart.productsInCart$.subscribe((products) => {
-      this.isInCart.next(this.cart.itemIsInCart(this.productObject, products));
-    });
+    this.cart.productsInCart$
+      .pipe(takeUntil(this.ngUnsub))
+      .subscribe((products) => {
+        this.isInCart.next(
+          this.cart.itemIsInCart(this.productObject, products)
+        );
+      });
   }
 
-  /* ---------------------------- Cart interaction ---------------------------- */
-  onAddCartClick(product: ShopItem): void {
-    this.isInCart.value
-      ? this.spinnerService.updateSpinnerStatus('removing')
-      : this.spinnerService.updateSpinnerStatus('adding');
+  ngOnDestroy(): void {
+    this.ngUnsub.next();
+    this.ngUnsub.complete();
+  }
 
+  /* -------------------------------------------------------------------------- */
+  /*                              SHOP ITEM ACTIONS                             */
+  /* -------------------------------------------------------------------------- */
+  onAddCartClick(product: ShopItem): void {
     this.isInCart.value
       ? this.cart.removeShopItemFromCart(product.id)
       : this.cart.addShopItem(product);
   }
 
-  mouseEnter(div: string) {
+  mouseEnter(div: string): void {
     switch (div) {
       case 'deck-img':
         this.isHoveringOverImage.next(true);
@@ -94,7 +122,7 @@ export class ShopItemCardComponent implements OnInit {
     }
   }
 
-  mouseLeave(div: string) {
+  mouseLeave(div: string): void {
     switch (div) {
       case 'deck-img':
         this.isHoveringOverImage.next(false);
@@ -105,7 +133,10 @@ export class ShopItemCardComponent implements OnInit {
     }
   }
 
-  openDetailModal() {
+  /**
+   * Open slideshow modal component
+   */
+  openDetailModal(): void {
     const modalOptions = {
       data: {
         content: {
