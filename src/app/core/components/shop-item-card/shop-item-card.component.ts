@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
@@ -60,6 +61,7 @@ export class ShopItemCardComponent implements OnInit {
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
+    private spinnerService: SpinnerService,
     private modalService: MDBModalService
   ) {}
 
@@ -73,8 +75,8 @@ export class ShopItemCardComponent implements OnInit {
   /* ---------------------------- Cart interaction ---------------------------- */
   onAddCartClick(product: ShopItem): void {
     this.isInCart.value
-      ? this.cart.updateSpinnerStatus('removing')
-      : this.cart.updateSpinnerStatus('adding');
+      ? this.spinnerService.updateSpinnerStatus('removing')
+      : this.spinnerService.updateSpinnerStatus('adding');
 
     this.isInCart.value
       ? this.cart.removeShopItemFromCart(product.id)

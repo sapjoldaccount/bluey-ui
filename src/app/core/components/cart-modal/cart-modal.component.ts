@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { CDN_BASE_URL } from '../../consts/cdn.consts';
 import { ShopItem } from '../../models/Product';
 import { CartService } from '../../services/cart/cart.service';
@@ -29,7 +30,8 @@ export class CartModalComponent implements OnInit {
   constructor(
     private cart: CartService,
     public modalRef: MDBModalRef,
-    private stripe: StripeService
+    private stripe: StripeService,
+    private spinnerService: SpinnerService
   ) {}
 
   onCheckoutClick(itemsInCart: ShopItem[]): void {
@@ -39,7 +41,7 @@ export class CartModalComponent implements OnInit {
   ngOnInit(): void {}
 
   removeItemFromCart(item: ShopItem): void {
-    this.cart.updateSpinnerStatus('removing');
+    this.spinnerService.updateSpinnerStatus('removing');
     this.cart.removeShopItemFromCart(item.id);
   }
 }

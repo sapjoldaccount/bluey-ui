@@ -7,6 +7,7 @@ import { ShopItem } from '../../models/Product';
 import { CDN_BASE_URL } from '../../../core/consts/cdn.consts';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from '../../services/cart/cart.service';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 @Component({
   templateUrl: './shopping-container.component.html',
   styleUrls: ['./shopping-container.component.scss'],
@@ -15,7 +16,7 @@ export class ShoppingContainerComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.availableDecks;
 
-  spinnerAction$: Observable<string> = this.cart.spinnerAction$;
+  spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 
   // TODO: MOVE TO ENVIRONMENT SERVICE
   cdnBaseUrl = CDN_BASE_URL;
@@ -29,7 +30,8 @@ export class ShoppingContainerComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService,
     private cart: CartService,
-    private router: Router
+    private router: Router,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit(): void {}

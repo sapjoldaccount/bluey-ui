@@ -48,6 +48,9 @@ export class ContactContainerComponent implements OnInit {
     }
   }
 
+  /**
+   * Submit form & send email to company email
+   */
   submit(): void {
     const submission: any = {
       first: this.first.value,

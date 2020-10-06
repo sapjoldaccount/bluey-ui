@@ -1,24 +1,18 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, combineLatest, of, BehaviorSubject, Subject } from 'rxjs';
-import { ShopItem } from '../../models/Product';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { CART_ITEMS_KEY } from '../../consts/storage.consts';
-import { NGXLogger } from 'ngx-logger';
-import { takeUntil } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { ToastService } from 'src/app/shared/services/toast/toast.service';
+import { Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { LogService } from 'src/app/shared/services/log/log.service';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
+import { CART_ITEMS_KEY } from '../../consts/storage.consts';
+import { ShopItem } from '../../models/Product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService implements OnDestroy {
   productsInCart$: Observable<ShopItem[]> = of([]);
-
-  spinnerAction = new BehaviorSubject<string>(null);
-  spinnerAction$ = this.spinnerAction.asObservable();
 
   ngUnsub = new Subject();
 
@@ -33,18 +27,18 @@ export class CartService implements OnDestroy {
     private spinner: NgxSpinnerService,
     private toastService: ToastService
   ) {
+    // Initialize observable to watch local storage and update accordingly
     this.productsInCart$ =
       (this.storage.watch(CART_ITEMS_KEY) as Observable<ShopItem[]>) ?? of([]);
   }
 
-  updateSpinnerStatus(spinnerAction: string): void {
-    this.spinnerAction.next(spinnerAction);
-  }
+  /* -------------------------------------------------------------------------- */
+  /*                                CART ACTIONS                                */
+  /* -------------------------------------------------------------------------- */
 
-  itemIsInCart(product: ShopItem, inCartItems: ShopItem[]): boolean {
-    return inCartItems?.map((p) => p?.id)?.includes(product?.id);
-  }
-
+  /**
+   * Empty cart (only called on successful order)
+   */
   emptyCart(): void {
     const currentShopItems = [];
 
@@ -63,6 +57,9 @@ export class CartService implements OnDestroy {
       );
   }
 
+  /**
+   * On first site load, initialize cart in indexedDb storage
+   */
   initializeCart(): void {
     let currentShopItems = [];
 
@@ -85,8 +82,15 @@ export class CartService implements OnDestroy {
       );
   }
 
+  /**
+   * Add item to cart
+   * @param product - Product object to add to local storage
+   * and corresponding observable that listens to local storage
+   */
   addShopItem(product: ShopItem): void {
     this.spinner.show();
+
+    // Show spinner for 350ms for aesthetic purposes
     setTimeout(() => {
       this.spinner.hide();
       let updatedShopItems = [product];
@@ -110,8 +114,14 @@ export class CartService implements OnDestroy {
     }, 350);
   }
 
+  /**
+   * Remove item from cart
+   * @param toRemoveId - remove item from cart based on numeric id
+   */
   removeShopItemFromCart(toRemoveId: number): void {
     this.spinner.show();
+
+    // Show spinner for 350ms for aesthetic purposes
     setTimeout(() => {
       this.spinner.hide();
       let updatedShopItems = [];
@@ -138,5 +148,18 @@ export class CartService implements OnDestroy {
           }
         );
     }, 350);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                              HELPER FUNCTIONS                              */
+  /* -------------------------------------------------------------------------- */
+
+  /**
+   * Check if item is in cart
+   * @param product - product you want to check
+   * @param inCartItems - items in cart currently
+   */
+  itemIsInCart(product: ShopItem, inCartItems: ShopItem[]): boolean {
+    return inCartItems?.map((p) => p?.id)?.includes(product?.id);
   }
 }
