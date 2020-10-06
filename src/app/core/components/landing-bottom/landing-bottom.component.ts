@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { environment } from 'src/environments/environment';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 
 @Component({
   selector: 'app-landing-bottom',

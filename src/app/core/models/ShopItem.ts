@@ -7,5 +7,6 @@ export class ShopItem {
   // tslint:disable-next-line: variable-name
   stripe_id?: string;
   sold: boolean;
+  // tslint:disable-next-line: variable-name
   firebase_doc_id: string;
 }

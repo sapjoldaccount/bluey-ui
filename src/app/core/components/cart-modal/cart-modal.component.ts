@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
 import { StripeService } from '../../services/stripe/stripe.service';
 

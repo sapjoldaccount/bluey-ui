@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { ShopItem } from 'src/app/core/models/Product';
+import { ShopItem } from 'src/app/core/models/ShopItem';
 import * as firebase from 'firebase';
 import { map, share } from 'rxjs/operators';
 import { CartService } from 'src/app/core/services/cart/cart.service';

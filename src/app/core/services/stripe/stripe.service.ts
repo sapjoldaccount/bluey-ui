@@ -7,7 +7,7 @@ import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { LogService } from 'src/app/shared/services/log/log.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../cart/cart.service';
 declare let Stripe: any;
 

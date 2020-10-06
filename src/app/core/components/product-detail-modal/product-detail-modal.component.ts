@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CDN_BASE_URL } from '../../consts/cdn.consts';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
 
 @Component({

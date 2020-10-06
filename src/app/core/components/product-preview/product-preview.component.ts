@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
 
 @Component({

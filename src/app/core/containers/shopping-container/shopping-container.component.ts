@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
 @Component({
   templateUrl: './shopping-container.component.html',
