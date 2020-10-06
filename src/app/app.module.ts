@@ -30,7 +30,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 import { ToastrModule } from 'ngx-toastr';
-import { AlertComponent } from './shared/components/alert/alert.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +41,6 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    AlertComponent,
     LandingContainerComponent,
     LandingTopVideoComponent,
     LandingBottomComponent,
