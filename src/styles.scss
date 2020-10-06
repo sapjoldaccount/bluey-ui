@@ -3,6 +3,7 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
 @import "/src/variables";
+@import "~ngx-toastr/toastr";
 
 body {
   margin: 0;
@@ -24,18 +25,18 @@ body {
   margin-top: 62px;
 }
 
-.toast-title {
-  font-family: $site-font !important;
-  font-weight: 700 !important;
-}
+// .toast-title {
+//   font-family: $site-font !important;
+//   font-weight: 700 !important;
+// }
 
-.toast-message {
-  font-family: $site-font !important;
-  font-weight: 300 !important;
-}
+// .toast-message {
+//   font-family: $site-font !important;
+//   font-weight: 300 !important;
+// }
 
 .toast-success {
-  background: $mdb-success !important;
+  background-color: $mdb-success !important;
 }
 
 /* ------------------- Styles needed for nav bar behavior ------------------- */

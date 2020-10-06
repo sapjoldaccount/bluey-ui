@@ -1,11 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { LogService } from '../log/log.service';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +24,7 @@ export class AwsService {
     private http: HttpClient,
     private log: LogService,
     private cart: CartService,
+    private toast: ToastService,
     private spinner: NgxSpinnerService
   ) {}
 
@@ -30,6 +36,7 @@ export class AwsService {
     const url = this.awsUrl;
     this.cart.updateSpinnerStatus('sendingEmail');
     this.spinner.show();
+
     return this.http
       .post<any>(url, JSON.stringify(data), {
         headers: new HttpHeaders({
@@ -37,16 +44,16 @@ export class AwsService {
         }),
       })
       .pipe(
-        catchError((err) => {
-          this.log.logError('sending email', 'sendEmail()');
-          return of(null);
-        }),
+        catchError(this.errorHandler),
         tap((resp) => {}),
         finalize(() => {
           this.spinner.hide();
-
-          // TODO: toast
         })
       );
+  }
+
+  // TODO: move to error service
+  errorHandler(error: HttpErrorResponse): Observable<never> {
+    return throwError(error.message || 'server error.');
   }
 }

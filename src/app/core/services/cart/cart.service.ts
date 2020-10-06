@@ -88,7 +88,6 @@ export class CartService implements OnDestroy {
   addShopItem(product: ShopItem): void {
     this.spinner.show();
     setTimeout(() => {
-      this.toastService.showAddedToCart();
       this.spinner.hide();
       let updatedShopItems = [product];
       this.storage

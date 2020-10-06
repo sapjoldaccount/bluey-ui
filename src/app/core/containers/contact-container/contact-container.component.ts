@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AwsService } from 'src/app/shared/services/aws/aws.service';
 import { LogService } from 'src/app/shared/services/log/log.service';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   templateUrl: './contact-container.component.html',
@@ -57,11 +58,12 @@ export class ContactContainerComponent implements OnInit {
 
     this.aws.sendEmail(submission).subscribe(
       (success) => {
+        this.toast.showSuccess('Delivered email.');
         this.log.logDebug('Delivered email successfully.');
       },
       (err) => {
-        // TODO: error handling
-        console.log('err');
+        this.toast.showError('There was a problem sending your message.');
+        this.log.logError('Error sending email.');
       },
       () => {
         this.contactForm.reset();
@@ -69,7 +71,11 @@ export class ContactContainerComponent implements OnInit {
     );
   }
 
-  constructor(private aws: AwsService, private log: LogService) {}
+  constructor(
+    private aws: AwsService,
+    private log: LogService,
+    private toast: ToastService
+  ) {}
 
   ngOnInit(): void {}
 }
