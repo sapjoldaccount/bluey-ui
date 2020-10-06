@@ -8,7 +8,14 @@ import { ToastService } from 'src/app/shared/services/toast/toast.service';
   templateUrl: './contact-container.component.html',
   styleUrls: ['./contact-container.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                               CONTACT US PAGE                              */
+/* -------------------------------------------------------------------------- */
 export class ContactContainerComponent implements OnInit {
+  /* -------------------------------------------------------------------------- */
+  /*                                 FORM SETUP                                 */
+  /* -------------------------------------------------------------------------- */
   first = new FormControl('', [Validators.required]);
   last = new FormControl('', [Validators.required]);
   message = new FormControl('', [Validators.required]);
@@ -21,7 +28,8 @@ export class ContactContainerComponent implements OnInit {
     email: this.email,
   });
 
-  // TODO: make dynamic func
+  /* --------------------------- FORM ERROR MESSAGES -------------------------- */
+  /* --------------------------- TODO: MAKE DYNAMIC --------------------------- */
   getMessageErrorMessage(): string {
     if (this.message.hasError('required')) {
       return 'You must enter a value';

@@ -4,7 +4,6 @@ import { LandingContainerComponent } from './core/containers/landing-container/l
 import { ShoppingContainerComponent } from './core/containers/shopping-container/shopping-container.component';
 import { AboutContainerComponent } from './core/containers/about-container/about-container.component';
 import { ContactContainerComponent } from './core/containers/contact-container/contact-container.component';
-import { ViewCartContainerComponent } from './core/containers/view-cart-container/view-cart-container.component';
 import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
@@ -25,10 +24,6 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactContainerComponent,
-  },
-  {
-    path: 'cart',
-    component: ViewCartContainerComponent,
   },
   {
     path: 'success',

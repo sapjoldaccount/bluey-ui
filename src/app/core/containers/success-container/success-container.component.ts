@@ -9,6 +9,12 @@ import { CartService } from '../../services/cart/cart.service';
   templateUrl: './success-container.component.html',
   styleUrls: ['./success-container.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                SUCCESS PAGE                                */
+/* -------------------------------------------------------------------------- */
+/*                        LOADED ON SUCCESSFUL PURCHASE                       */
+/* -------------------------------------------------------------------------- */
 export class SuccessContainerComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -19,6 +25,10 @@ export class SuccessContainerComponent implements OnInit {
   ngOnInit(): void {
     this.cart.emptyCart();
 
+    /**
+     * Mark items as sold as soon as component is activated
+     * Must get past CanActivate guard first
+     */
     combineLatest(
       this.activatedRoute.queryParams,
       this.firestore.availableDecks

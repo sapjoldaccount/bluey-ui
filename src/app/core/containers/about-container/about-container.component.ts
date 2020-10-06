@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CDN_BASE_URL } from '../../consts/cdn.consts';
+import { environment } from 'src/environments/environment';
 
 @Component({
   templateUrl: './about-container.component.html',
   styleUrls: ['./about-container.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                ABOUT US PAGE                               */
+/* -------------------------------------------------------------------------- */
 export class AboutContainerComponent implements OnInit {
-  cdnBaseUrl = CDN_BASE_URL;
+  cdnBaseUrl = environment.cdnBaseUrl;
 
   constructor() {}
 
