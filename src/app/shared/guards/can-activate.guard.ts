@@ -15,6 +15,12 @@ import { StripeService } from 'src/app/core/services/stripe/stripe.service';
 @Injectable({
   providedIn: 'root',
 })
+
+/* -------------------------------------------------------------------------- */
+/*                             CAN ACTIVATE GUARD                             */
+/* -------------------------------------------------------------------------- */
+/*                        USED FOR SUCCESS/CANCEL PAGES                       */
+/* -------------------------------------------------------------------------- */
 export class CanActivateGuard implements CanActivate {
   constructor(
     private stripe: StripeService,

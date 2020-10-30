@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class SuccessContainerComponent implements OnInit {
      */
     combineLatest(
       this.activatedRoute.queryParams,
-      this.firestore.availableDecks
+      this.firestore.allShopItems
     ).subscribe(([params, decks]: [Params, ShopItem[]]) => {
       let itemIdsToRemove = params['itemPurchased'];
 

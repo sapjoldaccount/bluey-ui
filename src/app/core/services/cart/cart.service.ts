@@ -7,7 +7,7 @@ import { LogService } from 'src/app/shared/services/log/log.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { CART_ITEMS_KEY } from '../../consts/storage.consts';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 
 @Injectable({
   providedIn: 'root',

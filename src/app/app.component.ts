@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
-import { ShopItem } from './core/models/Product';
+import { ShopItem } from './core/models/ShopItem';
 import { CartService } from './core/services/cart/cart.service';
 import { FirestoreService } from './shared/services/firestore/firestore.service';
 import { LogService } from './shared/services/log/log.service';
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
-    .firestoreService.availableDecks;
+    .firestoreService.allShopItems;
 
   constructor(
     private shoppingCartService: CartService,
