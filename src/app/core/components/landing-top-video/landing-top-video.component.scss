@@ -100,28 +100,24 @@
   width: auto;
   height: auto;
 
-  // left: -26%;
-
   &.solid-bg {
     background: lightslategray;
   }
 }
 
-@media only screen and (max-width: 1147px) {
-  .video-player {
-    left: -37%;
-  }
+.video-player-2 {
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: 200%;
+  position: absolute;
+  top: 60%;
+  transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 1020px) {
-  .video-player {
-    left: -50%;
-  }
-}
-
-@media only screen and (max-width: 992px) {
-  .video-player {
-    left: -83%;
+@media only screen and (max-width: 781px) {
+  .video-player-2 {
+    left: 30%;
   }
 }
 
