@@ -156,6 +156,10 @@
     margin-bottom: -7px;
   }
 
+  .glow {
+    text-shadow: 1px 1px 2px red, 0 0 1em #55bfff, 0 0 0.2em #55bfff;
+  }
+
   .descr {
     display: block;
     font-size: 18px;
