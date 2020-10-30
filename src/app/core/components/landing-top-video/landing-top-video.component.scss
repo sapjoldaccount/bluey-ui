@@ -144,27 +144,50 @@
   left: 4%;
   font-size: 109px;
   color: white;
+}
 
-  .heading {
-    display: block;
-    font-family: "Shrikhand", cursive !important;
-    margin-left: -7px;
-    margin-bottom: -7px;
-  }
+.heading {
+  display: block;
+  font-family: "Shrikhand", cursive !important;
+  margin-left: -7px;
+  margin-bottom: -7px;
+  z-index: 999;
+}
 
-  .glow {
-    text-shadow: 1px 1px 2px black, 0 0 1em #55bfff, 0 0 0.2em #55bfff;
-  }
+.glow {
+  text-shadow: 1px 1px 2px black, 0 0 1em #55bfff, 0 0 0.2em #55bfff;
+  z-index: 999;
+}
 
-  .descr {
-    display: block;
-    font-size: 18px;
-    font-family: "Raleway", sans-serif;
-  }
+.descr {
+  display: block;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+  z-index: 999;
 }
 
 .mobile-landing-container {
   width: 100vw;
   height: 100vh;
   background: white;
+}
+
+.mobile-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+  color: white;
+}
+
+@media only screen and (max-width: 320px) {
+  .heading {
+    font-size: 57px !important;
+  }
+
+  .mobile-title {
+    margin-top: -39px !important;
+  }
 }

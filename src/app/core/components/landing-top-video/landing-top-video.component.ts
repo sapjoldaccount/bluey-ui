@@ -23,7 +23,7 @@ export class LandingTopVideoComponent implements OnInit {
    * TODO: Flesh out this whole component
    */
   videoUrl = `${environment.cdnBaseUrl}${CDN_VIDEO_PATH}`;
-  videoUrlMobile = `${environment.cdnBaseUrl}/decks/deck-2.jpg`;
+  deckBgMobile = `${environment.cdnBaseUrl}/decks/deck-2.jpg`;
 
   constructor(private responsiveService: ResponsiveService) {}
 

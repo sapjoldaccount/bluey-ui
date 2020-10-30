@@ -19,18 +19,13 @@
   <!-- Mobile -->
   <ng-template #mobile>
     <div class="mobile-landing-container">
-      <!-- <span>Bluey Art Shop</span> -->
-      <img class="mobile-video" src="{{ videoUrlMobile }}" />
-      <!-- <video class="mobile-video" autoplay loop [muted]="true">
-        <source src="{{ videoUrlMobile }}" type="video/mp4" />
-      </video> -->
-
-      <img class="temp-icon" src="../../../../assets/img/BLUEY.svg" />
-      <img
-        style="top: 14rem"
-        class="temp-icon"
-        src="../../../../assets/img/ART_SHOP.svg"
-      />
+      <img class="mobile-video" src="{{ deckBgMobile }}" />
+      <div class="mobile-title">
+        <span class="heading glow" style="font-size: 74px">Bluey</span>
+        <span class="heading glow" style="font-size: 74px">Art Shop</span>
+        <span class="descr">POUR-PAINTED ACRYLIC ART PIECES</span>
+        <span class="descr">HANDCRAFTED IN LOUISVILLE, KY</span>
+      </div>
 
       <button
         mdbBtn
