@@ -73,6 +73,12 @@ export class StripeService {
       };
     });
 
+    // Add flat rate shipping item
+    stripeLineItems.push({
+      price: 'price_1Hi3mNIZSSMTzx9q0i0s5de1',
+      quantity: 1,
+    });
+
     this.spinnerService.updateSpinnerStatus('redirecting');
     this.spinner.show();
 
