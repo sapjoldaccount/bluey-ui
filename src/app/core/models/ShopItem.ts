@@ -9,4 +9,5 @@ export class ShopItem {
   sold: boolean;
   // tslint:disable-next-line: variable-name
   firebase_doc_id: string;
+  zoom_out: boolean;
 }
