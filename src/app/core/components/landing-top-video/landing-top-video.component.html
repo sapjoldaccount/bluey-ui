@@ -26,14 +26,28 @@
   <!-- Mobile -->
   <ng-template #mobile>
     <div class="mobile-landing-container">
-      <img class="mobile-video" src="{{ deckBgMobile }}" />
-      <div class="mobile-title">
-        <span class="heading glow" style="font-size: 74px">Bluey</span>
-        <span class="heading glow" style="font-size: 74px; margin-bottom: 25px"
-          >Art Shop</span
-        >
-        <span class="descr">POUR-PAINTED ACRYLIC ART PIECES</span>
-        <span class="descr">HANDCRAFTED IN LOUISVILLE, KY</span>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        "
+      >
+        <img
+          style="flex-shrink: 0; min-width: 100%; min-height: 100%"
+          src="../../../../assets/img/mobile_bg.png"
+        />
+        <div class="mobile-title">
+          <span class="heading glow" style="font-size: 74px">Bluey</span>
+          <span
+            class="heading glow"
+            style="font-size: 74px; margin-bottom: 25px"
+            >Art Shop</span
+          >
+          <span class="descr">POUR-PAINTED ACRYLIC ART PIECES</span>
+          <span class="descr">HANDCRAFTED IN LOUISVILLE, KY</span>
+        </div>
       </div>
 
       <button
