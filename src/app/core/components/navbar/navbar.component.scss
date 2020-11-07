@@ -106,6 +106,10 @@
   background-color: $site-primary-color;
 }
 
+::ng-deep .navbar {
+  background-color: $site-primary-color;
+}
+
 ::ng-deep .mat-badge-content {
   margin-top: 8px;
   margin-left: 8px;
