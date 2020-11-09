@@ -39,6 +39,7 @@
           routerLink="/shop"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="(activeRoute$ | async) === '/shop' ? 'selected-color' : ''"
           >SHOP</a
         >
@@ -48,6 +49,7 @@
           routerLink="/about"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="
             (activeRoute$ | async) === '/about' ? 'selected-color' : ''
           "
@@ -58,6 +60,7 @@
         <a
           routerLink="/contact"
           routerLinkActive="active"
+          (click)="scrollToTop()"
           class="nav-link"
           [ngClass]="
             (activeRoute$ | async) === '/contact' ? 'selected-color' : ''
