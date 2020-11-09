@@ -18,16 +18,12 @@ import { environment } from 'src/environments/environment';
 })
 
 /* -------------------------------------------------------------------------- */
-/*                             CAN ACTIVATE GUARD                             */
+/*                              SITE LOCK GUARD                               */
 /* -------------------------------------------------------------------------- */
-/*                        USED FOR SUCCESS/CANCEL PAGES                       */
+/*                             USED FOR ALL PAGES                             */
 /* -------------------------------------------------------------------------- */
-export class CanActivateGuard implements CanActivate {
-  constructor(
-    private stripe: StripeService,
-    private router: Router,
-    private location: Location
-  ) {}
+export class SiteLockGuard implements CanActivate {
+  constructor(private router: Router, private location: Location) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -37,21 +33,11 @@ export class CanActivateGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.stripe
-      .retrieveCheckoutSession(next.queryParamMap.get('session_id'))
-      .pipe(
-        map((s) => {
-          if (location.pathname === '/success' && !!s?.customer_details) {
-            return true;
-          }
-
-          if (location.pathname === '/cancelled' && !!s) {
-            return true;
-          }
-
-          this.router.navigateByUrl('/');
-          return false;
-        })
-      );
+    if (environment.lockEntireSite) {
+      this.router.navigateByUrl('/');
+      return false;
+    } else {
+      return true;
+    }
   }
 }

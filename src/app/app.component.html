@@ -1,22 +1,37 @@
-<app-navbar> </app-navbar>
-<router-outlet></router-outlet>
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="default"
-  color="#fff"
-  type="ball-clip-rotate"
-  [fullScreen]="true"
->
-  <span *ngIf="(spinnerAction$ | async) === 'adding'" class="loading"
-    >Adding to Cart</span
+<ng-container *ngIf="lockSite === false">
+  <app-navbar> </app-navbar>
+  <router-outlet></router-outlet>
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="default"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="true"
   >
-  <span *ngIf="(spinnerAction$ | async) === 'removing'" class="loading"
-    >Removing from Cart</span
-  >
-  <span *ngIf="(spinnerAction$ | async) === 'redirecting'" class="loading"
-    >Taking you to checkout</span
-  >
-  <span *ngIf="(spinnerAction$ | async) === 'sendingEmail'" class="loading"
-    >Sending email...</span
-  >
-</ngx-spinner>
+    <span *ngIf="(spinnerAction$ | async) === 'adding'" class="loading"
+      >Adding to Cart</span
+    >
+    <span *ngIf="(spinnerAction$ | async) === 'removing'" class="loading"
+      >Removing from Cart</span
+    >
+    <span *ngIf="(spinnerAction$ | async) === 'redirecting'" class="loading"
+      >Taking you to checkout</span
+    >
+    <span *ngIf="(spinnerAction$ | async) === 'sendingEmail'" class="loading"
+      >Sending email...</span
+    >
+  </ngx-spinner>
+</ng-container>
+
+<ng-container *ngIf="lockSite === true">
+  <div class="coming-soon-container">
+    <div class="soon-item">
+      <img
+        style="height: 164px; padding: 1%"
+        src="../../../../assets/img/bluey_final_white_bg_2.png"
+      />
+    </div>
+    <div class="soon-item">BLUEY ART SHOP</div>
+    <div class="soon-item" style="font-size: 24px">COMING SOON</div>
+  </div>
+</ng-container>

@@ -3,6 +3,7 @@ import { firebaseConfig } from 'src/app/core/consts/firebase.consts';
 
 export const environment = {
   production: false,
+  lockEntireSite: false,
   firebase: firebaseConfig,
   cdnBaseUrl: CDN_BASE_URL,
   awsUrl:

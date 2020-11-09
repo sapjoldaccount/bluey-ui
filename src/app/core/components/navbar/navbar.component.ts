@@ -38,7 +38,5 @@ export class NavbarComponent implements OnInit {
 
   scrollToTop(): void {
     window.scrollTo(0, 0);
-    const element = document.querySelector('mat-sidenav-content') || window;
-    element.scrollTo(0, 0);
   }
 }

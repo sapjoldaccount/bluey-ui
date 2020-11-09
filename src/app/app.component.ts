@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ShopItem } from './core/models/ShopItem';
 import { CartService } from './core/services/cart/cart.service';
 import { FirestoreService } from './shared/services/firestore/firestore.service';
@@ -22,6 +23,8 @@ export class AppComponent implements OnInit {
 
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.allShopItems;
+
+  lockSite: boolean = environment.lockEntireSite;
 
   constructor(
     private shoppingCartService: CartService,
