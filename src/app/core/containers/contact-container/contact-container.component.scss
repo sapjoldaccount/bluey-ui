@@ -24,3 +24,10 @@
   margin-bottom: 36px !important;
   width: 100%;
 }
+
+//mat-input focused color
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline-thick {
+  color: #55bfff !important;
+}
