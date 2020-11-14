@@ -38,6 +38,7 @@ export class LandingTopVideoComponent implements OnInit {
    */
   @HostListener('document:scroll', ['$event'])
   onScroll(event): void {
+    if (!document.getElementById('top')) return;
     const yPixelOffset = window.pageYOffset;
     document.getElementById('top').style.opacity = (
       0 +
