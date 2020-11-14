@@ -8,15 +8,16 @@
 }
 
 .shop-bluey-but {
-  position: absolute;
+  /* position: absolute; */
   bottom: 6rem;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   text-align: center;
-  width: 67%;
+  width: 100%;
   font-size: 21px;
+  margin-top: 50px;
 }
 
 .title-text {
@@ -236,7 +237,7 @@
   color: white;
 
   position: absolute;
-  top: 4%;
+  top: 7%;
 }
 
 @media only screen and (max-width: 320px) {
