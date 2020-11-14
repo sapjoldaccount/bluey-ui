@@ -29,7 +29,9 @@ export class CartModalComponent implements OnInit {
     map(
       (products) =>
         Math.round(
-          products.map((p) => p.price).reduce((a, b) => a + b, 0) * 100
+          (products.map((p) => p.price).reduce((a, b) => a + b, 0) +
+            (products.length > 0 ? 9.99 : 0)) *
+            100
         ) / 100
     )
   );
