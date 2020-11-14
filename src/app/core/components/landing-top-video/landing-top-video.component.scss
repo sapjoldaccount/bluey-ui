@@ -62,6 +62,12 @@
 /*                                MEDIA QUERIES                               */
 /* -------------------------------------------------------------------------- */
 
+@media screen and (max-width: 1440px) and (max-height: 274px) {
+  .video-player-2 {
+    max-height: 320% !important;
+  }
+}
+
 // Galaxy S5
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .heading {
