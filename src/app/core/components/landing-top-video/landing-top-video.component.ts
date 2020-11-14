@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ScreenSize } from 'src/app/shared/enums/screen-size.enum';
+import { Orientation, ScreenSize } from 'src/app/shared/enums/screen-size.enum';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 import { environment } from 'src/environments/environment';
 import { CDN_VIDEO_PATH } from '../../consts/cdn.consts';
@@ -18,6 +18,11 @@ import { CDN_VIDEO_PATH } from '../../consts/cdn.consts';
 export class LandingTopVideoComponent implements OnInit {
   screenSize$ = this.responsiveService.screenSize$;
   screenSizes = ScreenSize;
+
+  orientation$ = this.responsiveService.orientation$;
+  orientations = Orientation;
+
+  showMobileLayout$ = this.responsiveService.showMobileLayout$;
 
   /**
    * TODO: Flesh out this whole component
@@ -38,6 +43,14 @@ export class LandingTopVideoComponent implements OnInit {
       0 +
       yPixelOffset / window.innerHeight
     ).toString();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.responsiveService.setOrientation(
+      event.target.innerWidth,
+      event.target.innerHeight
+    );
   }
 
   ngOnInit(): void {}

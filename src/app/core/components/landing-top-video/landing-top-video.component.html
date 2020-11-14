@@ -1,8 +1,6 @@
 <div class="video-container" id="mob-vid">
   <!-- Desktop -->
-  <ng-container
-    *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile"
-  >
+  <ng-container *ngIf="(showMobileLayout$ | async) == false; else mobile">
     <div class="video-player opacity-changer"></div>
     <div class="opacity-changer" id="top"></div>
     <video

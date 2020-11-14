@@ -38,6 +38,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.responsiveService.setOrientation(
+      window.innerWidth,
+      window.innerHeight
+    );
+
+    this.responsiveService.orientation$.subscribe((r) => console.log(r));
     this.shoppingCartService.initializeCart();
     this.responsiveService.detectScreenSizeChange();
 
