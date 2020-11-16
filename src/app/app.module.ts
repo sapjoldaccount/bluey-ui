@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -56,6 +57,7 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
   ],
   imports: [
     BrowserModule,
+    MatCheckboxModule,
     CommonModule,
     AppRoutingModule,
     MatBadgeModule,

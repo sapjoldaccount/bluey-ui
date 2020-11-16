@@ -40,7 +40,7 @@
         </td>
       </tr>
 
-      <tr *ngIf="(productsInCart$ | async).length > 0">
+      <tr *ngIf="(productsInCart$ | async)?.length > 0">
         <th scope="row" class="modal-img-row">
           <mat-icon
             style="
@@ -69,6 +69,21 @@
 </div>
 <!--Footer-->
 <div class="modal-footer">
+  <div style="display: flex; align-items: center">
+    <form [formGroup]="formGroup" style="flex: 1; text-align: center">
+      <mat-checkbox
+        formControlName="checked"
+        class="example-margin"
+        style="text-align: center"
+      ></mat-checkbox>
+    </form>
+    <div style="flex: 7.5 !important; color: gray; font-weight: 100">
+      By checking this box, I acknowledge that Bluey LLC is not responsible for
+      any injuries that may occur while using its products. Bluey products are
+      intended to be used as art only.
+    </div>
+  </div>
+
   <button
     type="button"
     mdbBtn
@@ -83,7 +98,9 @@
   </button>
   <button
     *ngIf="productsInCart$ | async as cartItems"
-    [disabled]="(cartTotal$ | async) <= 0"
+    [disabled]="
+      (cartTotal$ | async) <= 0 || formGroup.get('checked').value == false
+    "
     mdbBtn
     color="success"
     class="waves-light"
