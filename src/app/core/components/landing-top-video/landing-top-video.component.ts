@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Orientation, ScreenSize } from 'src/app/shared/enums/screen-size.enum';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 import { environment } from 'src/environments/environment';
@@ -23,6 +24,9 @@ export class LandingTopVideoComponent implements OnInit {
   orientations = Orientation;
 
   showMobileLayout$ = this.responsiveService.showMobileLayout$;
+
+  showImage = new BehaviorSubject<boolean>(false);
+  showImage$ = this.showImage.asObservable();
 
   /**
    * TODO: Flesh out this whole component
@@ -54,5 +58,18 @@ export class LandingTopVideoComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  /**
+   * Detect auto-play issues; if video cannot autoplay, show an image instead
+   */
+  ngOnInit(): void {
+    const video = document.querySelector('video');
+    const promise = video.play();
+    if (promise !== undefined) {
+      promise
+        .then((_) => {})
+        .catch((error) => {
+          this.showImage.next(true);
+        });
+    }
+  }
 }

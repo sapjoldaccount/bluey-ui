@@ -2,7 +2,25 @@
   <!-- Desktop -->
   <div class="video-player opacity-changer"></div>
   <div class="opacity-changer" id="top"></div>
-  <video playsinline autoplay loop [muted]="true" muted class="video-player-2">
+  <div
+    *ngIf="showImage$ | async"
+    style="
+      width: 100vw;
+      position: absolute;
+      background: #1c2331;
+      height: 100vh;
+      z-index: 999;
+    "
+  ></div>
+  <video
+    id="main-vid"
+    playsinline
+    autoplay
+    loop
+    [muted]="true"
+    muted
+    class="video-player-2"
+  >
     <source src="{{ videoUrl }}" type="video/mp4" />
   </video>
 
