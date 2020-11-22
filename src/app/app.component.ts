@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/analytics';
 import { NavigationEnd, Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
     private firestoreService: FirestoreService,
     private storage: StorageMap,
     private router: Router,
-    private log: LogService
+    private log: LogService,
+    analytics: AngularFireAnalytics
   ) {}
 
   ngOnInit(): void {
