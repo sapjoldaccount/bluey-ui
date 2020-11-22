@@ -62,14 +62,14 @@ export class LandingTopVideoComponent implements OnInit {
    * Detect auto-play issues; if video cannot autoplay, show an image instead
    */
   ngOnInit(): void {
-    const video = document.querySelector('video');
-    const promise = video.play();
-    if (promise !== undefined) {
-      promise
-        .then((_) => {})
-        .catch((error) => {
-          this.showImage.next(true);
-        });
-    }
+    // const video = document.querySelector('video');
+    // const promise = video.play();
+    // if (promise !== undefined) {
+    //   promise
+    //     .then((_) => {})
+    //     .catch((error) => {
+    //       this.showImage.next(true);
+    //     });
+    // }
   }
 }
