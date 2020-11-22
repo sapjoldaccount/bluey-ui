@@ -17,6 +17,7 @@ import { CDN_VIDEO_PATH } from '../../consts/cdn.consts';
 /*                         LANDING PAGE WITH VIDEO BG                         */
 /* -------------------------------------------------------------------------- */
 export class LandingTopVideoComponent implements OnInit {
+  constructor(private responsiveService: ResponsiveService) {}
   screenSize$ = this.responsiveService.screenSize$;
   screenSizes = ScreenSize;
 
@@ -33,8 +34,6 @@ export class LandingTopVideoComponent implements OnInit {
    */
   videoUrl = `${environment.cdnBaseUrl}${CDN_VIDEO_PATH}`;
   deckBgMobile = `${environment.cdnBaseUrl}/decks/mobile_bg.png`;
-
-  constructor(private responsiveService: ResponsiveService) {}
 
   /**
    * Document scroll listener
@@ -58,18 +57,5 @@ export class LandingTopVideoComponent implements OnInit {
     );
   }
 
-  /**
-   * Detect auto-play issues; if video cannot autoplay, show an image instead
-   */
-  ngOnInit(): void {
-    // const video = document.querySelector('video');
-    // const promise = video.play();
-    // if (promise !== undefined) {
-    //   promise
-    //     .then((_) => {})
-    //     .catch((error) => {
-    //       this.showImage.next(true);
-    //     });
-    // }
-  }
+  ngOnInit(): void {}
 }
