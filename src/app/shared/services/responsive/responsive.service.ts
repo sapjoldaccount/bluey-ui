@@ -93,7 +93,7 @@ export class ResponsiveService implements OnDestroy {
         if (state.breakpoints[Breakpoints.XLarge]) {
           this.screenSize.next(ScreenSize.XLarge);
         }
-        this.log.logDebug(`Current screen size: ${this.screenSize.value}`);
+        // this.log.logDebug(`Current screen size: ${this.screenSize.value}`);
       });
   }
 }

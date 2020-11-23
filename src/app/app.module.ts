@@ -6,10 +6,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
-import {
-  AngularFireAnalyticsModule,
-  ScreenTrackingService,
-} from '@angular/fire/analytics';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -72,7 +68,6 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
     MatButtonModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    AngularFireAnalyticsModule,
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
@@ -86,7 +81,7 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
     AngularFireModule.initializeApp(environment.firebase),
     MDBBootstrapModule.forRoot(),
   ],
-  providers: [RouterLinkActive, ScreenTrackingService],
+  providers: [RouterLinkActive],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [CartModalComponent],

@@ -45,14 +45,13 @@ export class AppComponent implements OnInit {
       window.innerHeight
     );
 
-    this.responsiveService.orientation$.subscribe((r) => console.log(r));
     this.shoppingCartService.initializeCart();
     this.responsiveService.detectScreenSizeChange();
 
-    this.availableDecks$.subscribe((decks) => {
-      this.log.logDebug('Current available decks from Firestore:');
-      console.log(decks);
-    });
+    // this.availableDecks$.subscribe((decks) => {
+    //   this.log.logDebug('Current available decks from Firestore:');
+    //   console.log(decks);
+    // });
 
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
