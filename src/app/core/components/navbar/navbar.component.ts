@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart/cart.service';
-import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
-import { ScreenSize } from '../../../shared/enums/screen-size.enum';
-import { RoutingService } from '../../services/routing/routing.service';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { CartService } from '../../services/cart/cart.service';
+import { RoutingService } from '../../services/routing/routing.service';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
 @Component({
@@ -11,20 +9,18 @@ import { CartModalComponent } from '../cart-modal/cart-modal.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                   NAVBAR                                   */
+/* -------------------------------------------------------------------------- */
 export class NavbarComponent implements OnInit {
   modalRef: MDBModalRef;
 
   productsInCart$ = this.cart.productsInCart$;
-
-  screenSize$ = this.responsiveService.screenSize$;
-  isSmall$ = this.responsiveService.isSmall$;
-  screenSizes = ScreenSize;
-
   activeRoute$ = this.routingService.activeRoute$;
 
   constructor(
     private cart: CartService,
-    private responsiveService: ResponsiveService,
     private routingService: RoutingService,
     private modalService: MDBModalService
   ) {}
@@ -33,7 +29,14 @@ export class NavbarComponent implements OnInit {
     this.routingService.detectActiveRoute();
   }
 
+  /**
+   * Open the cart containing items, price, checkout button
+   */
   openCartModal(): void {
     this.modalRef = this.modalService.show(CartModalComponent);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 }

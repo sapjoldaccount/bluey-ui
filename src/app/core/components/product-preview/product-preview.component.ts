@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
 
 @Component({
@@ -8,6 +8,12 @@ import { ProductDetailModalComponent } from '../product-detail-modal/product-det
   templateUrl: './product-preview.component.html',
   styleUrls: ['./product-preview.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                               PRODUCT PREVIEW                              */
+/* -------------------------------------------------------------------------- */
+/*                        SHOWN ON FEATURED DECKS PAGE                        */
+/* -------------------------------------------------------------------------- */
 export class ProductPreviewComponent implements OnInit {
   _name: string;
   get name(): string {

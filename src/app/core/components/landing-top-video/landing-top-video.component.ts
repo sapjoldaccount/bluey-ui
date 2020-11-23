@@ -1,34 +1,60 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Orientation, ScreenSize } from 'src/app/shared/enums/screen-size.enum';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
-import { ScreenSize } from 'src/app/shared/enums/screen-size.enum';
-import { CDN_BASE_URL, CDN_VIDEO_PATH } from '../../consts/cdn.consts';
+import { environment } from 'src/environments/environment';
+import { CDN_VIDEO_PATH } from '../../consts/cdn.consts';
 
 @Component({
   selector: 'app-landing-top-video',
   templateUrl: './landing-top-video.component.html',
   styleUrls: ['./landing-top-video.component.scss'],
 })
+
+/* -------------------------------------------------------------------------- */
+/*                              LANDING TOP VIDEO                             */
+/* -------------------------------------------------------------------------- */
+/*                         LANDING PAGE WITH VIDEO BG                         */
+/* -------------------------------------------------------------------------- */
 export class LandingTopVideoComponent implements OnInit {
+  constructor(private responsiveService: ResponsiveService) {}
   screenSize$ = this.responsiveService.screenSize$;
   screenSizes = ScreenSize;
 
-  videoUrl = `${CDN_BASE_URL}${CDN_VIDEO_PATH}`;
-  videoUrlMobile = `${CDN_BASE_URL}/decks/deck-2.jpg`;
+  orientation$ = this.responsiveService.orientation$;
+  orientations = Orientation;
 
-  constructor(private responsiveService: ResponsiveService) {}
+  showMobileLayout$ = this.responsiveService.showMobileLayout$;
+
+  showImage = new BehaviorSubject<boolean>(false);
+  showImage$ = this.showImage.asObservable();
+
+  /**
+   * TODO: Flesh out this whole component
+   */
+  videoUrl = `${environment.cdnBaseUrl}${CDN_VIDEO_PATH}`;
+  deckBgMobile = `${environment.cdnBaseUrl}/decks/mobile_bg.png`;
 
   /**
    * Document scroll listener
    * Used for shifting the opacity to black on scroll down of landing page
-   * TODO: Make a directive for this
    */
   @HostListener('document:scroll', ['$event'])
   onScroll(event): void {
+    if (!document.getElementById('top')) return;
     const yPixelOffset = window.pageYOffset;
     document.getElementById('top').style.opacity = (
       0 +
       yPixelOffset / window.innerHeight
     ).toString();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.responsiveService.setOrientation(
+      event.target.innerWidth,
+      event.target.innerHeight
+    );
   }
 
   ngOnInit(): void {}

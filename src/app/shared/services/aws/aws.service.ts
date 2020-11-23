@@ -1,27 +1,39 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
-import { LogService } from '../log/log.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { ErrorService } from '../error/error.service';
+import { SpinnerService } from '../spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AwsService {
-  // TODO: put in env service
-  awsUrl =
-    'https://aa02894q8a.execute-api.us-east-1.amazonaws.com/contact/submit';
 
-  constructor(private http: HttpClient, private log: LogService) {}
+/* -------------------------------------------------------------------------- */
+/*                                 AWS SERVICE                                */
+/*                            HANDLES EMAIL SENDING                           */
+/*                        TODO: HANDLE CDN STUFF HERE?                        */
+/* -------------------------------------------------------------------------- */
+export class AwsService {
+  constructor(
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private spinnerService: SpinnerService,
+    private errorService: ErrorService
+  ) {}
 
   /**
    * Send email to blueyshop@gmail.com
    * @param data - user information
    */
   sendEmail(data: any): Observable<any> {
-    const url = this.awsUrl;
+    const url = environment.awsUrl;
 
-    // TODO: change CORS to blueyshop only
+    this.spinnerService.updateSpinnerStatus('sendingEmail');
+    this.spinner.show();
+
     return this.http
       .post<any>(url, JSON.stringify(data), {
         headers: new HttpHeaders({
@@ -29,13 +41,9 @@ export class AwsService {
         }),
       })
       .pipe(
-        catchError((err) => {
-          this.log.logError('sending email', 'sendEmail()');
-          return of(null);
-        }),
-        tap((resp) => {}),
+        catchError(this.errorService.handleError),
         finalize(() => {
-          this.log.logDebug('Delivered email successfully.');
+          this.spinner.hide();
         })
       );
   }

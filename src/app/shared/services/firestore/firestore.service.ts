@@ -1,30 +1,39 @@
 import { Injectable } from '@angular/core';
-import { FirebaseApp, FirebaseAppConfig } from '@angular/fire';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { ShopItem } from 'src/app/core/models/Product';
-import * as firebase from 'firebase';
-import { map, share } from 'rxjs/operators';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import { catchError } from 'rxjs/operators';
+import { ShopItem } from 'src/app/core/models/ShopItem';
+import { ErrorService } from '../error/error.service';
 import { LogService } from '../log/log.service';
-import { ThrowStmt } from '@angular/compiler';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FirestoreService {
-  public availableDecks: Observable<ShopItem[]> | Observable<unknown[]> = of(
-    []
-  );
 
-  constructor(private firestore: AngularFirestore, private log: LogService) {
-    // TODO: Error handle
-    this.availableDecks = this.firestore
-      .collection('decks', (ref) => ref.orderBy('id'))
-      .valueChanges({ idField: 'firebase_doc_id' });
+/* -------------------------------------------------------------------------- */
+/*                              FIRESTORE SERVICE                             */
+/*                         INTERACTS WITH FIRESTORE DB                        */
+/* -------------------------------------------------------------------------- */
+export class FirestoreService {
+  public allShopItems: Observable<ShopItem[]> | Observable<unknown[]> = of([]);
+
+  constructor(
+    private firestore: AngularFirestore,
+    private log: LogService,
+    private toast: ToastService,
+    private error: ErrorService
+  ) {
+    /**
+     * Tracks and live-updates firestore documents as they are inserted,
+     * deleted, or modified
+     */
+    this.allShopItems = this.firestore
+      .collection('decks', (ref) =>
+        ref.orderBy('sold', 'asc').orderBy('id', 'desc')
+      )
+      .valueChanges({ idField: 'firebase_doc_id' })
+      .pipe(catchError(this.error.handleError));
   }
 
   /**
@@ -52,6 +61,7 @@ export class FirestoreService {
               'markItemsAsSold()'
             );
             console.log(error);
+            this.toast.showError('Error updating product collection');
           });
       } else {
         this.log.logDebug(

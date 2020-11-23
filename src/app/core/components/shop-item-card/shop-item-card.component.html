@@ -16,7 +16,10 @@
     <div *ngIf="productObject.sold" class="sold-overlay"></div>
     <span class="sold-out" *ngIf="productObject.sold">Sold</span>
 
-    <img src="{{ imageSrc }}" />
+    <img
+      [ngClass]="productObject.zoom_out === true ? 'zoomed-out' : ''"
+      src="{{ imageSrc }}"
+    />
 
     <div class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">

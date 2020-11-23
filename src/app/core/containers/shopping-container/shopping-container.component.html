@@ -2,12 +2,11 @@
   <div class="pr-category">Decks</div>
 
   <p class="shopping-descr">
-    Each Bluey Board is uniquely designed, and no two are the same. If you see
-    one listed below that you like & has already been purchased,
+    Each Bluey Board is uniquely designed, and no two are the same. If you have
+    any questions or concerns,
     <a target="_blank" href="https://blueyshop.com/contact"
       >send us a message here</a
-    >
-    and let us know.
+    >.
   </p>
 
   <!-- TODO: Move to component? -->
@@ -15,9 +14,12 @@
 
   <!-- TODO ADD TIMESTAMP FOR SORT -->
   <div class="container-fluid decks-container">
-    <div class="row centered bottom-margin">
+    <div
+      *ngIf="availableDecks$ | async as decks"
+      class="row centered bottom-margin"
+    >
       <app-shop-item-card
-        *ngFor="let item of availableDecks$ | async"
+        *ngFor="let item of decks"
         [productObject]="item"
         [title]="item.title"
         [price]="item.price"

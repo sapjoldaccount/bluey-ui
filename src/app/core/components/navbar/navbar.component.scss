@@ -1,5 +1,11 @@
 @import "../../../../variables";
 
+.bluey-icon-nav {
+  width: 48px;
+  position: absolute !important;
+  top: 9px;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -52,7 +58,7 @@
 .shop-link {
   margin-right: 42px;
   overflow: visible !important; // showing badge fully
-  // border-radius: 14px !important;
+  cursor: pointer !important;
 }
 
 /* ----------------------- Overwritten Boostrap Styles ---------------------- */
@@ -89,9 +95,18 @@
     display: block;
   }
 }
-
+.bluey-icon {
+  position: absolute;
+  top: 3px;
+  /* font-size: 37px; */
+  left: 10px;
+}
 /* --------------------------------- ng-deep -------------------------------- */
 ::ng-deep .navCss nav {
+  background-color: $site-primary-color;
+}
+
+::ng-deep .navbar {
   background-color: $site-primary-color;
 }
 

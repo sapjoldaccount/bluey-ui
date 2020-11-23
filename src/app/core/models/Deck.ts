@@ -1,6 +1,6 @@
-import { Product } from './Product';
+import { ShopItem } from './ShopItem';
 
-export interface Deck extends Product {
-    sizeInches: number;
-    colors?: string[];
+export interface Deck extends ShopItem {
+  sizeInches: number;
+  colors?: string[];
 }

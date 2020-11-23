@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
-import { LogService } from 'src/app/shared/services/log/log.service';
-import { CDN_BASE_URL } from '../../consts/cdn.consts';
-import { ShopItem } from '../../models/Product';
+import { environment } from 'src/environments/environment';
+import { ShopItem } from '../../models/ShopItem';
 
 @Component({
   selector: 'app-landing-bottom',
@@ -11,10 +10,10 @@ import { ShopItem } from '../../models/Product';
   styleUrls: ['./landing-bottom.component.scss'],
 })
 export class LandingBottomComponent implements OnInit {
-  cdnBaseUrl = CDN_BASE_URL;
+  cdnBaseUrl = environment.cdnBaseUrl;
 
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
-    .firestoreService.availableDecks;
+    .firestoreService.allShopItems;
 
   constructor(private firestoreService: FirestoreService) {}
 

@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { CDN_BASE_URL } from '../../consts/cdn.consts';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
 
 @Component({
@@ -10,29 +12,51 @@ import { CartService } from '../../services/cart/cart.service';
   templateUrl: './product-detail-modal.component.html',
   styleUrls: ['./product-detail-modal.component.scss'],
 })
-export class ProductDetailModalComponent implements OnInit {
-  cdnBaseUrl = CDN_BASE_URL;
 
+/* -------------------------------------------------------------------------- */
+/*                            PRODUCT DETAIL MODAL                            */
+/* -------------------------------------------------------------------------- */
+/*                    OPENED WHEN PRODUCT IMAGE IS CLICKED                    */
+/* -------------------------------------------------------------------------- */
+export class ProductDetailModalComponent implements OnInit, OnDestroy {
+  // For subscription destroy
+  ngUnsub = new Subject();
+
+  cdnBaseUrl = environment.cdnBaseUrl;
+
+  /**
+   * Content passed in from opener
+   */
   content: {
     title: string;
     id: number;
     productObject: ShopItem;
   };
 
-  // TODO: centralize! stop duping code
   isInCart = new BehaviorSubject(false);
   isInCart$ = this.isInCart.asObservable();
 
   constructor(public modalRef: MDBModalRef, private cart: CartService) {}
 
-  ngOnInit(): void {
-    // TODO: CENTRALIZE THIS, you're getting sloppy steve...
-    this.cart.productsInCart$.subscribe((products) => {
-      this.isInCart.next(
-        this.cart.itemIsInCart(this.content.productObject, products)
-      );
-    });
+  ngOnDestroy(): void {
+    this.ngUnsub.next();
+    this.ngUnsub.complete();
   }
+
+  ngOnInit(): void {
+    // Let modal know if current item is in cart
+    this.cart.productsInCart$
+      .pipe(takeUntil(this.ngUnsub))
+      .subscribe((products) => {
+        this.isInCart.next(
+          this.cart.itemIsInCart(this.content.productObject, products)
+        );
+      });
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                CART ACTIONS                                */
+  /* -------------------------------------------------------------------------- */
 
   addToCartClicked(product: ShopItem): void {
     this.cart.addShopItem(product);

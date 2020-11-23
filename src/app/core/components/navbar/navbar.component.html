@@ -4,8 +4,11 @@
   [containerInside]="false"
 >
   <mdb-navbar-brand>
-    <a class="logo navbar-brand" href="#">
-      <strong>Bluey</strong>
+    <a class="navbar-brand" href="#">
+      <img
+        src="../../../../assets/img/bluey_final_white_bg_2.png"
+        height="40"
+      />
     </a>
   </mdb-navbar-brand>
 
@@ -31,6 +34,7 @@
           routerLink="/shop"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="(activeRoute$ | async) === '/shop' ? 'selected-color' : ''"
           >SHOP</a
         >
@@ -40,6 +44,7 @@
           routerLink="/about"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="
             (activeRoute$ | async) === '/about' ? 'selected-color' : ''
           "
@@ -50,6 +55,7 @@
         <a
           routerLink="/contact"
           routerLinkActive="active"
+          (click)="scrollToTop()"
           class="nav-link"
           [ngClass]="
             (activeRoute$ | async) === '/contact' ? 'selected-color' : ''

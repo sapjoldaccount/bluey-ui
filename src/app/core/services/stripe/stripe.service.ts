@@ -5,14 +5,19 @@ import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { LogService } from 'src/app/shared/services/log/log.service';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
-import { ShopItem } from '../../models/Product';
+import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../cart/cart.service';
 declare let Stripe: any;
 
-// TODO: replace with real key in prod
+// TEST
+// const STRIPE_KEY =
+//   'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL';
+
+// PROD
 const STRIPE_KEY =
-  'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL';
+  'pk_live_51HTvjPIZSSMTzx9qLfOIxlswIeMKuhBjcPuEWPHm6BdbPtcia736NfCzzZx7ZGCsipJQYBQYF7XBNehaVMUvpZir0049z9rutl';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +26,7 @@ export class StripeService {
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
+    private spinnerService: SpinnerService,
     private http: HttpClient,
     private log: LogService
   ) {}
@@ -67,7 +73,13 @@ export class StripeService {
       };
     });
 
-    this.cart.updateSpinnerStatus('redirecting');
+    // Add flat rate shipping item
+    stripeLineItems.push({
+      price: 'price_1HnSz0IZSSMTzx9qsNnRBgkm',
+      quantity: 1,
+    });
+
+    this.spinnerService.updateSpinnerStatus('redirecting');
     this.spinner.show();
 
     const stripe = Stripe(STRIPE_KEY);
