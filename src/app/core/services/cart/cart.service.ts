@@ -78,7 +78,7 @@ export class CartService implements OnDestroy {
           this.log.logError('initializing cart', 'initializeCart()');
         },
         () => {
-          this.log.logDebug('Initialized local storage successfully.');
+          // this.log.logDebug('Initialized local storage successfully.');
           this.storage.set(CART_ITEMS_KEY, currentShopItems).subscribe();
         }
       );

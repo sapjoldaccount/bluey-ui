@@ -35,4 +35,8 @@ export class NavbarComponent implements OnInit {
   openCartModal(): void {
     this.modalRef = this.modalService.show(CartModalComponent);
   }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

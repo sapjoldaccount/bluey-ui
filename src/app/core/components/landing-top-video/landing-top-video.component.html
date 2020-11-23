@@ -1,65 +1,41 @@
 <div class="video-container" id="mob-vid">
   <!-- Desktop -->
-  <ng-container
-    *ngIf="(screenSize$ | async) !== screenSizes.XSmall; else mobile"
-  >
-    <div class="video-player opacity-changer"></div>
-    <div class="opacity-changer" id="top"></div>
-    <video
-      playsinline
-      autoplay
-      loop
-      [muted]="true"
-      muted
-      class="video-player-2"
+  <div class="video-player opacity-changer"></div>
+  <div class="opacity-changer" id="top"></div>
+  <div
+    *ngIf="showImage$ | async"
+    style="
+      width: 100vw;
+      position: absolute;
+      background: #1c2331;
+      height: 100vh;
+      z-index: 999;
+    "
+  ></div>
+
+  <img class="video-player-2" src="../../../../assets/img/TEST_NEW.gif" />
+
+  <div class="landing-title-container" style="z-index: 1000">
+    <div class="artshop">
+      <span style="padding: 10px" class="heading glow">BLUEY ART SHOP</span>
+    </div>
+
+    <button
+      style="
+        z-index: 100 !important;
+        width: 90%;
+        font-size: 22px;
+        font-weight: 900;
+      "
+      mdbBtn
+      type="button"
+      color="success"
+      outline="true"
+      mdbWavesEffect
+      routerLink="/shop"
+      routerLinkActive="active"
     >
-      <source src="{{ videoUrl }}" type="video/mp4" />
-    </video>
-
-    <div class="landing-title-container">
-      <span class="heading glow">Bluey Art Shop</span>
-      <span class="descr">POUR-PAINTED ACRYLIC ART PIECES</span>
-      <span class="descr">HANDCRAFTED IN LOUISVILLE, KY</span>
-    </div>
-  </ng-container>
-
-  <!-- Mobile -->
-  <ng-template #mobile>
-    <div class="mobile-landing-container">
-      <div
-        style="
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-        "
-      >
-        <img
-          style="flex-shrink: 0; min-width: 100%; min-height: 100%"
-          src="../../../../assets/img/mobile_bg.png"
-        />
-        <div class="mobile-title">
-          <span class="heading glow" style="font-size: 74px">Bluey</span>
-          <span
-            class="heading glow"
-            style="font-size: 74px; margin-bottom: 25px"
-            >Art Shop</span
-          >
-          <span class="descr">POUR-PAINTED ACRYLIC ART PIECES</span>
-          <span class="descr">HANDCRAFTED IN LOUISVILLE, KY</span>
-        </div>
-      </div>
-
-      <button
-        mdbBtn
-        color="success"
-        class="waves-light shop-bluey-but"
-        mdbWavesEffect
-        routerLink="/shop"
-        routerLinkActive="active"
-      >
-        VIEW PRODUCTS
-      </button>
-    </div>
-  </ng-template>
+      VIEW SKATEBOARDS
+    </button>
+  </div>
 </div>

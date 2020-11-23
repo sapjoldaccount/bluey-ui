@@ -11,6 +11,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SuccessContainerComponent } from 'src/app/core/containers/success-container/success-container.component';
 import { StripeService } from 'src/app/core/services/stripe/stripe.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

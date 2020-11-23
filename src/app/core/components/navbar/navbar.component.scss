@@ -58,7 +58,7 @@
 .shop-link {
   margin-right: 42px;
   overflow: visible !important; // showing badge fully
-  // border-radius: 14px !important;
+  cursor: pointer !important;
 }
 
 /* ----------------------- Overwritten Boostrap Styles ---------------------- */
@@ -103,6 +103,10 @@
 }
 /* --------------------------------- ng-deep -------------------------------- */
 ::ng-deep .navCss nav {
+  background-color: $site-primary-color;
+}
+
+::ng-deep .navbar {
   background-color: $site-primary-color;
 }
 

@@ -5,17 +5,12 @@
 >
   <mdb-navbar-brand>
     <a class="navbar-brand" href="#">
-      <!-- <div style="height: 21px"> -->
       <img
         src="../../../../assets/img/bluey_final_white_bg_2.png"
         height="40"
       />
-      <!-- </div> -->
-      <!-- <strong>Bluey</strong> -->
     </a>
   </mdb-navbar-brand>
-
-  <!-- class="bluey-icon-nav" -->
 
   <li
     matBadge="{{ (productsInCart$ | async)?.length }}"
@@ -39,6 +34,7 @@
           routerLink="/shop"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="(activeRoute$ | async) === '/shop' ? 'selected-color' : ''"
           >SHOP</a
         >
@@ -48,6 +44,7 @@
           routerLink="/about"
           routerLinkActive="active"
           class="nav-link"
+          (click)="scrollToTop()"
           [ngClass]="
             (activeRoute$ | async) === '/about' ? 'selected-color' : ''
           "
@@ -58,6 +55,7 @@
         <a
           routerLink="/contact"
           routerLinkActive="active"
+          (click)="scrollToTop()"
           class="nav-link"
           [ngClass]="
             (activeRoute$ | async) === '/contact' ? 'selected-color' : ''

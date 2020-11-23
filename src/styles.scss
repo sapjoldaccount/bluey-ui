@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  padding-top: 60px;
 }
 
 // Remove drop shadow from MD buttons
@@ -21,19 +22,8 @@ body {
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  // margin-top: $navbar-height;
-  margin-top: 80px;
+  margin-top: 14px;
 }
-
-// .toast-title {
-//   font-family: $site-font !important;
-//   font-weight: 700 !important;
-// }
-
-// .toast-message {
-//   font-family: $site-font !important;
-//   font-weight: 300 !important;
-// }
 
 .toast-success {
   background-color: $mdb-success !important;

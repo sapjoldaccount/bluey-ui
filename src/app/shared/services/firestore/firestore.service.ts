@@ -29,7 +29,9 @@ export class FirestoreService {
      * deleted, or modified
      */
     this.allShopItems = this.firestore
-      .collection('decks', (ref) => ref.orderBy('id'))
+      .collection('decks', (ref) =>
+        ref.orderBy('sold', 'asc').orderBy('id', 'desc')
+      )
       .valueChanges({ idField: 'firebase_doc_id' })
       .pipe(catchError(this.error.handleError));
   }

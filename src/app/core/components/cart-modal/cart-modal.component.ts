@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef } from 'angular-bootstrap-md';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
@@ -20,6 +21,10 @@ import { StripeService } from '../../services/stripe/stripe.service';
 /*                           OPENED UPON CART CLICK                           */
 /* -------------------------------------------------------------------------- */
 export class CartModalComponent implements OnInit {
+  formGroup = new FormGroup({
+    checked: new FormControl(false, Validators.required),
+  });
+
   productsInCart$ = this.cart.productsInCart$;
 
   /**
@@ -29,7 +34,9 @@ export class CartModalComponent implements OnInit {
     map(
       (products) =>
         Math.round(
-          products.map((p) => p.price).reduce((a, b) => a + b, 0) * 100
+          (products.map((p) => p.price).reduce((a, b) => a + b, 0) +
+            (products.length > 0 ? 9.99 : 0)) *
+            100
         ) / 100
     )
   );
