@@ -18,7 +18,7 @@
 
     <img
       [ngClass]="{
-        'zoomed-out': productObject.zoom_out === true && isSpecial,
+        'zoomed-out': productObject.zoom_out === true && !isSpecial,
         'zoomed-out-more': productObject.zoom_out === true && isSpecial
       }"
       src="{{ imageSrc }}"
