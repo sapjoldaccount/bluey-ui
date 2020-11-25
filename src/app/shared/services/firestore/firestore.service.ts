@@ -39,9 +39,11 @@ export class FirestoreService {
       .pipe(catchError(this.error.handleError));
 
     this.personalizedDeckItem = this.firestore
-      .collection('decks')
-      .doc('n7rI9AsUuqTWmVT1tJOk')
-      .get();
+      .collection('specials')
+      .doc('nQ2ci5VVAnpMatq2x0hu')
+      .valueChanges();
+
+    this.personalizedDeckItem.subscribe((a) => console.log(a));
   }
 
   /**
