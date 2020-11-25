@@ -12,7 +12,6 @@
     (click)="openDetailModal()"
     [ngClass]="productObject.sold ? 'disable-hover' : ''"
   >
-    <!-- TODO: Add back in later for data usage reasons -->
     <div *ngIf="productObject.sold" class="sold-overlay"></div>
     <span class="sold-out" *ngIf="productObject.sold">Sold</span>
 
@@ -24,9 +23,31 @@
       src="{{ imageSrc }}"
     />
 
-    <div class="mask flex-center rgba-black-light">
+    <div *ngIf="isSpecial" class="remain-ctr">
+      <span style="width: 63px" class="sold-out remaining">{{
+        (customDeckRemainingCount$ | async)?.count
+      }}</span>
+      <span
+        class="sold-out remaining"
+        style="
+          left: 8px !important;
+          top: 55px !important;
+          font-size: 14px !important;
+          text-align: center !important;
+        "
+        >REMAINING</span
+      >
+    </div>
+
+    <div *ngIf="!isSpecial" class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">
         View<mat-icon class="view-more-icon">zoom_in</mat-icon>
+      </p>
+    </div>
+
+    <div *ngIf="isSpecial" class="mask flex-center rgba-black-light">
+      <p class="white-text view-more-text">
+        Build<mat-icon class="view-more-icon">build</mat-icon>
       </p>
     </div>
   </div>
@@ -35,9 +56,13 @@
     class="info-container"
     [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-down' : ''"
   >
-    <div class="deck-txt">{{ title }}</div>
-    <div class="deck-txt sub">{{ description }}</div>
-    <div class="deck-txt price">${{ price }}</div>
+    <div class="deck-txt" [ngClass]="isSpecial ? 'bold' : ''">{{ title }}</div>
+    <div class="deck-txt sub" [ngClass]="isSpecial ? 'bold' : ''">
+      {{ description }}
+    </div>
+    <div class="deck-txt price" [ngClass]="isSpecial ? 'bold' : ''">
+      ${{ price }}
+    </div>
     <div class="deck-add">
       <button
         (mouseenter)="mouseEnter('add-cart')"
@@ -51,12 +76,38 @@
         [disabled]="productObject.sold"
       >
         <div class="btn-txt-con">
+          <mat-icon
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            *ngIf="isSpecial"
+            class="view-more-icon"
+            >build</mat-icon
+          >
+
+          <mat-icon
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            *ngIf="!isSpecial"
+            class="view-more-icon"
+            >add_shopping_cart</mat-icon
+          >
           <span
             [ngClass]="
               (isInCart$ | async) === true
                 ? 'add-button-text white-text'
                 : 'add-button-text'
             "
+            class="bold"
             >{{
               (isInCart$ | async) === true
                 ? "Remove from Cart"

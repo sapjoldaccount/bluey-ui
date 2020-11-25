@@ -128,6 +128,12 @@
 .add-button-text {
   transition: 0.2s ease-in-out !important;
   margin-top: -2px !important;
+
+  margin-left: 18px;
+  /* margin-top: -7px; */
+  padding-left: 11px;
+  /* position: absolute; */
+  padding-top: 1px;
 }
 
 .transition-icon {
@@ -137,6 +143,7 @@
 .btn-txt-con {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .danger-button {
@@ -166,4 +173,23 @@
   position: absolute !important;
   text-align: center !important;
   margin: auto !important;
+}
+.remaining {
+  left: 13px !important;
+  top: 0px !important;
+  font-size: 47px !important;
+}
+.bold {
+  font-weight: bold !important;
+}
+
+.remain-ctr {
+  width: 90px;
+  height: 80px;
+  position: absolute;
+  background: cornflowerblue;
+  top: 0;
+  /* border-radius: 8px; */
+  border-radius: 0 0 10px 0px;
+  z-index: 0;
 }

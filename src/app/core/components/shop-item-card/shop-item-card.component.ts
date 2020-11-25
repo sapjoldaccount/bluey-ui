@@ -3,6 +3,7 @@ import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
@@ -77,11 +78,14 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   ngUnsub = new Subject();
 
+  customDeckRemainingCount$ = this.firestoreService.customDeckRemainingCount;
+
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
     private spinnerService: SpinnerService,
-    private modalService: MDBModalService
+    private modalService: MDBModalService,
+    private firestoreService: FirestoreService
   ) {}
 
   ngOnInit(): void {

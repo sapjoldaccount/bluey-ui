@@ -20,8 +20,8 @@ export class ShoppingContainerComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.allShopItems;
 
-  personalizedDeckItem$: Observable<ShopItem> | Observable<unknown> = this
-    .firestoreService.personalizedDeckItem;
+  customDeckItem$: Observable<ShopItem> | Observable<unknown> = this
+    .firestoreService.customDeckItem;
 
   spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 

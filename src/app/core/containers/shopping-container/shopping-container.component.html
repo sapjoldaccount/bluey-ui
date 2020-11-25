@@ -6,7 +6,7 @@
     any questions or concerns,
     <a target="_blank" href="https://blueyshop.com/contact"
       >send us a message here</a
-    >.
+    >. <br />Hover over images or click for more details.
   </p>
 
   <!-- TODO: Move to component? -->
@@ -20,7 +20,7 @@
     >
       <!-- Personalized deck -->
       <app-shop-item-card
-        *ngIf="personalizedDeckItem$ | async as personal"
+        *ngIf="customDeckItem$ | async as personal"
         [productObject]="personal"
         [title]="personal.title"
         [price]="personal.price"
