@@ -17,6 +17,9 @@ import { ToastService } from '../toast/toast.service';
 /* -------------------------------------------------------------------------- */
 export class FirestoreService {
   public allShopItems: Observable<ShopItem[]> | Observable<unknown[]> = of([]);
+  public personalizedDeckItem: Observable<ShopItem> | Observable<unknown> = of(
+    null
+  );
 
   constructor(
     private firestore: AngularFirestore,
@@ -34,6 +37,11 @@ export class FirestoreService {
       )
       .valueChanges({ idField: 'firebase_doc_id' })
       .pipe(catchError(this.error.handleError));
+
+    this.personalizedDeckItem = this.firestore
+      .collection('decks')
+      .doc('n7rI9AsUuqTWmVT1tJOk')
+      .get();
   }
 
   /**

@@ -18,6 +18,19 @@
       *ngIf="availableDecks$ | async as decks"
       class="row centered bottom-margin"
     >
+      <!-- Personalized deck -->
+      <app-shop-item-card
+        *ngIf="personalizedDeckItem$ | async as personal"
+        [productObject]="personal"
+        [title]="personal.title"
+        [price]="personal.price"
+        [id]="personal.id"
+        [description]="personal.description"
+        [imageBaseUrl]="cdnBaseUrl"
+        [imagePathUrl]="'/decks/deck-999.jpg'"
+      ></app-shop-item-card>
+
+      <!-- Other items in store -->
       <app-shop-item-card
         *ngFor="let item of decks"
         [productObject]="item"
