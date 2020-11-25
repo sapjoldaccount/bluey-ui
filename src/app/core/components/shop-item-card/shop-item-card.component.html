@@ -17,7 +17,12 @@
     <span class="sold-out" *ngIf="productObject.sold">Sold</span>
 
     <img
-      [ngClass]="productObject.zoom_out === true ? 'zoomed-out' : ''"
+      [ngClass]="{
+        'zoomed-out':
+          productObject.zoom_out === true && productObject.id !== 999,
+        'zoomed-out-more':
+          productObject.zoom_out === true && productObject.id === 999
+      }"
       src="{{ imageSrc }}"
     />
 
