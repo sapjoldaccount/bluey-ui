@@ -42,8 +42,6 @@ export class FirestoreService {
       .collection('specials')
       .doc('nQ2ci5VVAnpMatq2x0hu')
       .valueChanges();
-
-    this.personalizedDeckItem.subscribe((a) => console.log(a));
   }
 
   /**

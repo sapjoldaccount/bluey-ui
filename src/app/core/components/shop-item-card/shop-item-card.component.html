@@ -60,7 +60,9 @@
                 : 'add-button-text'
             "
             >{{
-              (isInCart$ | async) === true ? "Remove from Cart" : "Add To Cart"
+              (isInCart$ | async) === true
+                ? "Remove from Cart"
+                : actionButtonText
             }}</span
           >
         </div>

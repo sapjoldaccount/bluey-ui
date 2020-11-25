@@ -24,9 +24,10 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /*                             PRODUCT INFO INPUTS                            */
   /* -------------------------------------------------------------------------- */
 
-  /**
-   * Product title
-   */
+  // Text to show on action button
+  @Input() actionButtonText: string;
+
+  // Product title
   _title: string;
   get title(): string {
     return this._title;
@@ -35,9 +36,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     this._title = value;
   }
 
-  /**
-   * Product itself
-   */
+  // Product itself
   _productObject: ShopItem;
   get productObject(): ShopItem {
     return this._productObject;
@@ -46,9 +45,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     this._productObject = value;
   }
 
-  /**
-   * Numeric product id
-   */
+  // Product id
   _id: number;
   get id(): number {
     return this._id;
