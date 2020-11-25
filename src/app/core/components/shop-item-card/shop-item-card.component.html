@@ -18,10 +18,8 @@
 
     <img
       [ngClass]="{
-        'zoomed-out':
-          productObject.zoom_out === true && productObject.id !== 999,
-        'zoomed-out-more':
-          productObject.zoom_out === true && productObject.id === 999
+        'zoomed-out': productObject.zoom_out === true && isSpecial,
+        'zoomed-out-more': productObject.zoom_out === true && isSpecial
       }"
       src="{{ imageSrc }}"
     />
@@ -48,7 +46,7 @@
         type="button"
         color="success"
         mdbWavesEffect
-        (click)="onAddCartClick(productObject)"
+        (click)="actionButtonHandler($event, productObject)"
         [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
         [disabled]="productObject.sold"
       >

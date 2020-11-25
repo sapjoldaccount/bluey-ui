@@ -24,10 +24,11 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /*                             PRODUCT INFO INPUTS                            */
   /* -------------------------------------------------------------------------- */
 
-  // Text to show on action button
-  @Input() actionButtonText: string;
+  // Personalized deck
+  isSpecial: boolean;
 
   // Product title
+  // tslint:disable-next-line: variable-name
   _title: string;
   get title(): string {
     return this._title;
@@ -42,6 +43,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     return this._productObject;
   }
   @Input() set productObject(value: ShopItem) {
+    this.isSpecial = value.id === 999;
     this._productObject = value;
   }
 
@@ -56,8 +58,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   @Input() price: string;
   @Input() description: string;
-
-  // TODO: put these in global config
+  @Input() actionButtonText: string;
   @Input() imageBaseUrl: string;
   @Input() imagePathUrl: string;
 
@@ -102,10 +103,14 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /* -------------------------------------------------------------------------- */
   /*                              SHOP ITEM ACTIONS                             */
   /* -------------------------------------------------------------------------- */
-  onAddCartClick(product: ShopItem): void {
-    this.isInCart.value
-      ? this.cart.removeShopItemFromCart(product.id)
-      : this.cart.addShopItem(product);
+  actionButtonHandler(event, product: ShopItem): void {
+    if (this.isSpecial) {
+      // TODO: Launch modal and wait for result
+    } else {
+      this.isInCart.value
+        ? this.cart.removeShopItemFromCart(product.id)
+        : this.cart.addShopItem(product);
+    }
   }
 
   mouseEnter(div: string): void {
