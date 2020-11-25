@@ -109,7 +109,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /* -------------------------------------------------------------------------- */
   actionButtonHandler(event, product: ShopItem): void {
     if (this.isSpecial) {
-      // TODO: Launch modal and wait for result
+      this.openDetailModal();
     } else {
       this.isInCart.value
         ? this.cart.removeShopItemFromCart(product.id)
@@ -143,19 +143,22 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
    * Open slideshow modal component
    */
   openDetailModal(): void {
-    const modalOptions = {
-      data: {
-        content: {
-          title: this.title, // TODO pass data here
-          id: this.id,
-          productObject: this.productObject,
+    if (this.isSpecial) {
+    } else {
+      const modalOptions = {
+        data: {
+          content: {
+            title: this.title, // TODO pass data here
+            id: this.id,
+            productObject: this.productObject,
+          },
         },
-      },
-    };
+      };
 
-    this.modalRef = this.modalService.show(
-      ProductDetailModalComponent,
-      modalOptions
-    );
+      this.modalRef = this.modalService.show(
+        ProductDetailModalComponent,
+        modalOptions
+      );
+    }
   }
 }

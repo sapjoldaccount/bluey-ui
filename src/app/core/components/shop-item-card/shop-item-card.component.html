@@ -45,9 +45,32 @@
       </p>
     </div>
 
-    <div *ngIf="isSpecial" class="mask flex-center rgba-black-light">
-      <p class="white-text view-more-text">
-        Build<mat-icon class="view-more-icon">build</mat-icon>
+    <div *ngIf="isSpecial" class="mask flex-center rgba-black-light"></div>
+
+    <div *ngIf="isSpecial">
+      <p
+        class="white-text view-more-text"
+        style="
+          position: absolute;
+          top: 39%;
+          left: 12%;
+          font-size: 41px;
+          background: #55bfff;
+          padding: 0px;
+          border-radius: 15px;
+          padding: 0 28px 0 8px;
+        "
+      >
+        CREATE<mat-icon
+          class="view-more-icon"
+          style="
+            vertical-align: middle !important;
+            margin-left: 6px !important;
+            font-size: 39px;
+            margin-top: -21px !important;
+          "
+          >build</mat-icon
+        >
       </p>
     </div>
   </div>
@@ -90,6 +113,7 @@
           >
 
           <mat-icon
+            *ngIf="!isSpecial && (isInCart$ | async) === false"
             style="
               font-size: 20px;
               position: absolute;
@@ -97,9 +121,20 @@
               top: -2px;
               margin-top: 0px !important;
             "
-            *ngIf="!isSpecial"
             class="view-more-icon"
             >add_shopping_cart</mat-icon
+          >
+          <mat-icon
+            *ngIf="!isSpecial && (isInCart$ | async) === true"
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            class="view-more-icon"
+            >remove_shopping_cart</mat-icon
           >
           <span
             [ngClass]="

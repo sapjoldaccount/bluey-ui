@@ -60,7 +60,21 @@
     class="waves-light"
     mdbWavesEffect
   >
-    Add to Cart
+    <div class="btn-txt-con">
+      <mat-icon
+        *ngIf="(isInCart$ | async) === false"
+        style="
+          font-size: 20px;
+          position: absolute;
+          left: -23px;
+          top: -2px;
+          margin-top: 0px !important;
+        "
+        class="view-more-icon"
+        >add_shopping_cart</mat-icon
+      >
+    </div>
+    <span style="margin-left: 16px">Add to Cart</span>
   </button>
 
   <button
@@ -71,6 +85,20 @@
     class="waves-light"
     mdbWavesEffect
   >
-    Remove from Cart
+    <div class="btn-txt-con">
+      <mat-icon
+        *ngIf="(isInCart$ | async) === true"
+        style="
+          font-size: 20px;
+          position: absolute;
+          left: -23px;
+          top: -2px;
+          margin-top: 0px !important;
+        "
+        class="view-more-icon"
+        >remove_shopping_cart</mat-icon
+      >
+    </div>
+    <span style="margin-left: 16px"> Remove from Cart</span>
   </button>
 </div>
