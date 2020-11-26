@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef } from 'angular-bootstrap-md';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
+import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-custom-deck-modal',
@@ -19,6 +22,9 @@ export class CustomDeckModalComponent implements OnInit {
     deckDescr: this.deckDescr,
   });
 
+  viewingSummary = new BehaviorSubject<boolean>(false);
+  viewingSummary$ = this.viewingSummary.asObservable();
+
   /* --------------------------- FORM ERROR MESSAGES -------------------------- */
   /* --------------------------- TODO: MAKE DYNAMIC --------------------------- */
 
@@ -32,9 +38,25 @@ export class CustomDeckModalComponent implements OnInit {
 
   test5 = ['#ffeb3b', '#ffc107', '#ff9800'];
 
-  constructor(public modalRef: MDBModalRef) {}
+  constructor(
+    public modalRef: MDBModalRef,
+    private spinnerService: SpinnerService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {}
 
-  handleChangeComplete(event) {}
+  handleActionButton(): void {
+    this.spinnerService.updateSpinnerStatus('loadingSummary');
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.viewingSummary.next(true);
+    }, 500);
+  }
+
+  onBack(): void {
+    this.viewingSummary.next(false);
+  }
 }

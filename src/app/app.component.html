@@ -18,7 +18,11 @@
       >Taking you to checkout</span
     >
     <span *ngIf="(spinnerAction$ | async) === 'sendingEmail'" class="loading"
-      >Sending email...</span
+      >Sending email</span
+    >
+
+    <span *ngIf="(spinnerAction$ | async) === 'loadingSummary'" class="loading"
+      >Loading summary</span
     >
   </ngx-spinner>
 </ng-container>
