@@ -5,12 +5,37 @@
 
 .color-container {
   margin-top: 8px;
+  background: #f5f5f5;
+  padding: 9px;
 }
 
 ::ng-deep .circle-picker {
   width: 100% !important;
   display: flex !important;
   /* flex-wrap: wrap; */
-  justify-content: space-evenly !important;
+  justify-content: left !important;
   margin-top: 4px;
+  margin-left: 8px;
+  margin-bottom: -8px !important;
+}
+
+::ng-deep .swatch {
+  width: 90px !important;
+  height: 27px !important;
+
+  border-radius: unset !important;
+  box-shadow: 0 0 0 16px inset;
+  background: white !important;
+}
+
+::ng-deep .circle-swatch {
+  margin-right: 75px !important;
+}
+
+::ng-deep .circle-swatch:hover {
+  transform: scale(1.2) translateX(-4px) !important;
+}
+
+.hidden {
+  display: none;
 }

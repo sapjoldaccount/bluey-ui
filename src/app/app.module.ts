@@ -38,6 +38,8 @@ import { SuccessContainerComponent } from './core/containers/success-container/s
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 import { CustomDeckModalComponent } from './core/components/custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
 import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></color-swatches>
+
 import { ColorCircleModule } from 'ngx-color/circle'; // <color-circle></color-circle>
 
 @NgModule({
@@ -63,6 +65,7 @@ import { ColorCircleModule } from 'ngx-color/circle'; // <color-circle></color-c
     BrowserModule,
     ColorSketchModule,
     ColorCircleModule,
+    ColorSwatchesModule,
     MatCheckboxModule,
     CommonModule,
     AppRoutingModule,

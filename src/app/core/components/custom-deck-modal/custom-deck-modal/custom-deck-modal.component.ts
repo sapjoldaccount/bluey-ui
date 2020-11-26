@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
+import { COLOR_ROWS } from 'src/app/core/consts/colors.consts';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CustomDeckModalComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   /*                                 FORM SETUP                                 */
   /* -------------------------------------------------------------------------- */
-  deckTitle = new FormControl('');
+  deckTitle = new FormControl('', [Validators.required]);
   deckDescr = new FormControl('');
 
   customDeckForm: FormGroup = new FormGroup({
@@ -25,18 +26,13 @@ export class CustomDeckModalComponent implements OnInit {
   viewingSummary = new BehaviorSubject<boolean>(false);
   viewingSummary$ = this.viewingSummary.asObservable();
 
-  /* --------------------------- FORM ERROR MESSAGES -------------------------- */
-  /* --------------------------- TODO: MAKE DYNAMIC --------------------------- */
+  colorRows = COLOR_ROWS;
 
-  test1 = ['#f44336', '#e91e63', '#9c27b0'];
-
-  test2 = ['#673ab7', '#3f51b5', '#2196f3'];
-
-  test3 = ['#03a9f4', '#00bcd4', '#009688'];
-
-  test4 = ['#4caf50', '#8bc34a', '#cddc39'];
-
-  test5 = ['#ffeb3b', '#ffc107', '#ff9800'];
+  getDeckNamErrorMsg(): string {
+    if (this.deckTitle.hasError('required')) {
+      return 'You must enter a name for your deck';
+    }
+  }
 
   constructor(
     public modalRef: MDBModalRef,

@@ -13,7 +13,12 @@
 </div>
 <!--Body-->
 <div class="modal-body">
-  <div *ngIf="!(viewingSummary$ | async)" class="custom-form-ctr">
+  <div
+    [ngClass]="
+      (viewingSummary$ | async) === true ? 'hidden' : 'custom-form-ctr'
+    "
+    class=""
+  >
     <form [formGroup]="customDeckForm">
       <div class="lbl">Deck Details</div>
       <!-- Deck Name -->
@@ -21,9 +26,13 @@
         <mat-label>Name Your Deck</mat-label>
         <input
           [formControl]="deckTitle"
+          required
           matInput
-          placeholder="(Optional) Enter your personalized deck's name"
+          placeholder="Be creative!"
         />
+        <mat-error *ngIf="deckTitle.invalid">{{
+          getDeckNamErrorMsg()
+        }}</mat-error>
       </mat-form-field>
 
       <!-- Deck Description -->
@@ -44,11 +53,15 @@
       </div>
 
       <div class="color-container">
-        <color-circle [colors]="test1"></color-circle>
-        <color-circle [colors]="test2"></color-circle>
-        <color-circle [colors]="test3"></color-circle>
-        <color-circle [colors]="test4"></color-circle>
-        <color-circle [colors]="test5"></color-circle>
+        <ng-container *ngFor="let colorRow of colorRows">
+          <div style="font-weight: 400; margin-left: 3px; color: gray">
+            {{ colorRow.title }}:
+          </div>
+          <color-circle
+            [ngClass]="colorRow.arr[0] === '#FFFFFF' ? 'outline' : ''"
+            [colors]="colorRow.arr"
+          ></color-circle>
+        </ng-container>
       </div>
     </form>
   </div>
