@@ -67,6 +67,7 @@ export class StripeService {
   // Redirect user to stripe-hosted checkout page
   redirectToCheckout(itemsInCart: ShopItem[]): void {
     const stripeLineItems = itemsInCart.map((i) => {
+      // TODO: pass color/custom order info here
       return {
         price: i.stripe_id,
         quantity: 1,

@@ -36,6 +36,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
+import { CustomDeckModalComponent } from './core/components/custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
+import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorCircleModule } from 'ngx-color/circle'; // <color-circle></color-circle>
 
 @NgModule({
   declarations: [
@@ -54,9 +57,12 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
     ProductDetailModalComponent,
     SuccessContainerComponent,
     CancelledContainerComponent,
+    CustomDeckModalComponent,
   ],
   imports: [
     BrowserModule,
+    ColorSketchModule,
+    ColorCircleModule,
     MatCheckboxModule,
     CommonModule,
     AppRoutingModule,

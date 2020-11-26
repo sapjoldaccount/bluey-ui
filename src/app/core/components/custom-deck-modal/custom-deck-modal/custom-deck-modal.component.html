@@ -1,0 +1,70 @@
+<!--Header-->
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">CREATE A CUSTOM DECK</h4>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<!--Body-->
+<div class="modal-body">
+  <div class="custom-form-ctr">
+    <form [formGroup]="customDeckForm">
+      <div class="lbl">Deck Details</div>
+      <!-- Deck Name -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>Deck Name</mat-label>
+        <input
+          [formControl]="deckTitle"
+          matInput
+          placeholder="(Optional) Enter your personalized deck's name"
+        />
+      </mat-form-field>
+
+      <!-- Deck Description -->
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label>Deck Appearance Description</mat-label>
+        <textarea
+          rows="5"
+          matInput
+          [formControl]="deckDescr"
+          placeholder="(Optional) What's your look and feel? For example: straight lines, swirly, like another deck..."
+        ></textarea>
+      </mat-form-field>
+
+      <!-- Color Selection -->
+      <div class="lbl" style="margin-top: -8px">Color Selection</div>
+      <div style="font-weight: 100; margin-left: 3px; color: gray">
+        Select a color from each row:
+      </div>
+
+      <div class="color-container">
+        <color-circle [colors]="test1"></color-circle>
+        <color-circle [colors]="test2"></color-circle>
+        <color-circle [colors]="test3"></color-circle>
+        <color-circle [colors]="test4"></color-circle>
+        <color-circle [colors]="test5"></color-circle>
+      </div>
+    </form>
+  </div>
+</div>
+<!--Footer-->
+<div class="modal-footer">
+  <button
+    type="button"
+    mdbBtn
+    color="success"
+    outline="true"
+    class="waves-light"
+    mdbWavesEffect
+    data-dismiss="modal"
+    (click)="modalRef.hide()"
+  >
+    Close
+  </button>
+</div>

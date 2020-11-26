@@ -1,0 +1,16 @@
+.lbl {
+  margin-bottom: 7px;
+  font-size: 20px;
+}
+
+.color-container {
+  margin-top: 8px;
+}
+
+::ng-deep .circle-picker {
+  width: 100% !important;
+  display: flex !important;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly !important;
+  margin-top: 4px;
+}

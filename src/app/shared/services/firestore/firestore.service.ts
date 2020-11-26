@@ -32,12 +32,6 @@ export class FirestoreService {
      * Tracks and live-updates firestore documents as they are inserted,
      * deleted, or modified
      */
-    this.allShopItems = this.firestore
-      .collection('decks', (ref) =>
-        ref.orderBy('sold', 'asc').orderBy('id', 'desc')
-      )
-      .valueChanges({ idField: 'firebase_doc_id' })
-      .pipe(catchError(this.error.handleError));
 
     this.customDeckItem = this.firestore
       .collection('specials')
@@ -48,6 +42,13 @@ export class FirestoreService {
       .collection('specials')
       .doc('customs_remaining')
       .valueChanges();
+
+    this.allShopItems = this.firestore
+      .collection('decks', (ref) =>
+        ref.orderBy('sold', 'asc').orderBy('id', 'desc')
+      )
+      .valueChanges({ idField: 'firebase_doc_id' })
+      .pipe(catchError(this.error.handleError));
   }
 
   /**
