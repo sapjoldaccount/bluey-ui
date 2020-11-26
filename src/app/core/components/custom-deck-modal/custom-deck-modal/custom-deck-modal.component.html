@@ -49,7 +49,7 @@
       <!-- Color Selection -->
       <div class="lbl" style="margin-top: -8px">Color Selection</div>
       <div style="font-weight: 100; margin-left: 3px; color: gray">
-        Select a color from each row:
+        Select up to 5 colors (minimum of 2):
       </div>
 
       <div class="color-container">
@@ -58,7 +58,7 @@
             {{ colorRow.title }}:
           </div>
           <color-circle
-            [ngClass]="colorRow.arr[0] === '#FFFFFF' ? 'outline' : ''"
+            (onChange)="handleChange($event)"
             [colors]="colorRow.arr"
           ></color-circle>
         </ng-container>
@@ -88,6 +88,10 @@
     class="waves-light"
     mdbWavesEffect
     (click)="handleActionButton()"
+    [disabled]="
+      customDeckForm.invalid === true ||
+      selectedColors.length < 2 || selectedColors.length > 5
+    "
   >
     {{ (viewingSummary$ | async) === true ? "Add to Cart" : "Next: Summary" }}
   </button>
