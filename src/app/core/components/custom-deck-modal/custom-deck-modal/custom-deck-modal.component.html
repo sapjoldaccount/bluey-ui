@@ -57,10 +57,13 @@
           <div style="font-weight: 400; margin-left: 3px; color: gray">
             {{ colorRow.title }}:
           </div>
-          <color-circle
-            (onChange)="handleChange($event)"
-            [colors]="colorRow.arr"
-          ></color-circle>
+          <div style="display: flex">
+            <color-circle
+              *ngFor="let c of colorRow.arr"
+              (onChange)="handleChange($event)"
+              [colors]="[c]"
+            ></color-circle>
+          </div>
         </ng-container>
       </div>
     </form>
