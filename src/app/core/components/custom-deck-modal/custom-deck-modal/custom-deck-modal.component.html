@@ -67,7 +67,7 @@
   </div>
 </div>
 <!--Footer-->
-<div class="modal-footer">
+<div class="modal-footer footer-stick">
   <button
     *ngIf="(viewingSummary$ | async) === true"
     type="button"
@@ -90,7 +90,8 @@
     (click)="handleActionButton()"
     [disabled]="
       customDeckForm.invalid === true ||
-      selectedColors.length < 2 || selectedColors.length > 5
+      selectedColors.length < 2 ||
+      selectedColors.length > 5
     "
   >
     {{ (viewingSummary$ | async) === true ? "Add to Cart" : "Next: Summary" }}

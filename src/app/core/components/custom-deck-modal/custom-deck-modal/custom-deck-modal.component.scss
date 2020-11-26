@@ -39,3 +39,9 @@
 .hidden {
   display: none;
 }
+
+.footer-stick {
+  position: sticky !important;
+  bottom: 0 !important;
+  background: white !important;
+}
