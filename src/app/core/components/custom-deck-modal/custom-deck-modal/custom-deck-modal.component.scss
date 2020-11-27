@@ -44,4 +44,12 @@
   position: sticky !important;
   bottom: 0 !important;
   background: white !important;
+  z-index: 99999 !important;
+}
+
+.selected-chk {
+  position: absolute;
+  z-index: 999;
+  left: 41px;
+  top: 6px;
 }

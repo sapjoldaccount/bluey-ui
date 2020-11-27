@@ -59,6 +59,12 @@ export class CustomDeckModalComponent implements OnInit {
     this.viewingSummary.next(false);
   }
 
+  onComplete(event): void {
+    // if (this.selectedColors.includes(event.color.hex)) {
+    //   document.getElementById(`${event.color.hex}-chk`).remove();
+    // }
+  }
+
   /**
    * Handle toggling colors
    * @param event - contains color item and js event
@@ -68,16 +74,20 @@ export class CustomDeckModalComponent implements OnInit {
       event.$event.target ||
       event.$event.srcElement ||
       event.$event.currentTarget;
-    if (this.selectedColors.includes(event.color.hex)) {
-      target.style['box-shadow'] = `${event.color.hex} 0px 0px 0px 14px inset`;
-      this.selectedColors = this.selectedColors.filter(
-        (c) => c !== event.color.hex
-      );
+
+    const color = event.color.hex;
+
+    // Already selected
+    if (this.selectedColors.includes(color)) {
+      target.style['box-shadow'] = `${color} 0px 0px 0px 14px inset`;
+      this.selectedColors = this.selectedColors.filter((c) => c !== color);
+
+      // Mark as selected
     } else {
-      this.selectedColors.push(event.color.hex);
+      this.selectedColors.push(color);
       target.style[
         'box-shadow'
-      ] = `${event.color.hex}  0px 0px 0px 3px inset, ${event.color.hex}  0px 0px 5px`;
+      ] = `${color}  0px 0px 0px 3px inset, ${color}  0px 0px 5px`;
     }
 
     console.log(this.selectedColors);

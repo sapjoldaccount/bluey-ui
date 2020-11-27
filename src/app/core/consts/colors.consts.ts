@@ -8,6 +8,7 @@ export const COLOR_ROWS = [
   { title: 'Blues', arr: ['#BCDCF7', '#4A94D1', '#084170'] }, // Blue
   { title: 'Purples', arr: ['#EBD5EE', '#95669C', '#69466E'] }, // Purple
   { title: 'Grays', arr: ['#E7E7E7', '#BBBBBB', '#757575'] }, // Gray
+  { title: 'Browns', arr: ['#BB957C', '#6E4930', '#412E22'] }, // Brown
   { title: 'Black', arr: ['#000000'] }, // Black
   { title: 'White', arr: ['#FFFFFF'] }, // White
 ];
