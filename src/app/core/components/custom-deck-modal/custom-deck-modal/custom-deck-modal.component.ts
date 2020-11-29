@@ -4,7 +4,13 @@ import { MDBModalRef } from 'angular-bootstrap-md';
 import { ColorEvent } from 'ngx-color';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
-import { COLOR_ROWS } from 'src/app/core/consts/colors.consts';
+import {
+  COLOR_HEX_TO_NAME_DICT,
+  COLOR_ROWS,
+} from 'src/app/core/consts/colors.consts';
+import { ShopItem } from 'src/app/core/models/ShopItem';
+import { CartService } from 'src/app/core/services/cart/cart.service';
+import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 
 @Component({
@@ -27,9 +33,13 @@ export class CustomDeckModalComponent implements OnInit {
   viewingSummary = new BehaviorSubject<boolean>(false);
   viewingSummary$ = this.viewingSummary.asObservable();
 
+  customDeckItem$ = this.firestoreService.customDeckItem;
+
   colorRows = COLOR_ROWS;
 
   selectedColors = [];
+
+  // TODO: INPUT PRODUCT
 
   getDeckNamErrorMsg(): string {
     if (this.deckTitle.hasError('required')) {
@@ -40,29 +50,43 @@ export class CustomDeckModalComponent implements OnInit {
   constructor(
     public modalRef: MDBModalRef,
     private spinnerService: SpinnerService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private cart: CartService,
+    private firestoreService: FirestoreService
   ) {}
 
   ngOnInit(): void {}
 
-  handleActionButton(): void {
-    this.spinnerService.updateSpinnerStatus('loadingSummary');
-    this.spinner.show();
+  handleActionButton(customDeck: ShopItem): void {
+    if (!this.viewingSummary.value) {
+      this.spinnerService.updateSpinnerStatus('loadingSummary');
+      this.spinner.show();
 
-    setTimeout(() => {
-      this.spinner.hide();
-      this.viewingSummary.next(true);
-    }, 500);
+      setTimeout(() => {
+        this.spinner.hide();
+        this.viewingSummary.next(true);
+      }, 500);
+    } else {
+      // TOOD: Build product item, pass in from HTML observable and adjust details
+      // make extended class for additional info
+      // pass to stripe to have data for success url call
+      customDeck.title = `CUSTOM DECK: ${this.deckTitle?.value?.toUpperCase()}`;
+
+      const colorsForDescr = this.selectedColors.map(
+        (c) => COLOR_HEX_TO_NAME_DICT[c?.toUpperCase()]
+      );
+
+      customDeck.description = colorsForDescr.join(', ');
+
+      customDeck.title += `, COLORS: ${customDeck.description}`;
+
+      this.cart.addShopItem(customDeck);
+      this.modalRef.hide();
+    }
   }
 
   onBack(): void {
     this.viewingSummary.next(false);
-  }
-
-  onComplete(event): void {
-    // if (this.selectedColors.includes(event.color.hex)) {
-    //   document.getElementById(`${event.color.hex}-chk`).remove();
-    // }
   }
 
   /**

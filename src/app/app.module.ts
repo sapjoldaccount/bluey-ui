@@ -40,7 +40,8 @@ import { CustomDeckModalComponent } from './core/components/custom-deck-modal/cu
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></color-swatches>
 
-import { ColorCircleModule } from 'ngx-color/circle'; // <color-circle></color-circle>
+import { ColorCircleModule } from 'ngx-color/circle';
+import { ConfirmationModalComponent } from './core/components/confirmation-modal/confirmation-modal.component'; // <color-circle></color-circle>
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ColorCircleModule } from 'ngx-color/circle'; // <color-circle></color-c
     SuccessContainerComponent,
     CancelledContainerComponent,
     CustomDeckModalComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,
