@@ -31,7 +31,10 @@
             src="{{ cdnBaseUrl }}/decks/deck-{{ item.id }}.jpg"
           />
         </th>
-        <td>{{ item.title }}</td>
+        <td>
+          <span style="font-weight: bold">{{ item.title }}</span> <br />
+          {{ item.description }}
+        </td>
         <td>${{ item.price }}</td>
         <td style="text-align: center">
           <a (click)="removeItemFromCart(item)">

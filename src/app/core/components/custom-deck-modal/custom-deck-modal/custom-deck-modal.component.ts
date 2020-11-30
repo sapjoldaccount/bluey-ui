@@ -70,15 +70,13 @@ export class CustomDeckModalComponent implements OnInit {
       // TOOD: Build product item, pass in from HTML observable and adjust details
       // make extended class for additional info
       // pass to stripe to have data for success url call
-      customDeck.title = `CUSTOM DECK: ${this.deckTitle?.value?.toUpperCase()}`;
+      customDeck.title = this.deckTitle?.value?.toUpperCase();
 
       const colorsForDescr = this.selectedColors.map(
         (c) => COLOR_HEX_TO_NAME_DICT[c?.toUpperCase()]
       );
 
       customDeck.description = colorsForDescr.join(', ');
-
-      customDeck.title += `, COLORS: ${customDeck.description}`;
 
       this.cart.addShopItem(customDeck);
       this.modalRef.hide();
