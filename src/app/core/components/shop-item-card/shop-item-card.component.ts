@@ -109,7 +109,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /*                              SHOP ITEM ACTIONS                             */
   /* -------------------------------------------------------------------------- */
   actionButtonHandler(event, product: ShopItem): void {
-    if (this.isSpecial) {
+    if (this.isSpecial && !this.isInCart.value) {
       this.openDetailModal();
     } else {
       this.isInCart.value
