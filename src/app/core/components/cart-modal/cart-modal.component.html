@@ -33,7 +33,7 @@
         </th>
         <td>
           <span style="font-weight: bold">{{ item.title }}</span> <br />
-          {{ item.description }}
+          {{ item.description || item.colorsText }}
         </td>
         <td>${{ item.price }}</td>
         <td style="text-align: center">

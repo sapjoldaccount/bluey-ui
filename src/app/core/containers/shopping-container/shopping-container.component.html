@@ -1,12 +1,15 @@
 <div class="g-page-container">
   <div class="pr-category">Decks</div>
 
+  <!-- Note at top, below title -->
   <p class="shopping-descr">
     Each Bluey Board is uniquely designed, and no two are the same. If you have
     any questions or concerns,
     <a target="_blank" href="https://blueyshop.com/contact"
       >send us a message here</a
-    >. <br />Hover over images or click for more details.
+    >. <br />Hover over images or click for more details. Note that we have a
+    <span style="font-weight: 700; color: black">no return policy</span> on our
+    skateboard decks.
   </p>
 
   <!-- TODO: Move to component? -->
@@ -14,6 +17,11 @@
 
   <!-- TODO ADD TIMESTAMP FOR SORT -->
   <div class="container-fluid decks-container">
+    <!-- Loading spinner -->
+    <mat-spinner
+      *ngIf="!(availableDecks$ | async)"
+      class="loading-spinner"
+    ></mat-spinner>
     <div
       *ngIf="availableDecks$ | async as decks"
       class="row centered bottom-margin"

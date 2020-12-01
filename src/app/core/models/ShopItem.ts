@@ -10,4 +10,8 @@ export class ShopItem {
   // tslint:disable-next-line: variable-name
   firebase_doc_id: string;
   zoom_out: boolean;
+
+  // Custom Deck Stuff
+  colorsText?: string;
+  userDescription?: string;
 }

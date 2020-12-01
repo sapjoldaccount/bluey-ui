@@ -76,7 +76,10 @@ export class CustomDeckModalComponent implements OnInit {
         (c) => COLOR_HEX_TO_NAME_DICT[c?.toUpperCase()]
       );
 
-      customDeck.description = colorsForDescr.join(', ');
+      // Custom deck stuff
+      customDeck.description = null; // set to null so colors show in cart modal
+      customDeck.colorsText = colorsForDescr.join(', ');
+      customDeck.userDescription = this.deckDescr?.value;
 
       this.cart.addShopItem(customDeck);
       this.modalRef.hide();
@@ -85,6 +88,10 @@ export class CustomDeckModalComponent implements OnInit {
 
   onBack(): void {
     this.viewingSummary.next(false);
+  }
+
+  getColorName(hex: string): string {
+    return COLOR_HEX_TO_NAME_DICT[hex.toUpperCase()];
   }
 
   /**

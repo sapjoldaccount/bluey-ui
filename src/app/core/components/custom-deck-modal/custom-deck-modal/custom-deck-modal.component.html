@@ -33,10 +33,14 @@
         <mat-label>Name Your Deck</mat-label>
         <input
           [formControl]="deckTitle"
+          maxlength="36"
           required
+          #nameinpt
           matInput
           placeholder="Be creative!"
         />
+        <mat-hint align="end">{{ nameinpt.value?.length || 0 }}/36</mat-hint>
+
         <mat-error *ngIf="deckTitle.invalid">{{
           getDeckNamErrorMsg()
         }}</mat-error>
@@ -47,10 +51,15 @@
         <mat-label>Deck Appearance Description</mat-label>
         <textarea
           rows="5"
+          [maxLength]="200"
           matInput
+          #desc
           [formControl]="deckDescr"
           placeholder="(Optional) What's your look and feel? For example: straight lines, swirly, like another deck..."
         ></textarea>
+        <mat-hint class="char-count"
+          >{{ desc.value?.length || 0 }}/200</mat-hint
+        >
       </mat-form-field>
 
       <!-- Color Selection -->
@@ -81,20 +90,27 @@
   <!-- ----------------------------------------------------------------------- -->
   <div *ngIf="(viewingSummary$ | async) === true">
     <div class="lbl">Deck Name</div>
-    <div style="color: grey; margin-bottom: 6px; margin-top: -11px">
+    <div class="deck-sum-item">
       {{ deckTitle.value }}
     </div>
     <div class="lbl">Deck Description</div>
-    <div style="color: grey; margin-bottom: 6px; margin-top: -11px">
+    <div class="deck-sum-item">
       {{ deckDescr.value }}
     </div>
     <div class="lbl">Selected Colors</div>
     <div style="background: #f5f5f5; padding: 11px">
-      <div
-        *ngFor="let color of selectedColors"
-        style="width: 100%; height: 25px; margin-bottom: 8px; margin-top: 5px"
-        [ngStyle]="{ background: color }"
-      ></div>
+      <ng-container *ngFor="let color of selectedColors">
+        <div>{{ getColorName(color) }}</div>
+        <div
+          style="
+            width: 100%;
+            height: 25px;
+            margin-bottom: 16px;
+            margin-top: 5px;
+          "
+          [ngStyle]="{ background: color }"
+        ></div>
+      </ng-container>
     </div>
   </div>
 </div>

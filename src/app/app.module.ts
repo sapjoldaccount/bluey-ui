@@ -42,6 +42,7 @@ import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></c
 
 import { ColorCircleModule } from 'ngx-color/circle';
 import { ConfirmationModalComponent } from './core/components/confirmation-modal/confirmation-modal.component'; // <color-circle></color-circle>
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ConfirmationModalComponent } from './core/components/confirmation-modal
   imports: [
     BrowserModule,
     ColorSketchModule,
+    MatProgressSpinnerModule,
     ColorCircleModule,
     ColorSwatchesModule,
     MatCheckboxModule,

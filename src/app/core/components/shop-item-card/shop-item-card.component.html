@@ -47,7 +47,7 @@
 
     <div *ngIf="isSpecial" class="mask flex-center rgba-black-light"></div>
 
-    <div *ngIf="isSpecial">
+    <div *ngIf="isSpecial" style="pointer-events: none">
       <p
         class="white-text view-more-text"
         style="
@@ -79,13 +79,11 @@
     class="info-container"
     [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-down' : ''"
   >
-    <div class="deck-txt" [ngClass]="isSpecial ? 'bold' : ''">{{ title }}</div>
-    <div class="deck-txt sub" [ngClass]="isSpecial ? 'bold' : ''">
+    <div class="deck-txt">{{ title }}</div>
+    <div class="deck-txt sub">
       {{ description }}
     </div>
-    <div class="deck-txt price" [ngClass]="isSpecial ? 'bold' : ''">
-      ${{ price }}
-    </div>
+    <div class="deck-txt price">${{ price }}</div>
     <div class="deck-add">
       <button
         (mouseenter)="mouseEnter('add-cart')"
