@@ -48,7 +48,7 @@
 
       <!-- Deck Description -->
       <mat-form-field appearance="outline" [style.width.%]="100">
-        <mat-label>Deck Appearance Description</mat-label>
+        <mat-label>Describe Your Deck</mat-label>
         <textarea
           rows="5"
           [maxLength]="200"
@@ -111,6 +111,34 @@
           [ngStyle]="{ background: color }"
         ></div>
       </ng-container>
+    </div>
+    <div class="disclaimer-container">
+      <mat-icon style="margin-right: 4px">error</mat-icon>
+      <div class="lbl">DISCLAIMER</div>
+    </div>
+    <div class="deck-sum-item">
+      We cannot guarantee that your board design will turn out exactly as you
+      envision, but we will follow your guidelines and do our best.
+    </div>
+    <div class="disclaimer-container">
+      <mat-icon style="margin-right: 4px">local_shipping</mat-icon>
+      <div class="lbl">SHIPPING</div>
+    </div>
+    <div class="deck-sum-item">
+      We will ship out your custom deck within 1-2 weeks of receiving the order.
+      Shipping times may vary depending on your location.
+    </div>
+
+    <div class="disclaimer-container">
+      <mat-icon style="margin-right: 4px">monetization_on</mat-icon>
+      <div class="lbl">RETURNS</div>
+    </div>
+    <div class="deck-sum-item">
+      We have a no return policy, but
+      <a target="_blank" href="https://blueyshop.com/contact"
+        >send us a message here</a
+      >
+      if you have any questions or concerns!
     </div>
   </div>
 </div>
