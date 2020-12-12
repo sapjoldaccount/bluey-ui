@@ -1,7 +1,10 @@
 <!--Header-->
 <div class="modal-header">
-  <h4 class="modal-title" id="myModalLabel">
+  <h4 *ngIf="!content.productObject.sold" class="modal-title" id="myModalLabel">
     {{ content.title }} - ${{ content.productObject.price }}
+  </h4>
+  <h4 *ngIf="content.productObject.sold" class="modal-title" id="myModalLabel">
+    {{ content.title }} - SOLD
   </h4>
   <button
     type="button"
@@ -58,6 +61,7 @@
     mdbBtn
     color="success"
     class="waves-light"
+    [disabled]="content.productObject.sold"
     mdbWavesEffect
   >
     <div class="btn-txt-con">

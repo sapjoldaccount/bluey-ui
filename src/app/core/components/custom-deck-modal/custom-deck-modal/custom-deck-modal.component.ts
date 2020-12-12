@@ -65,6 +65,9 @@ export class CustomDeckModalComponent implements OnInit {
       setTimeout(() => {
         this.spinner.hide();
         this.viewingSummary.next(true);
+        // Scroll summary to top
+        const modalEl = document.getElementsByClassName('modal-content');
+        modalEl[0].scrollTop = 0;
       }, 500);
     } else {
       // TOOD: Build product item, pass in from HTML observable and adjust details

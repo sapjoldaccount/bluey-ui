@@ -7,6 +7,7 @@ import { FirestoreService } from 'src/app/shared/services/firestore/firestore.se
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { CustomDeckModalComponent } from '../custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
 
@@ -145,7 +146,12 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
    */
   openDetailModal(): void {
     if (this.isSpecial) {
-      this.modalRef = this.modalService.show(CustomDeckModalComponent);
+      if (this.isInCart.value) {
+        // Show limit one per customer modal
+        this.modalRef = this.modalService.show(ConfirmationModalComponent);
+      } else {
+        this.modalRef = this.modalService.show(CustomDeckModalComponent);
+      }
     } else {
       const modalOptions = {
         data: {
