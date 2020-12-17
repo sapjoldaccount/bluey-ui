@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LandingContainerComponent,
   },
   {
+    path: 'cart',
+    component: CancelledContainerComponent,
+    canActivate: [SiteLockGuard],
+  },
+  {
     path: 'shop',
     component: ShoppingContainerComponent,
     canActivate: [SiteLockGuard],

@@ -18,9 +18,10 @@
     matBadgeColor="success"
     class="cart-icon-mobile nav-item waves-light shop-link"
     mdbWavesEffect
-    (click)="openCartModal()"
   >
     <a
+      routerLink="/cart"
+      routerLinkActive="active"
       class="nav-link cart"
       [ngClass]="(activeRoute$ | async) === '/cart' ? 'selected-color' : ''"
       ><mat-icon>shopping_cart</mat-icon></a
@@ -69,9 +70,10 @@
         matBadgeColor="success"
         class="nav-item waves-light shop-link"
         mdbWavesEffect
-        (click)="openCartModal()"
       >
         <a
+          routerLink="/cart"
+          routerLinkActive="active"
           class="nav-link cart"
           [ngClass]="(activeRoute$ | async) === '/cart' ? 'selected-color' : ''"
           ><mat-icon>shopping_cart</mat-icon></a
