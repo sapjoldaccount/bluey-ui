@@ -1,0 +1,85 @@
+@import "../../../../variables";
+
+.pr-category {
+  min-height: 64px;
+  // font-family: $site-font, sans-serif;
+  padding: 16px;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.success-container {
+  padding: 0 12% 0 12%;
+  margin-top: 1rem;
+}
+
+.shopping-descr {
+  padding: 0 10% 0 10%;
+  color: gray;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 415px) {
+  .shopping-descr {
+    padding: unset !important;
+  }
+}
+
+.deck-thumb {
+  width: 91%;
+}
+
+.modal-img-row {
+  width: 21%;
+}
+
+.total-text {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.total-sub {
+  font-weight: 300;
+  font-size: 11px;
+  color: $active-route-color;
+}
+
+.deck-sum-item {
+  margin-bottom: 20px;
+  margin-top: -6px;
+  color: gray;
+  font-weight: 300;
+  margin-left: 28px;
+  margin-top: 1px;
+}
+
+.disclaimer-container {
+  display: flex;
+  align-content: center;
+  line-height: 25px;
+  margin-top: 11px;
+  justify-content: left;
+  width: 100%;
+}
+
+.discs-con {
+  // padding: 0 15px 0 15px;
+  margin-bottom: 15px;
+
+  padding: 0 5% 0 5%;
+  // color: gray;
+  font-weight: 300;
+}
+
+.lbl {
+  font-weight: bold;
+}
+.loading-spinner {
+  margin: auto;
+  margin-top: 32px;
+  margin-bottom: 1000px;
+
+  ::ng-deep circle {
+    stroke: #55bbff !important;
+  }
+}

@@ -8,6 +8,7 @@ import { SuccessContainerComponent } from './core/containers/success-container/s
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { SiteLockGuard } from './shared/guards/site-lock.guard';
+import { CartContainerComponent } from './core/containers/cart-container/cart-container.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: CancelledContainerComponent,
+    component: CartContainerComponent,
     canActivate: [SiteLockGuard],
   },
   {

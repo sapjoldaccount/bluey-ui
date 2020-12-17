@@ -28,7 +28,6 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,6 +42,7 @@ import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></c
 import { ColorCircleModule } from 'ngx-color/circle';
 import { ConfirmationModalComponent } from './core/components/confirmation-modal/confirmation-modal.component'; // <color-circle></color-circle>
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CartContainerComponent } from './core/containers/cart-container/cart-container.component';
 
 @NgModule({
   declarations: [
@@ -57,12 +57,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ContactContainerComponent,
     ProductPreviewComponent,
     ShopItemCardComponent,
-    CartModalComponent,
     ProductDetailModalComponent,
     SuccessContainerComponent,
     CancelledContainerComponent,
     CustomDeckModalComponent,
     ConfirmationModalComponent,
+    CartContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +97,5 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   providers: [RouterLinkActive],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [CartModalComponent],
 })
 export class AppModule {}

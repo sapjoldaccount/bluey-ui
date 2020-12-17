@@ -11,10 +11,12 @@ import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../cart/cart.service';
 declare let Stripe: any;
 
+// TODO: COMMENT FOR PROD ------
 // TEST
 // const STRIPE_KEY =
 //   'pk_test_51HTvjPIZSSMTzx9q3y3wVERaQgs10XDyMD1H7gJfBnhKThU2EcPvW81AyzAvx5lgdrgOpnvxDAzMLKJRopQKdHSa00dsimlkSL';
 
+// TODO: UNCOMMENT FOR PROD ------
 // PROD
 const STRIPE_KEY =
   'pk_live_51HTvjPIZSSMTzx9qLfOIxlswIeMKuhBjcPuEWPHm6BdbPtcia736NfCzzZx7ZGCsipJQYBQYF7XBNehaVMUvpZir0049z9rutl';
@@ -32,7 +34,7 @@ export class StripeService {
   ) {}
 
   // Create a Checkout Session with the selected quantity
-  createCheckoutSession(stripeLineItems: any[]): Promise<any> {
+  createCheckoutSession(productData: any[]): Promise<any> {
     // TODO: change to the "angular" way, prod vs. local builds...
     return fetch(`${environment.apiBaseUrl}/create-checkout-session`, {
       method: 'POST',
@@ -40,7 +42,7 @@ export class StripeService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        lineItems: stripeLineItems,
+        itemsInCart: productData,
       }),
     }).then((result) => {
       return result.json();
@@ -66,18 +68,28 @@ export class StripeService {
 
   // Redirect user to stripe-hosted checkout page
   redirectToCheckout(itemsInCart: ShopItem[]): void {
-    const stripeLineItems = itemsInCart.map((i) => {
-      // TODO: pass color/custom order info here
+    // TODO: UNCOMMENT FOR PROD ------
+    const productData = itemsInCart.map((i) => {
       return {
         price: i.stripe_id,
         quantity: 1,
+        title: i.title,
+        colorsText: i.colorsText,
+        userDescription: i.userDescription,
       };
     });
 
+    // TODO: COMMENT FOR PROD ------
+    // const stripeLineItems = [];
+
+    // TODO: UNCOMMENT FOR PROD ------
     // Add flat rate shipping item
-    stripeLineItems.push({
+    productData.push({
       price: 'price_1HnSz0IZSSMTzx9qsNnRBgkm',
       quantity: 1,
+      title: null,
+      colorsText: null,
+      userDescription: null,
     });
 
     this.spinnerService.updateSpinnerStatus('redirecting');
@@ -86,7 +98,7 @@ export class StripeService {
     const stripe = Stripe(STRIPE_KEY);
 
     // TODO: Error handling
-    this.createCheckoutSession(stripeLineItems).then((data) => {
+    this.createCheckoutSession(productData).then((data) => {
       stripe
         .redirectToCheckout({
           sessionId: data.sessionId,
