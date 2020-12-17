@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { CartService } from '../../services/cart/cart.service';
 import { RoutingService } from '../../services/routing/routing.service';
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   activeRoute$ = this.routingService.activeRoute$;
 
   constructor(
+    private router: Router,
     private cart: CartService,
     private routingService: RoutingService,
     private modalService: MDBModalService
@@ -28,7 +30,10 @@ export class NavbarComponent implements OnInit {
     this.routingService.detectActiveRoute();
   }
 
-  scrollToTop(): void {
+  scrollToTop(fromBadge?: true): void {
     window.scrollTo(0, 0);
+    if (fromBadge) {
+      this.router.navigateByUrl('/cart');
+    }
   }
 }
