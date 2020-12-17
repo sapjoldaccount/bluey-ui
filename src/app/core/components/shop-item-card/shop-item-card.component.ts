@@ -3,9 +3,12 @@ import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FirestoreService } from 'src/app/shared/services/firestore/firestore.service';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
 import { ShopItem } from '../../models/ShopItem';
 import { CartService } from '../../services/cart/cart.service';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { CustomDeckModalComponent } from '../custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
 import { ProductDetailModalComponent } from '../product-detail-modal/product-detail-modal.component';
 
 @Component({
@@ -24,9 +27,11 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /*                             PRODUCT INFO INPUTS                            */
   /* -------------------------------------------------------------------------- */
 
-  /**
-   * Product title
-   */
+  // Personalized deck
+  isSpecial: boolean;
+
+  // Product title
+  // tslint:disable-next-line: variable-name
   _title: string;
   get title(): string {
     return this._title;
@@ -35,20 +40,17 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     this._title = value;
   }
 
-  /**
-   * Product itself
-   */
+  // Product itself
   _productObject: ShopItem;
   get productObject(): ShopItem {
     return this._productObject;
   }
   @Input() set productObject(value: ShopItem) {
+    this.isSpecial = value.id === 999;
     this._productObject = value;
   }
 
-  /**
-   * Numeric product id
-   */
+  // Product id
   _id: number;
   get id(): number {
     return this._id;
@@ -59,8 +61,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   @Input() price: string;
   @Input() description: string;
-
-  // TODO: put these in global config
+  @Input() actionButtonText: string;
   @Input() imageBaseUrl: string;
   @Input() imagePathUrl: string;
 
@@ -79,11 +80,14 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   ngUnsub = new Subject();
 
+  customDeckRemainingCount$ = this.firestoreService.customDeckRemainingCount;
+
   constructor(
     private cart: CartService,
     private spinner: NgxSpinnerService,
     private spinnerService: SpinnerService,
-    private modalService: MDBModalService
+    private modalService: MDBModalService,
+    private firestoreService: FirestoreService
   ) {}
 
   ngOnInit(): void {
@@ -105,10 +109,14 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   /* -------------------------------------------------------------------------- */
   /*                              SHOP ITEM ACTIONS                             */
   /* -------------------------------------------------------------------------- */
-  onAddCartClick(product: ShopItem): void {
-    this.isInCart.value
-      ? this.cart.removeShopItemFromCart(product.id)
-      : this.cart.addShopItem(product);
+  actionButtonHandler(event, product: ShopItem): void {
+    if (this.isSpecial && !this.isInCart.value) {
+      this.openDetailModal();
+    } else {
+      this.isInCart.value
+        ? this.cart.removeShopItemFromCart(product.id)
+        : this.cart.addShopItem(product);
+    }
   }
 
   mouseEnter(div: string): void {
@@ -137,19 +145,28 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
    * Open slideshow modal component
    */
   openDetailModal(): void {
-    const modalOptions = {
-      data: {
-        content: {
-          title: this.title, // TODO pass data here
-          id: this.id,
-          productObject: this.productObject,
+    if (this.isSpecial) {
+      if (this.isInCart.value) {
+        // Show limit one per customer modal
+        this.modalRef = this.modalService.show(ConfirmationModalComponent);
+      } else {
+        this.modalRef = this.modalService.show(CustomDeckModalComponent);
+      }
+    } else {
+      const modalOptions = {
+        data: {
+          content: {
+            title: this.title, // TODO pass data here
+            id: this.id,
+            productObject: this.productObject,
+          },
         },
-      },
-    };
+      };
 
-    this.modalRef = this.modalService.show(
-      ProductDetailModalComponent,
-      modalOptions
-    );
+      this.modalRef = this.modalService.show(
+        ProductDetailModalComponent,
+        modalOptions
+      );
+    }
   }
 }

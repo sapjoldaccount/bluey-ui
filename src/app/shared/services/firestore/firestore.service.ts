@@ -17,6 +17,10 @@ import { ToastService } from '../toast/toast.service';
 /* -------------------------------------------------------------------------- */
 export class FirestoreService {
   public allShopItems: Observable<ShopItem[]> | Observable<unknown[]> = of([]);
+  public customDeckItem: Observable<ShopItem> | Observable<unknown> = of(null);
+  public customDeckRemainingCount:
+    | Observable<number>
+    | Observable<unknown> = of(null);
 
   constructor(
     private firestore: AngularFirestore,
@@ -28,6 +32,17 @@ export class FirestoreService {
      * Tracks and live-updates firestore documents as they are inserted,
      * deleted, or modified
      */
+
+    this.customDeckItem = this.firestore
+      .collection('specials')
+      .doc('nQ2ci5VVAnpMatq2x0hu')
+      .valueChanges();
+
+    this.customDeckRemainingCount = this.firestore
+      .collection('specials')
+      .doc('customs_remaining')
+      .valueChanges();
+
     this.allShopItems = this.firestore
       .collection('decks', (ref) =>
         ref.orderBy('sold', 'asc').orderBy('id', 'desc')

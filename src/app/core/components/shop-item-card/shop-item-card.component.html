@@ -1,7 +1,7 @@
 <div
   id="x"
   class="col-sm deck-container ml-2 mr-2 mb-5"
-  [ngClass]="productObject.sold ? 'disable-hover' : ''"
+  [ngClass]="productObject.sold ? '' : ''"
   [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-out' : ''"
 >
   <div
@@ -10,20 +10,67 @@
     class="deck-img view overlay"
     mdbWavesEffect
     (click)="openDetailModal()"
-    [ngClass]="productObject.sold ? 'disable-hover' : ''"
+    [ngClass]="productObject.sold ? '' : ''"
   >
-    <!-- TODO: Add back in later for data usage reasons -->
     <div *ngIf="productObject.sold" class="sold-overlay"></div>
     <span class="sold-out" *ngIf="productObject.sold">Sold</span>
 
     <img
-      [ngClass]="productObject.zoom_out === true ? 'zoomed-out' : ''"
+      [ngClass]="{
+        'zoomed-out': productObject.zoom_out === true && !isSpecial,
+        'zoomed-out-more': productObject.zoom_out === true && isSpecial
+      }"
       src="{{ imageSrc }}"
     />
 
-    <div class="mask flex-center rgba-black-light">
+    <div *ngIf="isSpecial" class="remain-ctr">
+      <span style="width: 63px" class="sold-out remaining">{{
+        (customDeckRemainingCount$ | async)?.count
+      }}</span>
+      <span
+        class="sold-out remaining"
+        style="
+          left: 8px !important;
+          top: 55px !important;
+          font-size: 14px !important;
+          text-align: center !important;
+        "
+        >REMAINING</span
+      >
+    </div>
+
+    <div *ngIf="!isSpecial" class="mask flex-center rgba-black-light">
       <p class="white-text view-more-text">
         View<mat-icon class="view-more-icon">zoom_in</mat-icon>
+      </p>
+    </div>
+
+    <div *ngIf="isSpecial" class="mask flex-center rgba-black-light"></div>
+
+    <div *ngIf="isSpecial" style="pointer-events: none">
+      <p
+        class="white-text view-more-text"
+        style="
+          position: absolute;
+          top: 39%;
+          left: 12%;
+          font-size: 41px;
+          background: #55bfff;
+          padding: 0px;
+          border-radius: 15px;
+          padding: 0 28px 0 8px;
+        "
+      >
+        CREATE<mat-icon
+          class="view-more-icon"
+          style="
+            vertical-align: middle !important;
+            margin-left: 6px !important;
+            font-size: 39px;
+            margin-top: -21px !important;
+          "
+          >build</mat-icon
+        >
       </p>
     </div>
   </div>
@@ -33,7 +80,9 @@
     [ngClass]="(isHoveringOverImage$ | async) === true ? 'push-down' : ''"
   >
     <div class="deck-txt">{{ title }}</div>
-    <div class="deck-txt sub">{{ description }}</div>
+    <div class="deck-txt sub">
+      {{ description }}
+    </div>
     <div class="deck-txt price">${{ price }}</div>
     <div class="deck-add">
       <button
@@ -43,19 +92,59 @@
         type="button"
         color="success"
         mdbWavesEffect
-        (click)="onAddCartClick(productObject)"
+        (click)="actionButtonHandler($event, productObject)"
         [ngClass]="(isInCart$ | async) === true ? 'danger-button' : ''"
         [disabled]="productObject.sold"
       >
         <div class="btn-txt-con">
+          <mat-icon
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            *ngIf="isSpecial && (isInCart$ | async) === false"
+            class="view-more-icon"
+            >build</mat-icon
+          >
+
+          <mat-icon
+            *ngIf="!isSpecial && (isInCart$ | async) === false"
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            class="view-more-icon"
+            >add_shopping_cart</mat-icon
+          >
+          <mat-icon
+            *ngIf="(isInCart$ | async) === true"
+            style="
+              font-size: 20px;
+              position: absolute;
+              left: -23px;
+              top: -2px;
+              margin-top: 0px !important;
+            "
+            class="view-more-icon"
+            >remove_shopping_cart</mat-icon
+          >
           <span
             [ngClass]="
               (isInCart$ | async) === true
                 ? 'add-button-text white-text'
                 : 'add-button-text'
             "
+            class="bold"
             >{{
-              (isInCart$ | async) === true ? "Remove from Cart" : "Add To Cart"
+              (isInCart$ | async) === true
+                ? "Remove from Cart"
+                : actionButtonText
             }}</span
           >
         </div>

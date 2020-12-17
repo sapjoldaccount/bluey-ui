@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { CartService } from '../../services/cart/cart.service';
 import { RoutingService } from '../../services/routing/routing.service';
-import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -27,13 +26,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.routingService.detectActiveRoute();
-  }
-
-  /**
-   * Open the cart containing items, price, checkout button
-   */
-  openCartModal(): void {
-    this.modalRef = this.modalService.show(CartModalComponent);
   }
 
   scrollToTop(): void {

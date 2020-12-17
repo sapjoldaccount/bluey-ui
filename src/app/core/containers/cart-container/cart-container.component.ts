@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MDBModalRef } from 'angular-bootstrap-md';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/services/spinner/spinner.service';
@@ -10,22 +9,19 @@ import { CartService } from '../../services/cart/cart.service';
 import { StripeService } from '../../services/stripe/stripe.service';
 
 @Component({
-  selector: 'app-cart-modal',
-  templateUrl: './cart-modal.component.html',
-  styleUrls: ['./cart-modal.component.scss'],
+  templateUrl: './cart-container.component.html',
+  styleUrls: ['./cart-container.component.scss'],
 })
-
-/* -------------------------------------------------------------------------- */
-/*                                 CART MODAL                                 */
-/* -------------------------------------------------------------------------- */
-/*                           OPENED UPON CART CLICK                           */
-/* -------------------------------------------------------------------------- */
-export class CartModalComponent implements OnInit {
+export class CartContainerComponent implements OnInit {
   formGroup = new FormGroup({
     checked: new FormControl(false, Validators.required),
   });
 
   productsInCart$ = this.cart.productsInCart$;
+
+  // TODO: real loading based on image
+  loaded = new BehaviorSubject<boolean>(false);
+  loaded$ = this.loaded.asObservable();
 
   /**
    * Calculates total pre-tax/shipping USD of cart
@@ -45,12 +41,15 @@ export class CartModalComponent implements OnInit {
 
   constructor(
     private cart: CartService,
-    public modalRef: MDBModalRef,
     private stripe: StripeService,
     private spinnerService: SpinnerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.loaded.next(true);
+    }, 500);
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                                CART ACTIONS                                */

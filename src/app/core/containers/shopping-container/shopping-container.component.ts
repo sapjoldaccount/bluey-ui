@@ -20,6 +20,9 @@ export class ShoppingContainerComponent implements OnInit {
   availableDecks$: Observable<ShopItem[]> | Observable<unknown[]> = this
     .firestoreService.allShopItems;
 
+  customDeckItem$: Observable<ShopItem> | Observable<unknown> = this
+    .firestoreService.customDeckItem;
+
   spinnerAction$: Observable<string> = this.spinnerService.spinnerAction$;
 
   cdnBaseUrl = environment.cdnBaseUrl;

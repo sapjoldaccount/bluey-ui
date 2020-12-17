@@ -66,3 +66,13 @@
   color: black;
   font-weight: 700;
 }
+
+.loading-spinner {
+  margin: auto;
+  margin-top: 32px;
+  margin-bottom: 1000px;
+
+  ::ng-deep circle {
+    stroke: #55bbff !important;
+  }
+}

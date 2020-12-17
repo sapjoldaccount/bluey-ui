@@ -28,7 +28,6 @@ import { ShopItemCardComponent } from './core/components/shop-item-card/shop-ite
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { CartModalComponent } from './core/components/cart-modal/cart-modal.component';
 import { ProductDetailModalComponent } from './core/components/product-detail-modal/product-detail-modal.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +35,14 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
+import { CustomDeckModalComponent } from './core/components/custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
+import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></color-swatches>
+
+import { ColorCircleModule } from 'ngx-color/circle';
+import { ConfirmationModalComponent } from './core/components/confirmation-modal/confirmation-modal.component'; // <color-circle></color-circle>
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CartContainerComponent } from './core/containers/cart-container/cart-container.component';
 
 @NgModule({
   declarations: [
@@ -50,13 +57,19 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
     ContactContainerComponent,
     ProductPreviewComponent,
     ShopItemCardComponent,
-    CartModalComponent,
     ProductDetailModalComponent,
     SuccessContainerComponent,
     CancelledContainerComponent,
+    CustomDeckModalComponent,
+    ConfirmationModalComponent,
+    CartContainerComponent,
   ],
   imports: [
     BrowserModule,
+    ColorSketchModule,
+    MatProgressSpinnerModule,
+    ColorCircleModule,
+    ColorSwatchesModule,
     MatCheckboxModule,
     CommonModule,
     AppRoutingModule,
@@ -84,6 +97,5 @@ import { CancelledContainerComponent } from './core/containers/cancelled-contain
   providers: [RouterLinkActive],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [CartModalComponent],
 })
 export class AppModule {}
