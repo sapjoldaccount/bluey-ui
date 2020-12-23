@@ -32,7 +32,7 @@ import { ProductDetailModalComponent } from './core/components/product-detail-mo
 import { ToastrModule } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuccessContainerComponent } from './core/containers/success-container/success-container.component';
 import { CancelledContainerComponent } from './core/containers/cancelled-container/cancelled-container.component';
 import { CustomDeckModalComponent } from './core/components/custom-deck-modal/custom-deck-modal/custom-deck-modal.component';
@@ -42,6 +42,7 @@ import { ColorSwatchesModule } from 'ngx-color/swatches'; // <color-swatches></c
 import { ColorCircleModule } from 'ngx-color/circle';
 import { ConfirmationModalComponent } from './core/components/confirmation-modal/confirmation-modal.component'; // <color-circle></color-circle>
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { CartContainerComponent } from './core/containers/cart-container/cart-container.component';
 
 @NgModule({
@@ -81,6 +82,7 @@ import { CartContainerComponent } from './core/containers/cart-container/cart-co
     MatButtonModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,

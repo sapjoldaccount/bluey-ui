@@ -18,6 +18,7 @@ export class CartContainerComponent implements OnInit {
   });
 
   productsInCart$ = this.cart.productsInCart$;
+  pickupOrShip: string = '';
 
   // TODO: real loading based on image
   loaded = new BehaviorSubject<boolean>(false);

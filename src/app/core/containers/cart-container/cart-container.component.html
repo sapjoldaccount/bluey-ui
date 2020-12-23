@@ -4,41 +4,74 @@
   <!-- Loading spinner -->
   <mat-spinner *ngIf="!(loaded$ | async)" class="loading-spinner"></mat-spinner>
 
-  <div>
-    <div class="shopping-descr" style="margin-bottom: 8px">
-      <table class="table table-hover" mdbTable>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of productsInCart$ | async">
-            <th scope="row" class="modal-img-row">
-              <!-- TODO: MAKE THUMBNAIL -->
-              <img
-                class="deck-thumb"
-                src="{{ cdnBaseUrl }}/decks/deck-{{ item.id }}.jpg"
-              />
-            </th>
-            <td>
-              <span style="font-weight: bold">{{ item.title }}</span> <br />
-              {{ item.description || item.colorsText }}
-            </td>
-            <td>${{ item.price }}</td>
-            <td style="text-align: center">
-              <a (click)="removeItemFromCart(item)">
-                <mat-icon mdbWavesEffect>clear</mat-icon>
-              </a>
-            </td>
-          </tr>
+  <mat-radio-group aria-label="Select an option">
+    <div>
+      <div class="shopping-descr" style="margin-bottom: 8px">
+        <table class="table table-hover" mdbTable>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of productsInCart$ | async">
+              <th scope="row" class="modal-img-row">
+                <!-- TODO: MAKE THUMBNAIL -->
+                <img
+                  class="deck-thumb"
+                  src="{{ cdnBaseUrl }}/decks/deck-{{ item.id }}.jpg"
+                />
+              </th>
+              <td>
+                <span style="font-weight: bold">{{ item.title }}</span> <br />
+                {{ item.description || item.colorsText }}
+              </td>
+              <td>${{ item.price }}</td>
+              <td style="text-align: center">
+                <a (click)="removeItemFromCart(item)">
+                  <mat-icon mdbWavesEffect>clear</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-          <tr *ngIf="(productsInCart$ | async)?.length > 0">
-            <th scope="row" class="modal-img-row">
-              <mat-icon
+        <!-- <mat-radio-group > -->
+
+        <div>
+          <th scope="row"></th>
+          <td style="font-weight: bold; font-size: 16px; text-align: center">
+            <div>SELECT SHIPPING OR PICKUP:</div>
+          </td>
+          <td></td>
+          <td style="text-align: center"></td>
+        </div>
+        <table class="table table-hover" mdbTable>
+          <tbody>
+            <tr>
+              <th scope="row" class="modal-img-row">
+                <!-- <mat-radio-button
+                  class="example-radio-button"
+                  [value]="'Shipping'"
+                >
+                </mat-radio-button> -->
+              </th>
+              <td>
+                <mat-radio-button value="1"
+                  >Shipping (Flat Rate)</mat-radio-button
+                >
+              </td>
+              <td>$9.99</td>
+              <td style="text-align: center"></td>
+            </tr>
+
+            <tr>
+              <th scope="row" class="modal-img-row">
+                <!-- <mat-radio-button value="2">Select</mat-radio-button> -->
+                <!-- <mat-icon
                 style="
                   width: 100%;
                   text-align: center;
@@ -46,24 +79,28 @@
                   color: #55bfff;
                 "
                 >local_shipping</mat-icon
-              >
-            </th>
-            <td>Shipping (Flat Rate)</td>
-            <td>$9.99</td>
-            <td style="text-align: center"></td>
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            <td class="total-text">
-              Subtotal <br /><span class="total-sub">Tax not included</span>
-            </td>
-            <td class="total-text">${{ cartTotal$ | async }}</td>
-            <td style="text-align: center"></td>
-          </tr>
-        </tbody>
-      </table>
+              > -->
+              </th>
+              <td>
+                <mat-radio-button value="1">Pickup (Free)</mat-radio-button>
+              </td>
+              <td>$0</td>
+              <td style="text-align: center"></td>
+            </tr>
+            <!-- </mat-radio-group> -->
+            <tr>
+              <th scope="row"></th>
+              <td class="total-text">
+                Subtotal <br /><span class="total-sub">Tax not included</span>
+              </td>
+              <td class="total-text">${{ cartTotal$ | async }}</td>
+              <td style="text-align: center"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  </mat-radio-group>
 
   <div class="discs-con">
     <!-- REFUND DISCLAIMER -->
