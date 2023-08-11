@@ -4,5 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 An e-commerce store to buy and custom order pour-painted skateboards out of Louisville, KY 🛹
 
-![Bluey Screenshot 1]("https://github.com/stevenpenavajr/bluey-ui/blob/master/bluey_1.png")
-![Bluey Screenshot 2]("https://github.com/stevenpenavajr/bluey-ui/blob/master/bluey_2.png")
+[![Bluey Screen Shot][product-screenshot]](https://example.com)
+[![Bluey Screen Shot 2][product-screenshot2]](https://example.com)
+
+[product-screenshot]: bluey_1.png
+[product-screenshot2]: bluey_2.png
